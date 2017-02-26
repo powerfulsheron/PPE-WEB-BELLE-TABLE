@@ -2,6 +2,7 @@
 
 A FAIRE :
 
+- Page "A propos" en PHP
 - NewsLetter
 - Footer (Mentions légales 
 - Réseaux sociaux
