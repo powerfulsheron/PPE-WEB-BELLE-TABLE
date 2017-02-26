@@ -1,5 +1,7 @@
 # PPE-WEB-BELLE-TABLE
 
+A FAIRE :
+
 - NewsLetter
 - Footer (Mentions légales 
 - Réseaux sociaux
