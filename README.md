@@ -12,7 +12,7 @@ A FAIRE :
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer
 - Cookies avec notification d'acceptation
 - Envoi automatique de mail après commande
-- Utiliser des requêtes SQL préparées :) (Raphaël)
+- Sécurité (Raphaël)
 
 
 
