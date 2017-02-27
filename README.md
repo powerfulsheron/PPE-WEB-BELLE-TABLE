@@ -5,7 +5,7 @@ A FAIRE :
 - Page "A propos" en PHP
 - NewsLetter
 - Footer (Mentions légales 
-- Réseaux sociaux
+- Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
 - Barre de recherche
 - F.A.Q
