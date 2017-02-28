@@ -3,8 +3,9 @@
 A FAIRE :
 
 - Page "A propos" en PHP
+- Page "Mot de passe oublié" en PHP
 - NewsLetter
-- Footer (Mentions légales 
+- Footer (Mentions légales)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
 - Barre de recherche
@@ -18,3 +19,4 @@ A FAIRE :
 
 Tutoriel PHP:
 https://www.w3schools.com/php/
+https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql
