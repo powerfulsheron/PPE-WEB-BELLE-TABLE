@@ -68,33 +68,33 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 			switch($typeinspi){
 				case 1:
 					echo'
-					<img src="img/thèmes/theme1.jpg" alt="">
+					<img src="img/themes/theme1.jpg" alt="">
 					<br/><br/>
 					<p align="right"><b>SCÉNOGRAPHIE JEAN-LUC BLAIS</b></p>';
 				break;
 				case 2:
 					echo'
-					<img src="img/thèmes/theme2.jpg" alt="">';
+					<img src="img/themes/theme2.jpg" alt="">';
 				break;
 				case 3:
 					echo'
-					<img src="img/thèmes/theme3.jpg" alt="">
+					<img src="img/themes/theme3.jpg" alt="">
 					<br/><br/>
 					<p align="right"><b>SCÉNOGRAPHIE CAROLE NICOLAS / PHOTOGRAPHE ALEXIS BOULLAY</b></p>';
 				break;
 				case 4:
 					echo'
-					<img src="img/thèmes/theme4.jpg" alt="">
+					<img src="img/themes/theme4.jpg" alt="">
 					<br/><br/>
 					<p align="right"><b>SCÉNOGRAPHIE PHILIPPE MODEL / PHOTOGRAPHE ALEXIS BOULLAY</b></p>';
 				break;
 				case 5:
 					echo'
-					<img src="img/thèmes/theme5.jpg" alt="">';
+					<img src="img/themes/theme5.jpg" alt="">';
 				break;
 				case 6:
 					echo'
-					<img src="img/thèmes/theme6.jpg" alt="">
+					<img src="img/themes/theme6.jpg" alt="">
 					<br/><br/>
 					<p align="right"><b>SCÉNOGRAPHIE SOIZIC CHOMEL</b></p>';
 				break;								
@@ -415,12 +415,6 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
         </footer>
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
