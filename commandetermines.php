@@ -116,6 +116,7 @@ if(isset($_SESSION['login'])){
 				<div class="row">
 					<div class="encadrefooter">
 						<p>Copyright &copy; BelleTable 2017</p>
+						<p><a href="mentionlegale.php">Mentions Légales</a></p>
 					</div>
 				</div>
 			</footer>
