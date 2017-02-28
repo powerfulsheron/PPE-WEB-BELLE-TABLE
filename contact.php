@@ -8,10 +8,10 @@ if(isset($_SESSION['login'])){
 }
 if(isset($_REQUEST['email'])){
 	$nom=$_REQUEST['nom'];
-	$email=$_REQUEST['email'];
-	$message=$_REQUEST['message'];
-	if (($nom=="")||($email=="")||($message=="")){
-		Contact($email,$message,$nom);
+    $email=$_REQUEST['email'];
+    $message=$_REQUEST['message'];
+    if (($nom=="")||($email=="")||($message=="")){
+        Contact($email,$message,$nom);
 	}
 }
 	
@@ -95,6 +95,7 @@ if(isset($_REQUEST['email'])){
             <div class="row">
                 <div class="encadrefooter">
                     <p>Copyright &copy; BelleTable 2017</p>
+					<p><a href="mentionlegale.php">Mentions Légales</a></p>
                 </div>
             </div>
         </footer>
