@@ -20,7 +20,10 @@ if(isset($_SESSION['login'])){
     <title>BelleTable - Elegance a la Francaise</title>
 
     <link href="css/cssbelletable.css" rel="stylesheet">
-     <link href="css/carousel.css" rel="stylesheet">
+	<link href="css/carrouselcss.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="js/carrouselbis.js" type="text/javascript"></script>
+	<script src="js/carrousel.js" type="text/javascript"></script>
 
 </head>
 
@@ -54,53 +57,34 @@ if(isset($_SESSION['login'])){
 		</ul>
 	</div>
 	<br/>
-	<div>
-	<div id="tableaccueil" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#tableaccueil" data-slide-to="0" class="active"></li>
-			<li data-target="#tableaccueil" data-slide-to="1"></li>
-			<li data-target="#tableaccueil" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="item active">
-				<img class="slide-image" src="img/accueil/tablebleu.jpg" alt="">
-			</div>
-			<div class="item">
-				<img class="slide-image" src="img/accueil/tableor.jpg" alt="">
-			</div>
-			<div class="item">
-				<img class="slide-image" src="img/accueil/tableblanche.jpg" alt="">
-			</div>
+	
+	<!--Carrousel -->
+	<div id="wrapper">
+		<div id="carousel">
+			<img src="img/accueil/tablebleu.jpg" alt="tablebleu" width="990" height="450" />
+			<img src="img/accueil/tableor.jpg" alt="tableor" width="990" height="450" />
+			<img src="img/accueil/tableblanche.jpg" alt="tableblanche" width="990" height="450" />
+			<img src="img/themes/theme1.jpg" alt="tablebleu" width="990" height="450" />
+			<img src="img/themes/theme5.jpg" alt="tableor" width="990" height="450" />
+			<img src="img/themes/theme2.jpg" alt="tableblanche" width="990" height="450" />
 		</div>
-		<a class="left carousel-control" href="#tableaccueil" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-		</a>
-		<a class="right carousel-control" href="#tableaccueil" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-		</a>
+		<a href="#" id="prev" title="Show previous"> </a>
+		<a href="#" id="next" title="Show next"> </a>
+		<div id="pager"></div>
 	</div>
-	</div>
-    <div class="container">
-		<?php
-			//echo $_SESSION['login'];
-		?>
-    </div>
-		<div class="container">
-		<br/><br/>
-			<hr>
-
-			<footer>
-				<div class="row">
-					<div class="encadrefooter">
-						<p>Copyright &copy; BelleTable 2017</p>
-					</div>
+	
+	<div class="container">
+	<br/>
+		<hr>
+		<footer>
+			<div class="row">
+				<div class="encadrefooter">
+					<p>Copyright &copy; BelleTable 2017</p>
 				</div>
-			</footer>
+			</div>
+		</footer>
 
-		</div>
-    <script src="js/jquery.js"></script>
-
-    <script src="js/bootstrap.min.js"></script>
+	</div>
 
 </body>
 
