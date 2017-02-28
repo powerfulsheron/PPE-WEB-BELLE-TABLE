@@ -65,7 +65,7 @@ if(isset($_SESSION['login'])){
 				<h1 align="center">Nos Inspirations</h1><br/>
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=1" ><img src="img/thèmes/theme1view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=1" ><img src="img/themes/theme1view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=1">Ambiance Taupe</a></h4>                         
 						</div> 
@@ -74,7 +74,7 @@ if(isset($_SESSION['login'])){
 
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=2" ><img src="img/thèmes/theme2view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=2" ><img src="img/themes/theme2view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=2">Azul Opale</a></h4>                         
 						</div> 
@@ -83,7 +83,7 @@ if(isset($_SESSION['login'])){
 
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=3" ><img src="img/thèmes/theme3view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=3" ><img src="img/themes/theme3view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=3">Baroque</a></h4>                         
 						</div> 
@@ -92,7 +92,7 @@ if(isset($_SESSION['login'])){
 
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=4" ><img src="img/thèmes/theme4view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=4" ><img src="img/themes/theme4view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=4">Dorure d'Automne</a></h4>                         
 						</div> 
@@ -101,7 +101,7 @@ if(isset($_SESSION['login'])){
 
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=5" ><img src="img/thèmes/theme5view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=5" ><img src="img/themes/theme5view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=5">Reflet Doré</a></h4>                         
 						</div> 
@@ -110,7 +110,7 @@ if(isset($_SESSION['login'])){
 				
 				<div class="encadreproduit">
 					<div class="encadre">
-						<a href="pageinspirationchoix.php?inspi=6" ><img src="img/thèmes/theme6view.jpg" alt=""></a>
+						<a href="pageinspirationchoix.php?inspi=6" ><img src="img/themes/theme6view.jpg" alt=""></a>
 						<div class="caption">
 							<h4><a href="pageinspirationchoix.php?inspi=6">Table Nature</a></h4>                         
 						</div> 
@@ -135,12 +135,6 @@ if(isset($_SESSION['login'])){
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
