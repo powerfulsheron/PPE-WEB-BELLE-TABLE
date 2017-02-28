@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('fonction.php');
 if(isset($_SESSION['login'])){
 	if($_SESSION['login'] != ""){
 		$menuchange = true;
@@ -10,10 +11,7 @@ if(isset($_REQUEST['email'])){
     $email=$_REQUEST['email'];
     $message=$_REQUEST['message'];
     if (($nom=="")||($email=="")||($message=="")){
-        
-	}
-    else{        
-		
+        Contact($email,$message,$nom);
 	}
 }
 	
