@@ -39,36 +39,102 @@ function CalculDeltaDate($madate){
 	}
 }
 
-function AjouterCommande($datecommande,$prixtotal,$numclient,$livraison,$miseplace,$service,$vaisselle,$lessive){
-    
-    if($livraison == 'O'){
-        $prixtotal = $prixtotal + 25;
-    }
-    if($miseplace == 'O'){
-        $prixtotal = $prixtotal + 25;
-    }
-    if($service == 'O'){
-        $prixtotal = $prixtotal + 50;
-    }
-    if($vaisselle == 'O'){
-        $prixtotal = $prixtotal + 20;
-    }
-    if($lessive == 'O'){
-        $prixtotal = $prixtotal + 30;
-    }
-    
-    $bdd->exec('INSERT INTO t_commande (datecommande,dateenvoi,prixcommande,numclient,livraison,miseplace,service,vaisselle,lessive) VALUES  ('.$datecommande.',null,'.$prixtotal.','.$numclient.','.$livraison.','.$miseplace.','.$service.','.$vaisselle.','.$lessive.')');
-    
-    $result = $bdd->query('SELECT * FROM t_commande ORDER BY datecommande DESC LIMIT 1');
-    while($row = $result->fetch()){
-        $numcommande = $row['numcommande'];
-    }
-    return $numcommande;
+function MdpOublie($mail){
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+	{
+		$passage_ligne = "\r\n";
+	}
+	else
+	{
+		$passage_ligne = "\n";
+	}
+	
+	$characts = 'abcdefghijklmnopqrstuvwxyz';
+    $characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';	
+	$characts .= '1234567890'; 
+	$mdpcree = ''; 
+
+	for($i=0;$i < 6;$i++)//6 est le nombre de caractères
+	{ 
+        $mdpcree .= substr($characts,rand()%(strlen($characts)),1); 
+	}
+	
+	//=====Déclaration des messages au format texte et au format HTML.
+	$message_html = "<html><head></head><body>Bonjour,<br/>Voici votre nouveau mdp généré automatiquement :<br/>";
+	$message_html = $message_html + $mdpcree;
+	//==========
+	 
+	//=====Création de la boundary
+	$boundary = "-----=".md5(rand());
+	//==========
+	 
+	//=====Définition du sujet.
+	$sujet = "Votre nouveau mot de passe";
+	//=========
+	 
+	//=====Création du header de l'e-mail.
+	$header = "From: <contact@belletable.com>".$passage_ligne;
+	$header.= "MIME-Version: 1.0".$passage_ligne;
+	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+	//==========
+	 
+	//=====Création du message.
+	$message = $passage_ligne."--".$boundary.$passage_ligne;
+	//=====Ajout du message au format HTML
+	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+	$message.= $passage_ligne.$message_html.$passage_ligne;
+	//==========
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	//==========
+	
+	mail($mail,$sujet,$message,$header);
+	return $mdpcree;
 }
 
-function AjouterProduitCommande($numcommande,$numproduit,$quantite,$prixproduit){
-    $bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite,prixttc) VALUES  ('.$numcommande.','.$numproduit.','.$quantite.','.$prixproduit.')');
+function Contact($mail,$message,$nom){
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+	{
+		$passage_ligne = "\r\n";
+	}
+	else
+	{
+		$passage_ligne = "\n";
+	}
+	
+	//=====Déclaration des messages au format texte et au format HTML.
+	$message_html = "<html><head></head><body>Bonjour,<br/>Voici le message de Mr/Mme";
+	$message_html = $message_html + $nom + "<br/> Email : " + $mail + "<br/>" + $message +"</body></html>";
+	//==========
+	 
+	//=====Création de la boundary
+	$boundary = "-----=".md5(rand());
+	//==========
+	 
+	//=====Définition du sujet.
+	$sujet = "Nouveau Message";
+	//=========
+	 
+	//=====Création du header de l'e-mail.
+	$header = "From: ".$mail."".$passage_ligne;
+	$header.= "MIME-Version: 1.0".$passage_ligne;
+	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+	//==========
+	 
+	//=====Création du message.
+	$message = $passage_ligne."--".$boundary.$passage_ligne;
+	//=====Ajout du message au format HTML
+	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+	$message.= $passage_ligne.$message_html.$passage_ligne;
+	//==========
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	//==========
+	
+	mail("belletablecontact@gmail.com",$sujet,$message,$header);
+	return $mdpcree;
 }
-
 
 ?>
