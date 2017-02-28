@@ -28,7 +28,14 @@ if(isset($_REQUEST['email'])){
 	$ville=$_REQUEST['ville'];
 	$fixe=$_REQUEST['telfixe'];
 	$portable=$_REQUEST['telportable'];
-
+	
+	if(isset($_REQUEST['newsletter'])){
+		$newsletter = 'O';
+	}
+	else{
+		$newsletter = 'N';
+	}
+	echo $newsletter;
 	$erreur = 0;
 	
 	if(isset($fixe)){if(($fixe == null)&&($portable == null)){$erreur = 3;}}
@@ -98,6 +105,7 @@ if(isset($_REQUEST['email'])){
 	if($portable == ""){
 		$portable = NULL;
 	}
+	$newsletter ='\''.$newsletter.'\'';
 	if($erreur == 0){
 		if($modificationmdp == true){
             $bdd->exec('UPDATE t_client SET
@@ -113,7 +121,8 @@ if(isset($_REQUEST['email'])){
 						telfixeclient='.$fixe.',
 						telportableclient='.$portable.',
 						mdpclient='.$newpassword.',
-						civiliteclient='.$civilite.'
+						civiliteclient='.$civilite.',
+						newsletter='.$newsletter.'
 						WHERE numclient = '.$idclient.'');
 		}
 		else{
@@ -129,7 +138,8 @@ if(isset($_REQUEST['email'])){
 						emailclient='.$email.',
 						telfixeclient='.$fixe.',
 						telportableclient='.$portable.',
-						civiliteclient='.$civilite.'
+						civiliteclient='.$civilite.',
+						newsletter='.$newsletter.'
 						WHERE numclient = '.$idclient.'');
 		}
 		
@@ -412,15 +422,31 @@ if(isset($_REQUEST['email'])){
 							</tr>
 							<tr>
 								<td>
-									Téléphone Portable**<br/><br/><br/>
+									Téléphone Portable**<br/><br/>
 								</td>
 								<td>
-									<input name="telportable" type="text" value="'.$row['telportableclient'].'" size="30"/><br/><br/><br/>
+									<input name="telportable" type="text" value="'.$row['telportableclient'].'" size="30"/><br/><br/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Newsletter<br/><br/><br/>
+								</td>
+								<td align="left">';
+									if($row['newsletter'] == 'O'){
+										echo'
+										<input type="checkbox" id="newsletter" name="newsletter" value="newsletter" checked><br/><br/><br/>';
+									}
+									else{
+										echo'
+										<input type="checkbox" id="newsletter" name="newsletter" value="newsletter"><br/><br/><br/>';
+									}									
+								echo'
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'form\'].submit();"/>
+									<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
 								</td>
 							</tr>';
 							}
