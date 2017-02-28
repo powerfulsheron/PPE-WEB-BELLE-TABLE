@@ -23,6 +23,12 @@ if(isset($_REQUEST['email'])){
 	$ville=$_REQUEST['ville'];
 	$fixe=$_REQUEST['telfixe'];
 	$portable=$_REQUEST['telportable'];
+	if(isset($_REQUEST['newsletter'])){
+		$newsletter = 'O';
+	}
+	else{
+		$newsletter = 'N';
+	}
 
 	$erreur = 0;
 	
@@ -72,7 +78,7 @@ if(isset($_REQUEST['email'])){
 	
 	if($erreur == 0){
 		
-        $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.')');
+        $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient,newsletter) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.','.$newsletter.')');
 
 		//Envoi des requêtes
         $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$emailbis.'" AND `mdpclient` LIKE "'.$mdpbis.'"');
@@ -311,6 +317,14 @@ if(isset($_REQUEST['email'])){
 									</td>
 									<td>
 										<input name="telportable" type="text" value="" size="30"/><br/><br/><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Newsletter<br/><br/><br/>
+									</td>
+									<td>
+										<input type="checkbox" id="newsletter" name="newsletter" value="newsletter" >
 									</td>
 								</tr>
 								<tr>
