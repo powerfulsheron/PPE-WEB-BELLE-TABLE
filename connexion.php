@@ -7,6 +7,7 @@ if(isset($_SESSION['login'])){
 }
 
 include('parametres.php');
+
 if(isset($_REQUEST['email'])){
     $email=$_REQUEST['email'];
 	if($_REQUEST['password'] != ""){
@@ -182,6 +183,7 @@ if(isset($_REQUEST['email'])){
             <div class="row">
                 <div class="encadrefooter">
                     <p>Copyright &copy; BelleTable 2017</p>
+					<p><a href="mentionlegale.php">Mentions Légales</a></p>
                 </div>
             </div>
         </footer>
