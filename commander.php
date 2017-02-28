@@ -144,6 +144,7 @@ $result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; BelleTable 2017</p>
+					<p><a href="mentionlegale.php">Mentions Légales</a></p>
                 </div>
             </div>
         </footer>
