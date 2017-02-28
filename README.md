@@ -3,7 +3,7 @@
 A FAIRE :
 
 - Page "A propos" en PHP
-- Page "Mot de passe oublié" en PHP
+- Page "Mot de passe oublié" en PHP (en cours Axelle)
 - NewsLetter
 - Footer (Mentions légales)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
