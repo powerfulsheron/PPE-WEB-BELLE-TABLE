@@ -350,6 +350,7 @@ if(isset($_REQUEST['email'])){
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; BelleTable 2017</p>
+					<p><a href="mentionlegale.php">Mentions Légales</a></p>
                 </div>
             </div>
         </footer>
