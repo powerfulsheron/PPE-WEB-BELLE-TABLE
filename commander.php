@@ -150,10 +150,5 @@ $result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
