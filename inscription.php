@@ -315,7 +315,7 @@ if(isset($_REQUEST['email'])){
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'form\'].submit();"/>
+										<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
 									</td>
 								</tr>								
 							</tbody>
