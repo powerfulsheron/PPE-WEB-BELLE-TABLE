@@ -8,10 +8,10 @@ if(isset($_SESSION['login'])){
 }
 if(isset($_REQUEST['email'])){
 	$nom=$_REQUEST['nom'];
-    $email=$_REQUEST['email'];
-    $message=$_REQUEST['message'];
-    if (($nom=="")||($email=="")||($message=="")){
-        Contact($email,$message,$nom);
+	$email=$_REQUEST['email'];
+	$message=$_REQUEST['message'];
+	if (($nom=="")||($email=="")||($message=="")){
+		Contact($email,$message,$nom);
 	}
 }
 	
