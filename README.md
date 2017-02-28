@@ -3,9 +3,7 @@
 A FAIRE :
 
 - Page "A propos" en PHP
-- Page "Mot de passe oublié" en PHP (fait Axelle)
 - NewsLetter (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter)
-- Footer (Mentions légales)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
 - Barre de recherche
@@ -15,6 +13,11 @@ A FAIRE :
 - Envoi automatique de mail après commande
 - Sécurité (Raphaël)
 - création d'un serveur SMTP pour les mails
+
+FAIT :
+
+- Page "Mot de passe oublié" en PHP (fait Axelle)
+- Footer (Mentions légales) (fait Axelle)
 
 
 Tutoriel PHP:
