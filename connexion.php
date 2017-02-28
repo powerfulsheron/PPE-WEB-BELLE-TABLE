@@ -162,7 +162,7 @@ if(isset($_REQUEST['email'])){
 										<input name="email" type="text" value="" size="30"/><br><br>
 										<p>Mot de Passe*</p>
 										<input name="password" type="password" value="" size="30"/><br><br>
-										<input type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'form\'].submit();"/><br/><br/>
+										<input type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
 										<a href="">Mot de passe oublié</a>
 									</form>
 								</div>
