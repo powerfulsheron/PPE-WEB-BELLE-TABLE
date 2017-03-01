@@ -2,12 +2,12 @@
 
 A FAIRE :
 
-- Page "A propos" en PHP ( encours lorenzo )
+
 - NewsLetter (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
 - F.A.Q
-- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer
+- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
 - Cookies avec notification d'acceptation
 - Envoi automatique de mail après commande
 - Sécurité (Raphaël)
@@ -15,6 +15,7 @@ A FAIRE :
 
 FAIT :
 
+- Page "A propos" en PHP ( lorenzo )
 - Page "Mot de passe oublié" en PHP (fait Axelle)
 - Footer (Mentions légales et CGV) (fait Axelle)
 - Barre de recherche (fait Axelle)
