@@ -17,7 +17,7 @@ A FAIRE :
 FAIT :
 
 - Page "Mot de passe oublié" en PHP (fait Axelle)
-- Footer (Mentions légales) (fait Axelle)
+- Footer (Mentions légales et CGV) (fait Axelle)
 
 
 Tutoriel PHP:
