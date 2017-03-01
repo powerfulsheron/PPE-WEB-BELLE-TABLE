@@ -39,7 +39,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 			<li>
 				<a href="pageinspi.php">Nos Inspirations</a>
 			<li>
-				<a href="#">A Propos</a>
+				<a href="apropos.php">A Propos</a>
 			<li>
 				<a href="contact.php">Contact</a>
 			<li>
