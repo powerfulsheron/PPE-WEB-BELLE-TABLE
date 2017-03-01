@@ -116,10 +116,15 @@ if(isset($_REQUEST['idcommande'])){
 
 			<footer>
 				<div class="row">
-					<div class="encadrefooter">
-						<p>Copyright &copy; BelleTable 2017</p>
-						<p><a href="mentionlegale.php">Mentions Légales</a></p>
-					</div>
+				<div class="encadrefooter">
+					<ul class="footer">
+					<li><a href="mentionlegale.php">Mentions Légales</a>
+					<li>&nbsp;
+					<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
+					</ul>
+					<br/>
+					<p>Copyright &copy; BelleTable 2017</p>
+				</div>
 				</div>
 			</footer>
 
