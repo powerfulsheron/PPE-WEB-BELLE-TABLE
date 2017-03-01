@@ -1,11 +1,14 @@
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
 }
+
 footer,
 header{
   display: block;
@@ -609,10 +612,39 @@ caption {
 	
 }
 
-footer {
-    margin: 50px 0;
-}
-
 .footer li{
 	display : inline;
+}
+
+footer
+{	
+margin-left: 40px;
+}
+
+.apropos
+{
+
+	background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top :10px;
+  	margin-bottom: 10px;
+  	padding-left: 10px;
+  	padding-right: 10;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  	width: 900px;	
+}	
+
+.lifooter
+{
+margin-left: 5px;
+margin-right: 5px;
+}
+
+.divfooter
+{
+	margin-left: auto;
+  	margin-right: auto;
+	width: 700px;	
 }
