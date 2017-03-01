@@ -2,7 +2,7 @@
 
 A FAIRE :
 
-- Page "A propos" en PHP ( En cours --> Lorenzo )
+- Page "A propos" en PHP
 - NewsLetter (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
