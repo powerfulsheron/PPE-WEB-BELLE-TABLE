@@ -6,7 +6,7 @@ A FAIRE :
 - NewsLetter (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter)
 - Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail
-- Barre de recherche
+- Barre de recherche (en cours Axelle)
 - F.A.Q
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer
 - Cookies avec notification d'acceptation
