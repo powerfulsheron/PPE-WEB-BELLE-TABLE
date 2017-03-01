@@ -612,3 +612,7 @@ caption {
 footer {
     margin: 50px 0;
 }
+
+.footer li{
+	display : inline;
+}
