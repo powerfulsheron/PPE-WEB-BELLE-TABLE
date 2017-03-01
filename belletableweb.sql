@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.1.4
+-- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 24 Février 2017 à 13:05
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Généré le :  Mar 28 Février 2017 à 14:57
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,13 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `belletableweb`
 --
-CREATE DATABASE IF NOT EXISTS `belletableweb` DEFAULT CHARACTER SET utf8 COLLATE utf8_roman_ci;
-USE `belletableweb`;
 
 -- --------------------------------------------------------
 
@@ -28,9 +26,10 @@ USE `belletableweb`;
 -- Structure de la table `t_categorie`
 --
 
-CREATE TABLE `t_categorie` (
+CREATE TABLE IF NOT EXISTS `t_categorie` (
   `numcateg` int(11) NOT NULL,
-  `libelcateg` varchar(50) NOT NULL
+  `libelcateg` varchar(50) NOT NULL,
+  PRIMARY KEY (`numcateg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -51,8 +50,8 @@ INSERT INTO `t_categorie` (`numcateg`, `libelcateg`) VALUES
 -- Structure de la table `t_client`
 --
 
-CREATE TABLE `t_client` (
-  `numclient` int(4) NOT NULL,
+CREATE TABLE IF NOT EXISTS `t_client` (
+  `numclient` int(4) NOT NULL AUTO_INCREMENT,
   `typeclient` int(11) NOT NULL,
   `nomclient` varchar(25) NOT NULL,
   `prenomclient` varchar(25) NOT NULL,
@@ -65,16 +64,17 @@ CREATE TABLE `t_client` (
   `telfixeclient` varchar(20) DEFAULT NULL,
   `telportableclient` varchar(20) DEFAULT NULL,
   `mdpclient` varchar(100) NOT NULL,
-  `civiliteclient` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `civiliteclient` int(1) NOT NULL,
+  `newsletter` varchar(1) NOT NULL,
+  PRIMARY KEY (`numclient`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `t_client`
 --
 
-INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, `denomsociale`, `rueclient`, `complementadresse`, `cpclient`, `villeclient`, `emailclient`, `telfixeclient`, `telportableclient`, `mdpclient`, `civiliteclient`) VALUES
-(19, 1, 'Sailly', 'Axelle', '', '1 bis rue du haras', '', '78530', 'Buc', 'saillyaxelle@hotmail.fr', '', '0665564696', '39cb189c1005e7e7c011a5eb885f4a1c', 1),
-(20, 1, 'Sailly', 'Axelle', '', '1 b rue du haras', '', '78530', 'Buc', 'val.polin78@outlook.fr', '', '0665564696', '202cb962ac59075b964b07152d234b70', 2);
+INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, `denomsociale`, `rueclient`, `complementadresse`, `cpclient`, `villeclient`, `emailclient`, `telfixeclient`, `telportableclient`, `mdpclient`, `civiliteclient`, `newsletter`) VALUES
+(19, 1, 'Sailly', 'Axelle', '', '1 bis rue du haras', '', '78530', 'Buc', 'saillyaxelle@hotmail.fr', '', '0665564696', '39cb189c1005e7e7c011a5eb885f4a1c', 1, 'N');
 
 -- --------------------------------------------------------
 
@@ -82,8 +82,8 @@ INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, 
 -- Structure de la table `t_commande`
 --
 
-CREATE TABLE `t_commande` (
-  `numcommande` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `t_commande` (
+  `numcommande` int(11) NOT NULL AUTO_INCREMENT,
   `datecommande` date NOT NULL,
   `dateenvoi` date DEFAULT NULL,
   `prixcommande` int(11) NOT NULL,
@@ -92,8 +92,10 @@ CREATE TABLE `t_commande` (
   `miseplace` varchar(1) NOT NULL DEFAULT 'N',
   `service` varchar(1) NOT NULL DEFAULT 'N',
   `vaisselle` varchar(1) NOT NULL DEFAULT 'N',
-  `lessive` varchar(1) NOT NULL DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lessive` varchar(1) NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`numcommande`),
+  KEY `numclient` (`numclient`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Contenu de la table `t_commande`
@@ -116,11 +118,13 @@ INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcomma
 -- Structure de la table `t_commander`
 --
 
-CREATE TABLE `t_commander` (
+CREATE TABLE IF NOT EXISTS `t_commander` (
   `numcommande` int(11) NOT NULL,
   `numproduit` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
-  `prixttc` int(11) NOT NULL
+  `prixttc` int(11) NOT NULL,
+  PRIMARY KEY (`numcommande`,`numproduit`),
+  KEY `FRK_cmr_prod` (`numproduit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -143,14 +147,16 @@ INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`, `prixttc`) V
 -- Structure de la table `t_gamme`
 --
 
-CREATE TABLE `t_gamme` (
+CREATE TABLE IF NOT EXISTS `t_gamme` (
   `numgamme` int(11) NOT NULL,
   `nomgamme` varchar(20) NOT NULL,
   `numcateg` int(11) NOT NULL,
   `refimage` varchar(100) NOT NULL,
   `gammeprix` int(11) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `refproduitunique` int(11) DEFAULT NULL
+  `refproduitunique` int(11) DEFAULT NULL,
+  PRIMARY KEY (`numgamme`),
+  KEY `numcateg` (`numcateg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -159,22 +165,22 @@ CREATE TABLE `t_gamme` (
 
 INSERT INTO `t_gamme` (`numgamme`, `nomgamme`, `numcateg`, `refimage`, `gammeprix`, `description`, `refproduitunique`) VALUES
 (1, 'Azul', 1, 'assiettes/azul.png', 2, 'Selon leurs arrangements, Les assiettes Azul offrent une multitude de motifs pour une originalité sans pareil. Découvrez ci-dessous la fraîcheur de la ligne Azul.', NULL),
-(2, 'Platinium', 1, 'assiettes/platinium.png', 3, 'La ligne Platinium est délicatement ornée d\'un filet platine qui apportera raffinement et élégance à votre réception. Elle est déclinée en 3 modèles de tasses et assiettes.', NULL),
+(2, 'Platinium', 1, 'assiettes/platinium.png', 3, 'La ligne Platinium est délicatement ornée d''un filet platine qui apportera raffinement et élégance à votre réception. Elle est déclinée en 3 modèles de tasses et assiettes.', NULL),
 (3, 'Versace', 1, 'assiettes/versace.png', 4, 'Cet ensemble Versace de style baroque embellira votre table et lui donnera un caractère exclusif. Vous pouvez associer à cette ligne d’assiettes les verres Volga qui sont également de style baroque.', NULL),
 (4, 'Trianon', 2, 'couverts/trianon.png', 1, 'Optez pour la ligne de couverts Trianon pour une table classique et élégante. Les légers traits de ce couvert argenté lui donnent beaucoup de finesse.', NULL),
-(5, 'Nacre', 2, 'couverts/nacre.png', 2, 'La ligne de couverts Nacre sera l\'élément marquant de votre table, par son style très british, son aspect Nacre ivoire et sa bague finement façonnée.<br/>Une très belle association de genres pour des tables rétro ou plus contemporaines.', NULL),
-(6, 'Windsor', 2, 'couverts/windsor.png', 3, 'La ligne de couverts Windsor allie l\'élégance et la délicatesse des plus grandes créations.<br/>Son style baroque et ses arabesques apporteront beaucoup de caractère à votre table.<br/>Matière: plaqué or.', NULL),
+(5, 'Nacre', 2, 'couverts/nacre.png', 2, 'La ligne de couverts Nacre sera l''élément marquant de votre table, par son style très british, son aspect Nacre ivoire et sa bague finement façonnée.<br/>Une très belle association de genres pour des tables rétro ou plus contemporaines.', NULL),
+(6, 'Windsor', 2, 'couverts/windsor.png', 3, 'La ligne de couverts Windsor allie l''élégance et la délicatesse des plus grandes créations.<br/>Son style baroque et ses arabesques apporteront beaucoup de caractère à votre table.<br/>Matière: plaqué or.', NULL),
 (7, 'Soliman', 2, 'couverts/soliman.png', 4, 'Le design de la gamme de couverts Soliman s’inspire de l’histoire du célèbre sultan Ottoman Soliman. Dorés, patinés et finement ciselés, ce service de couverts est une invitation au voyage en terre orientale. 3 modèles de fourchettes, couteaux et cuillères sont disponibles pour s’adapter à tous vos plats et menus.', NULL),
 (8, 'Arom Up', 3, 'verres/Arom Up.png', 2, NULL, NULL),
 (9, 'Marquis Or', 3, 'verres/MarquiOr.png', 3, 'La forme tulipe de ces verres et le liseré doré apportent tout le chic à cette ligne Marquis. Ces verres se marient à la perfection avec la ligne de couverts Nacre en apportant du charme et une pointe de rêverie à votre table.', NULL),
-(10, 'Volga', 3, 'verres/volga.png', 4, 'Retrouvez dans les motifs de cette ligne de verres Volga un style baroque. Ses liserés dorés mettront en beauté votre table. Ces verres se marieront parfaitement avec la ligne d\'assiettes Versace.', NULL),
+(10, 'Volga', 3, 'verres/volga.png', 4, 'Retrouvez dans les motifs de cette ligne de verres Volga un style baroque. Ses liserés dorés mettront en beauté votre table. Ces verres se marieront parfaitement avec la ligne d''assiettes Versace.', NULL),
 (11, 'Lin', 4, 'nappes/Lin.png', 2, NULL, NULL),
 (12, 'Venise', 4, 'nappes/venise.png', 3, NULL, NULL),
 (13, 'Andalouse', 4, 'nappes/andalouse.png', 4, NULL, NULL),
-(14, 'Montaigne', 5, 'mobilier/montaigne.png', 1, 'Le dossier "médaillon" tout en rondeur et le très grand confort de la chaise Montaigne blanche en font une chaise très appréciée, qui s\'adapte à différents types d\'ambiances.', 18007),
+(14, 'Montaigne', 5, 'mobilier/montaigne.png', 1, 'Le dossier "médaillon" tout en rondeur et le très grand confort de la chaise Montaigne blanche en font une chaise très appréciée, qui s''adapte à différents types d''ambiances.', 18007),
 (15, 'Napoleon III', 5, 'mobilier/napoleonblanv.png', 2, 'Un blanc immaculé de designer mais un style ancien et recherché : cette chaise garde le meilleur de chaque époque.', 457),
 (16, 'Napoleon III Toscane', 5, 'mobilier/napoleonbleu.png', 3, NULL, 25000),
-(17, 'Fauteil Napoleon III', 5, 'mobilier/napoleon.png', 4, 'Ce fauteuil mêle l\'ancien et le moderne pour accueillir vos invités dans une ambiance de luxe et de confort.', 323),
+(17, 'Fauteil Napoleon III', 5, 'mobilier/napoleon.png', 4, 'Ce fauteuil mêle l''ancien et le moderne pour accueillir vos invités dans une ambiance de luxe et de confort.', 323),
 (18, 'Rectangle', 5, 'mobilier/tablerect.png', 0, NULL, NULL),
 (19, 'Ovale', 5, 'mobilier/tableovale.jpg', 0, NULL, NULL),
 (20, 'Ronde', 5, 'mobilier/tableronde.jpg', 0, NULL, NULL),
@@ -190,13 +196,14 @@ INSERT INTO `t_gamme` (`numgamme`, `nomgamme`, `numcateg`, `refimage`, `gammepri
 -- Structure de la table `t_panier`
 --
 
-CREATE TABLE `t_panier` (
-  `idpaniertotal` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `t_panier` (
+  `idpaniertotal` int(11) NOT NULL AUTO_INCREMENT,
   `idclient` int(11) NOT NULL,
   `heurecreation` datetime NOT NULL,
   `numproduit` int(11) NOT NULL,
-  `quantiteprod` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `quantiteprod` int(11) NOT NULL,
+  PRIMARY KEY (`idpaniertotal`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `t_panier`
@@ -212,12 +219,14 @@ INSERT INTO `t_panier` (`idpaniertotal`, `idclient`, `heurecreation`, `numprodui
 -- Structure de la table `t_produit`
 --
 
-CREATE TABLE `t_produit` (
+CREATE TABLE IF NOT EXISTS `t_produit` (
   `refprod` int(11) NOT NULL,
   `libelproduit` varchar(50) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL,
   `prixproduit` int(11) NOT NULL,
   `numgamme` int(11) NOT NULL,
-  `refimagedetail` varchar(100) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL
+  `refimagedetail` varchar(100) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL,
+  PRIMARY KEY (`refprod`),
+  KEY `numgamme` (`numgamme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=macroman;
 
 --
@@ -289,92 +298,13 @@ INSERT INTO `t_produit` (`refprod`, `libelproduit`, `prixproduit`, `numgamme`, `
 -- Structure de la table `t_typeclient`
 --
 
-CREATE TABLE `t_typeclient` (
-  `numtypeclient` int(2) NOT NULL,
-  `libeltypeclient` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `t_typeclient` (
+  `numtypeclient` int(2) NOT NULL AUTO_INCREMENT,
+  `libeltypeclient` varchar(20) NOT NULL,
+  PRIMARY KEY (`numtypeclient`),
+  KEY `numtypeclient` (`numtypeclient`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `t_categorie`
---
-ALTER TABLE `t_categorie`
-  ADD PRIMARY KEY (`numcateg`);
-
---
--- Index pour la table `t_client`
---
-ALTER TABLE `t_client`
-  ADD PRIMARY KEY (`numclient`);
-
---
--- Index pour la table `t_commande`
---
-ALTER TABLE `t_commande`
-  ADD PRIMARY KEY (`numcommande`),
-  ADD KEY `numclient` (`numclient`);
-
---
--- Index pour la table `t_commander`
---
-ALTER TABLE `t_commander`
-  ADD PRIMARY KEY (`numcommande`,`numproduit`),
-  ADD KEY `FRK_cmr_prod` (`numproduit`);
-
---
--- Index pour la table `t_gamme`
---
-ALTER TABLE `t_gamme`
-  ADD PRIMARY KEY (`numgamme`),
-  ADD KEY `numcateg` (`numcateg`);
-
---
--- Index pour la table `t_panier`
---
-ALTER TABLE `t_panier`
-  ADD PRIMARY KEY (`idpaniertotal`);
-
---
--- Index pour la table `t_produit`
---
-ALTER TABLE `t_produit`
-  ADD PRIMARY KEY (`refprod`),
-  ADD KEY `numgamme` (`numgamme`);
-
---
--- Index pour la table `t_typeclient`
---
-ALTER TABLE `t_typeclient`
-  ADD PRIMARY KEY (`numtypeclient`),
-  ADD KEY `numtypeclient` (`numtypeclient`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `t_client`
---
-ALTER TABLE `t_client`
-  MODIFY `numclient` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT pour la table `t_commande`
---
-ALTER TABLE `t_commande`
-  MODIFY `numcommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
---
--- AUTO_INCREMENT pour la table `t_panier`
---
-ALTER TABLE `t_panier`
-  MODIFY `idpaniertotal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
---
--- AUTO_INCREMENT pour la table `t_typeclient`
---
-ALTER TABLE `t_typeclient`
-  MODIFY `numtypeclient` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --

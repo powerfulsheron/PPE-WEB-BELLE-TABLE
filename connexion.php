@@ -7,6 +7,7 @@ if(isset($_SESSION['login'])){
 }
 
 include('parametres.php');
+
 if(isset($_REQUEST['email'])){
     $email=$_REQUEST['email'];
 	if($_REQUEST['password'] != ""){
@@ -163,7 +164,7 @@ if(isset($_REQUEST['email'])){
 										<p>Mot de Passe*</p>
 										<input name="password" type="password" value="" size="30"/><br><br>
 										<input type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
-										<a href="">Mot de passe oublié</a>
+										<a href="mdpoublie.php">Mot de passe oublié</a>
 									</form>
 								</div>
 							</td>

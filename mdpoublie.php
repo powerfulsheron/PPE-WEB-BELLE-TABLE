@@ -1,17 +1,33 @@
 <?php
 session_start();
-include('fonction.php');
 if(isset($_SESSION['login'])){
 	if($_SESSION['login'] != ""){
 		$menuchange = true;
 	}	
 }
+
+include('parametres.php');
+include('fonction.php');
+
 if(isset($_REQUEST['email'])){
-	$nom=$_REQUEST['nom'];
     $email=$_REQUEST['email'];
-    $message=$_REQUEST['message'];
-    if (($nom=="")||($email=="")||($message=="")){
-        Contact($email,$message,$nom);
+	if($email==""){
+		$erreur = 1;
+	}
+    else{
+        $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'"');
+		
+		if($result != ""){
+			while($row = $result->fetch()){
+				$idclient = $row['numclient'];
+			}
+			$mdpgenere = '\''.md5(MdpOublie($email)).'\'';
+			$bdd->exec('UPDATE t_client SET mdpclient='.$mdpgenere.' WHERE numclient = '.$idclient.'');
+		}
+		else{
+			$erreur = 2;
+		}
+		
 	}
 }
 	
@@ -32,10 +48,33 @@ if(isset($_REQUEST['email'])){
     <link href="css/cssbelletable.css" rel="stylesheet">
 
     <link href="css/shop-homepage.css" rel="stylesheet">
+	
+	<script src="dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 
 </head>
 
 <body>
+	<?php 
+		if(isset($erreur)){
+			switch($erreur){
+				case 1:
+					echo'
+					<script type="text/javascript">
+						sweetAlert("Echec", "Veuillez renseigner votre adresse mail", "error");
+					</script>';		
+				break;
+				case 2:
+					echo'
+					<script type="text/javascript">
+						sweetAlert("Echec", "Utilisateur inconnu !", "error");
+					</script>';
+				break;
+			}
+		}
+	?>
+	
+	
 	 <br/>
 	<div id="menuprincipal" align="center">
 		<ul class="barremenu">
@@ -53,15 +92,17 @@ if(isset($_REQUEST['email'])){
 				<?php
 				if(isset($menuchange)){
 					echo'
-					<a href="commandeencours.php">Mon Compte</a>
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
+					<a href="commandeencours.php">Mon Compte</a>';
 				}
 				else{
 					echo'
 					<a href="connexion.php">Connexion</a>';
 				}
-
+                if(isset($menuchange2)){
+					echo'
+                    <li>
+					<a href="lepanier.php">Mon Panier</a>';
+				}
 				?>
 		</ul>
 	</div>
@@ -69,21 +110,16 @@ if(isset($_REQUEST['email'])){
 	
 	<div class="contenupage">
 		<div class="container">
-			<div class="row">
-				<div class="formulairenevoi">
-					<h1>Contactez-Nous</h1>
-					<p>Pour nous contacter veuillez remplir ce formulaire.</p><br/>
-					<form  action="contact.php" id="myform" method="GET" enctype="multipart/form-data">
-						<p>Votre Nom et Prénom :</p>
-						<input name="nom" type="text" value="" size="30"/><br><br>
-						<p>Votre Email :</p>
+			<div class="row formulaireconnect">
+				<div class="connexion">
+					<h1>Mot de Passe Oublié</h1>
+					<form  action="mdpoublie.php" id="myform" method="GET" enctype="multipart/form-data">
+						<p>Adresse Mail*</p>
 						<input name="email" type="text" value="" size="30"/><br><br>
-						<p>Votre Message :</p>
-						<textarea name="message" rows="7" cols="35"></textarea><br><br>
-						<input type="submit" id="envoimail" value="Envoyer" onclick="document.forms[\'form\'].submit();"/>
+						<input type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
 					</form>
-					<br><br>
 				</div>
+				<br>				
 			</div>
 		</div>		
 	</div>
@@ -106,6 +142,6 @@ if(isset($_REQUEST['email'])){
         </footer>
     </div>
     <!-- /.container -->
-	
+
 </body>
 </html>

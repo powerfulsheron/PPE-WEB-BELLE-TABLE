@@ -18,7 +18,9 @@ $result = $bdd->query('SELECT * FROM `t_gamme` WHERE `numcateg` LIKE '.$typeprod
 
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -136,8 +138,14 @@ $result = $bdd->query('SELECT * FROM `t_gamme` WHERE `numcateg` LIKE '.$typeprod
         <footer>
             <div class="row">
                 <div class="encadrefooter">
-                    <p>Copyright &copy; BelleTable 2017</p>
-                </div>
+			<ul class="footer">
+			<li><a href="mentionlegale.php">Mentions Légales</a>
+			<li>&nbsp;
+			<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
+			</ul>
+			<br/>
+			<p>Copyright &copy; BelleTable 2017</p>
+		</div>
             </div>
         </footer>
 

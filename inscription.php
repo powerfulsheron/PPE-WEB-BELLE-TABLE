@@ -23,6 +23,12 @@ if(isset($_REQUEST['email'])){
 	$ville=$_REQUEST['ville'];
 	$fixe=$_REQUEST['telfixe'];
 	$portable=$_REQUEST['telportable'];
+	if(isset($_REQUEST['newsletter'])){
+		$newsletter = 'O';
+	}
+	else{
+		$newsletter = 'N';
+	}
 
 	$erreur = 0;
 	
@@ -72,7 +78,7 @@ if(isset($_REQUEST['email'])){
 	
 	if($erreur == 0){
 		
-        $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.')');
+        $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient,newsletter) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.','.$newsletter.')');
 
 		//Envoi des requêtes
         $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$emailbis.'" AND `mdpclient` LIKE "'.$mdpbis.'"');
@@ -314,6 +320,14 @@ if(isset($_REQUEST['email'])){
 									</td>
 								</tr>
 								<tr>
+									<td>
+										Newsletter<br/><br/><br/>
+									</td>
+									<td>
+										<input type="checkbox" id="newsletter" name="newsletter" value="newsletter" >
+									</td>
+								</tr>
+								<tr>
 									<td colspan="2">
 										<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
 									</td>
@@ -334,9 +348,15 @@ if(isset($_REQUEST['email'])){
         <hr>
         <footer>
             <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; BelleTable 2017</p>
-                </div>
+                <div class="encadrefooter">
+			<ul class="footer">
+			<li><a href="mentionlegale.php">Mentions Légales</a>
+			<li>&nbsp;
+			<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
+			</ul>
+			<br/>
+			<p>Copyright &copy; BelleTable 2017</p>
+		</div>
             </div>
         </footer>
     </div>
