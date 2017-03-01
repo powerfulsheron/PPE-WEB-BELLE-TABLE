@@ -6,7 +6,22 @@ if(isset($_SESSION['login'])){
 	}	
 }
 	include('parametres.php');
-
+	
+if(isset($_REQUEST['search'])){
+	if($_REQUEST['search'] != ""){
+		$recherche = strtolower($_REQUEST['search']);
+		$result = $bdd->query('SELECT * FROM `t_search` WHERE `keyword` LIKE "%'.$recherche.'%"');
+		if($result != ""){
+			while($row = $result->fetch()){
+				$destination = $row['urlsearch'];
+				echo'
+				<script type="text/javascript">
+					location.href = \''.$destination.'\';
+				</script>';
+			}		
+		}
+	}	
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -59,7 +74,23 @@ if(isset($_SESSION['login'])){
 		</ul>
 	</div>
 	<br/>
-	
+	<div class="fondrecherche" align="center">
+		<br/>
+		<div class="recherche" align="center">
+			<form id="myform" method="get" action="index.php" align="center">
+				<table width="100%">
+				<thead>
+					<tr>
+						<td width="55%" align="right"><input type="text" name="search" id="search" value="Rechercher un article" onclick="javascript:this.value='';"></td>
+						<td width="45%" align="left"><input class="btnrecherche" type="submit" name="rechercher" value=""></td>
+					</tr>
+				</thead>								
+				</table>
+			</form>
+		</div>
+		<br/>
+	</div>
+	<br/>
 	<!--Carrousel -->
 	<div id="wrapper">
 		<div id="carousel">
