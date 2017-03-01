@@ -344,23 +344,16 @@ if(isset($_REQUEST['email'])){
 	</div>
 	
 	
-	<div class="container">
+	<div class="divfooter">
         <hr>
         <footer>
-            <div class="row">
-                <div class="encadrefooter">
 			<ul class="footer">
-			<li><a href="mentionlegale.php">Mentions Légales</a>
-			<li>&nbsp;
-			<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
+			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
+			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
+			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
 			</ul>
-			<br/>
-			<p>Copyright &copy; BelleTable 2017</p>
-		</div>
-            </div>
         </footer>
     </div>
-    <!-- /.container -->
 
 </body>
 </html>

@@ -70,22 +70,16 @@ if(isset($_SESSION['login'])){
 		</div>
 	</div>
 	
-	<div class="container">
-	<br/>
-		<hr>
-		<footer>
-			<div class="row">
-			<div class="encadrefooter">
-				<ul class="footer">
-				<li><a href="mentionlegale.php">Mentions Légales</a>
-				<li>&nbsp;
-				<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
-				</ul>
-				<br/>
-				<p>Copyright &copy; BelleTable 2017</p>
-			</div>			
-			</div>
-		</footer>
+	<div class="divfooter">
+        <hr>
+        <footer>
+			<ul class="footer">
+			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
+			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
+			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
+			</ul>
+        </footer>
+    </div>
 
 	</div>
 
