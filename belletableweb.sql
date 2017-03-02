@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 28 Février 2017 à 14:57
+-- Généré le :  Mer 01 Mars 2017 à 16:47
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -291,6 +291,53 @@ INSERT INTO `t_produit` (`refprod`, `libelproduit`, `prixproduit`, `numgamme`, `
 (25551, 'Salerons Birdy', 8, 22, 'accessoires/birdy.png'),
 (25556, 'Salerons Louis XVI', 10, 23, 'accessoires/louis.png'),
 (26168, 'Tasse et sous tasse à café Azul 17 cl', 4, 1, 'assiettes/azultasse.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_search`
+--
+
+CREATE TABLE IF NOT EXISTS `t_search` (
+  `idsearch` int(11) NOT NULL AUTO_INCREMENT,
+  `urlsearch` longtext COLLATE utf8_roman_ci NOT NULL,
+  `keyword` longtext COLLATE utf8_roman_ci NOT NULL,
+  PRIMARY KEY (`idsearch`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_roman_ci AUTO_INCREMENT=29 ;
+
+--
+-- Contenu de la table `t_search`
+--
+
+INSERT INTO `t_search` (`idsearch`, `urlsearch`, `keyword`) VALUES
+(1, 'pagediversproduit.php?typeproduit=1', 'assiette,assiettes,tasse,tasses'),
+(2, 'pagediversproduit.php?typeproduit=2', 'couvert,couverts,fourchette,fourchettes,couteau,couteaux,cuillere,cuilleres,cuillère,cuillères'),
+(3, 'pagediversproduit.php?typeproduit=3', 'verre,verres'),
+(4, 'pagediversproduit.php?typeproduit=4', 'nappe,nappes,serviette,serviettes'),
+(5, 'pagediversproduit.php?typeproduit=5', 'chaise,chaises,table,tables,fauteuil,fauteuils,mobilier,napoleon'),
+(6, 'pagediversproduit.php?typeproduit=6', 'accessoires,accessoire,salière,saliere,bougeoir'),
+(7, 'pageproduitchoix.php?produit=1', 'azul'),
+(8, 'pageproduitchoix.php?produit=2', 'platinium'),
+(9, 'pageproduitchoix.php?produit=3', 'versace'),
+(10, 'pageproduitchoix.php?produit=4', 'trianon'),
+(11, 'pageproduitchoix.php?produit=5', 'nacre'),
+(12, 'pageproduitchoix.php?produit=6', 'windsor'),
+(13, 'pageproduitchoix.php?produit=7', 'soliman'),
+(14, 'pageproduitchoix.php?produit=8', 'arom up'),
+(15, 'pageproduitchoix.php?produit=9', 'marqui or,marquis or'),
+(16, 'pageproduitchoix.php?produit=10', 'volga'),
+(17, 'pageproduitchoix.php?produit=11', 'lin'),
+(18, 'pageproduitchoix.php?produit=12', 'venise'),
+(19, 'pageproduitchoix.php?produit=13', 'andalouse'),
+(20, 'pageproduitchoix.php?produit=14', 'montaigne'),
+(21, 'pageproduitchoix.php?produit=18', 'rectangle'),
+(22, 'pageproduitchoix.php?produit=19', 'ovale'),
+(23, 'pageproduitchoix.php?produit=20', 'ronde'),
+(24, 'pageproduitchoix.php?produit=21', 'dos santos'),
+(25, 'pageproduitchoix.php?produit=22', 'birdy'),
+(26, 'pageproduitchoix.php?produit=23', 'louis XVI'),
+(27, 'pageproduitchoix.php?produit=24', 'collazi'),
+(28, 'pageproduitchoix.php?produit=25', 'rocaille');
 
 -- --------------------------------------------------------
 
