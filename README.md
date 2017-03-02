@@ -12,6 +12,7 @@ A FAIRE :
 - Envoi automatique de mail après commande
 - Sécurité (Raphaël)
 - création d'un serveur SMTP pour les mails
+- a propos, contact, connexion en anglais
 
 FAIT :
 
