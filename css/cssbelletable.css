@@ -614,12 +614,10 @@ caption {
 
 .footer li{
 	display : inline;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
-footer
-{	
-margin-left: 40px;
-}
 
 .apropos
 {
@@ -636,23 +634,17 @@ margin-left: 40px;
   	width: 900px;	
 }	
 
-.lifooter
-{
-margin-left: 5px;
-margin-right: 5px;
-}
-
-.divfooter
-{
-	margin-left: auto;
-  	margin-right: auto;
-	width: 700px;	
-}
-
-.socialnet
+footer
 {
 	margin-left: auto;
   	margin-right: auto;
 	width: 700px;	
 	text-align:center;
+}
+
+.divfooter
+{
+
+padding-right: 40px;
+
 }
