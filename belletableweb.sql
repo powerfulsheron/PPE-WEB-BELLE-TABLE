@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 01 Mars 2017 à 16:47
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.4.24
+-- Généré le :  Jeu 02 Mars 2017 à 15:43
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `belletableweb`
+-- Base de données :  `ppe_web`
 --
 
 -- --------------------------------------------------------
@@ -291,6 +291,39 @@ INSERT INTO `t_produit` (`refprod`, `libelproduit`, `prixproduit`, `numgamme`, `
 (25551, 'Salerons Birdy', 8, 22, 'accessoires/birdy.png'),
 (25556, 'Salerons Louis XVI', 10, 23, 'accessoires/louis.png'),
 (26168, 'Tasse et sous tasse à café Azul 17 cl', 4, 1, 'assiettes/azultasse.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_reduction`
+--
+
+CREATE TABLE IF NOT EXISTS `t_reduction` (
+  `id_reduc` int(10) NOT NULL,
+  `libelle_reduc` varchar(20) NOT NULL,
+  `reduction` int(2) NOT NULL,
+  PRIMARY KEY (`id_reduc`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `t_reduction`
+--
+
+INSERT INTO `t_reduction` (`id_reduc`, `libelle_reduc`, `reduction`) VALUES
+(1, 'REDUC10', 10),
+(2, 'REDUC20', 20),
+(3, 'REDUC30', 30),
+(4, 'REDUC40', 40),
+(5, 'REDUC50', 50),
+(6, 'REDUC60', 60),
+(7, 'REDUC70', 70),
+(8, 'REDUC80', 80),
+(9, 'REDUC90', 90),
+(10, 'ANNIV10', 10),
+(11, 'FETEDESMERES15', 15),
+(12, 'JOURNEEFM30', 30),
+(13, 'SOLDEPLUS', 20),
+(14, 'FETENATIONALE14', 25);
 
 -- --------------------------------------------------------
 
