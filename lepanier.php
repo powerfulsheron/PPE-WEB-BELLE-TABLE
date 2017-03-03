@@ -113,7 +113,7 @@ $n = 0;
 					<br/>
 				</div>
 		</div>
-
+	</div>
 	<?php include('footer.php'); ?>
     
 </body>
