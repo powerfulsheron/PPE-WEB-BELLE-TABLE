@@ -11,7 +11,6 @@ A FAIRE :
 - Cookies avec avertissement avec un bandeau (Alexandre)
 - Envoi automatique de mail après commande (Axelle)
 - Sécurité (Raphaël & Sylvain)
-- création d'un serveur SMTP pour les mails (Sébastien)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
 
 FAIT :
