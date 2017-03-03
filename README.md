@@ -2,6 +2,10 @@
 
 A FAIRE :
 
+- Validations
+- Bootstrap
+- Triggers / procédures stockées
+
 - Ajouter BootStrap au projet
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter) 
 - Réseaux sociaux  (en cours de réalisation par Jesse)
