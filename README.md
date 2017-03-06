@@ -8,7 +8,6 @@ A FAIRE :
 
 - Ajouter BootStrap au projet
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter) 
-- Réseaux sociaux  (en cours de réalisation par Jesse)
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
@@ -16,7 +15,7 @@ A FAIRE :
 - Envoi automatique de mail après commande (Axelle)
 - Sécurité (Raphaël & Sylvain)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
-- modifier le panier sous forme de sessions
+- modifier le panier sous forme de sessions (en cours Axelle)
 
 FAIT :
 
@@ -24,6 +23,7 @@ FAIT :
 - Page "Mot de passe oublié" en PHP (fait Axelle)
 - Footer (Mentions légales et CGV) (fait Axelle)
 - Barre de recherche (fait Axelle)
+- Réseaux sociaux  (fait Jesse)
 
 
 Tutoriel PHP:
