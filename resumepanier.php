@@ -58,61 +58,11 @@ if(isset($_GET)){
         $lessive = 'N';
     }
     
-    $totalcommande = $totalcommande+$totalcommande*0.2;
     
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>BelleTable - Elegance a la Francaise</title>
-
-    <link href="css/cssbelletable.css" rel="stylesheet">
-
-    <link href="css/shop-homepage.css" rel="stylesheet">
-
-    <script src="dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-    
-</head>
-
-<body>
-	<div id="menuprincipal" align="center">
-		<ul class="barremenu">
-			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
-			<li>
-				<a href="pageproduits.php">Nos Produits</a>
-			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
-			<li>
-				<a href="apropos.php">A Propos</a>
-			<li>
-				<a href="contact.php">Contact</a>
-			<li>
-				<?php
-				if(isset($menuchange)){
-					echo'
-					<a href="commandeencours.php">Mon Compte</a>
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
-				}
-				else{
-					echo'
-					<a href="connexion.php">Connexion</a>';
-				}
-                
-				?>
-		</ul>
-	</div>
-	<br/>
+<?php include('header.php'); ?>
 	<div class="contenupage">
 		<div class="container">
 				<div class="sousmenu">
@@ -161,7 +111,6 @@ if(isset($_GET)){
                                                 <td class="quatriemedetail">'.$lignecommande[3].'</td>
                                                 <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>            
                                             </tr>';
-                                            $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
                                             $lignecommande = array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
                                             $n=1;
                                         }
@@ -176,7 +125,6 @@ if(isset($_GET)){
                                         <td class="quatriemedetail">'.$lignecommande[3].'</td>
                                         <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>          
                                     </tr>';
-                                    $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
                                 }
                                 if($livraison == 'O'){
                                     echo'
@@ -264,21 +212,7 @@ if(isset($_GET)){
 		</div>
 	</div>
 
-		<div class="divfooter">
-        <hr>
-            <footer>
-                <div class="socialnet">
-            <a href="http://twitter.com/share" target="_blank" class="twitter-share-button" data-count="vertical" data-via="Belle_TableSIO"><img src="twitter.png" height="5%" width="5%"></a>
-        <a name="fb_share" type="box_count" href="https://www.facebook.com/Belle-Table-1113642382077898/" target="_blank"><img src ="fb.jpg" height="6%" width="6%"></a>
-        <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-        </div>
-                <ul class="footer">
-                <li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-                <li class="lifooter">Copyright &copy; BelleTable 2017</li>
-                <li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
-                </ul>
-            </footer>
-        </div>
+		<?php include('footer.php'); ?>
 
 </body>
 
