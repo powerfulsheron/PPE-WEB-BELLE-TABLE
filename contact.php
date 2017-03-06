@@ -10,10 +10,8 @@ if(isset($_POST['email'])){
 	$numero=$_POST['numero'];
     $message=$_POST['message'];
     if (($nom=="")||($email=="")||($message=="")){
-        $verif = 0;
 	}
 	$verif = Contact($email,$numero,$message,$nom);
-	echo $verif;
 }
 	
 ?>
