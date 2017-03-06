@@ -1,11 +1,7 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
-	include('parametres.php');
+include('sessionlogin.php');
+
+include('parametres.php');
 	
 if(isset($_REQUEST['search'])){
 	if($_REQUEST['search'] != ""){
@@ -23,57 +19,7 @@ if(isset($_REQUEST['search'])){
 	}	
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="SIOSLAM2017">
-
-    <title>BelleTable - Elegance a la Francaise</title>
-
-    <link href="css/cssbelletable.css" rel="stylesheet">
-	<link href="css/carrouselcss.css" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
-	<script src="js/carrouselbis.js" type="text/javascript"></script>
-	<script src="js/carrousel.js" type="text/javascript"></script>
-
-</head>
-
-<body>
-	<br/>
-	<div id="menuprincipal" align="center">
-		<ul class="barremenu">
-			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
-			<li>
-				<a href="pageproduits.php">Nos Produits</a>
-			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
-			<li>
-				<a href="#">A Propos</a>
-			<li>
-				<a href="contact.php">Contact</a>
-			<li>
-				<?php
-				if(isset($menuchange)){
-					echo'
-					<a href="commandeencours.php">Mon Compte</a>
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
-				}
-				else{
-					echo'
-					<a href="connexion.php">Connexion</a>';
-				}
-				?>
-		</ul>
-	</div>
-	<br/>
+<?php include('header.php'); ?>
 	<div class="fondrecherche" align="center">
 		<br/>
 		<div class="recherche" align="center">
@@ -106,24 +52,7 @@ if(isset($_REQUEST['search'])){
 		<div id="pager"></div>
 	</div>
 	
-	<div class="container">
-	<br/>
-		<hr>
-		<footer>
-			<div class="row">
-				<div class="encadrefooter">
-					<ul class="footer">
-					<li><a href="mentionlegale.php">Mentions Légales</a>
-					<li>&nbsp;
-					<li><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a>
-					</ul>
-					<br/>
-					<p>Copyright &copy; BelleTable 2017</p>
-				</div>
-			</div>
-		</footer>
-
-	</div>
+	<?php include('footer.php'); ?>
 
 </body>
 
