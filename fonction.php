@@ -133,12 +133,8 @@ function Contact($mail,$numero,$message,$nom){
 	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
 	//==========
 	
-	ini_set("SMTP","localhost");
-	ini_set("smtp_port","1025");
-	
 	$mailenvoi = "contact.belletable@gmail.com";
 	mail($mailenvoi,$sujet,$message,$header);
-	return 1;
 }
 
 ?>
