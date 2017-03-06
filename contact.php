@@ -2,9 +2,7 @@
 session_start();
 include('fonction.php');
 if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
+	$menuchange = true;
 }
 if(isset($_REQUEST['email'])){
 	$nom=$_REQUEST['nom'];
