@@ -1,5 +1,6 @@
 <?php
 include('sessionlogin.php');
+
 	include('parametres.php');
 
 ?>

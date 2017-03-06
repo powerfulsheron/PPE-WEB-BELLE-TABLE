@@ -1,11 +1,14 @@
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
 }
+
 footer,
 header{
   display: block;
@@ -214,6 +217,16 @@ button.list-group-item .list-group-item-heading {
   clear: both;
 }
 
+.fondrecherche{
+    background-image: url(fond.png);
+}
+
+.btnrecherche{
+    background-image: url(loupe.png);
+    height: 30px;
+    width: 30px;
+}
+
 .contenupage{
 	background-image: url(fond.png);
 }
@@ -318,6 +331,7 @@ button.list-group-item .list-group-item-heading {
 	font-weight:bold;
 	text-transform:uppercase;
 }
+
 .fondimage {
 	background-color:white;
 }
@@ -609,6 +623,39 @@ caption {
 	
 }
 
-footer {
-    margin: 50px 0;
+.footer li{
+	display : inline;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+.apropos
+{
+
+	background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top :10px;
+  	margin-bottom: 10px;
+  	padding-left: 10px;
+  	padding-right: 10;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  	width: 900px;	
+}	
+
+footer
+{
+	margin-left: auto;
+  	margin-right: auto;
+	width: 700px;	
+	text-align:center;
+}
+
+.divfooter
+{
+
+padding-right: 40px;
+
 }
