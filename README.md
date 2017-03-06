@@ -16,6 +16,7 @@ A FAIRE :
 - Envoi automatique de mail après commande (Axelle)
 - Sécurité (Raphaël & Sylvain)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
+- modifier le panier sous forme de sessions
 
 FAIT :
 
