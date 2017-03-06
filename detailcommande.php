@@ -3,9 +3,7 @@ session_start();
 include('fonction.php');
 
 if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
+	$menuchange = true;	
 }
 	include('parametres.php');
 	
