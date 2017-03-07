@@ -12,7 +12,6 @@ A FAIRE :
 - F.A.Q (Bénédicte)
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
 - Cookies avec avertissement avec un bandeau (Alexandre)
-- Envoi automatique de mail après commande (Axelle)
 - Sécurité (Raphaël & Sylvain)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
 
@@ -25,7 +24,7 @@ FAIT :
 - Barre de recherche (fait Axelle)
 - Réseaux sociaux  (fait Jesse)
 - modifier le panier sous forme de sessions (fait Axelle)
-
+- Envoi automatique de mail après commande (fait Axelle)
 
 Tutoriel PHP:
 https://www.w3schools.com/php/
