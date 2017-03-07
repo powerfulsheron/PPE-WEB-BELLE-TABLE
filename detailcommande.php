@@ -4,8 +4,14 @@ include('sessionlogin.php');
 
 	include('parametres.php');
 	
-if(isset($_REQUEST['idcommande'])){
+if((isset($_REQUEST['idcommande']))&&(isset($_SESSION['login']))){
 	$numcommande = $_REQUEST['idcommande'];
+}
+else{
+	echo'
+		<script type="text/javascript">
+			location.href = \'connexion.php\';
+		</script>';
 }
 	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
 	

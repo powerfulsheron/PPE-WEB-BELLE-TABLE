@@ -66,6 +66,20 @@ $ladate = date('Y-m-d');
 	
 	if($error == 0){
 		$_SESSION['panier'] = "";
+		
+		$result = $bdd->query('SELECT * FROM t_commande WHERE numclient LIKE '.$_SESSION['login'].' ORDER BY datecommande DESC LIMIT 1');
+		while($row = $result->fetch()){
+			$numcommande = $row['numcommande'];
+			$totalcom = $row['prixcommande'];
+			$datecom = $row['datecommande'];
+		}
+		
+		$result = $bdd->query('SELECT * FROM t_client WHERE numclient LIKE '.$_SESSION['login'].'');
+		while($row = $result->fetch()){
+			$email = $row['emailclient'];
+		}
+	
+		EnvoiMailCommande($email,$numcommande,$totalcom,$datecom);
 	
 		echo'
 		<script type="text/javascript">
