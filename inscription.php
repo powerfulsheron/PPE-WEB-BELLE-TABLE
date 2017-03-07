@@ -62,6 +62,7 @@ if(isset($_REQUEST['email'])){
 	$cp='\''.$_REQUEST['cp'].'\'';
 	$ville='\''.$_REQUEST['ville'].'\'';
 	$fixe='\''.$_REQUEST['telfixe'].'\'';
+	$newsletter = '\''.$newsletter.'\'';
 	if($fixe == ""){
 		$fixe = NULL;
 	}
