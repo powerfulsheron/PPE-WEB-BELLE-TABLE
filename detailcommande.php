@@ -1,18 +1,19 @@
 <?php
-session_start();
 include('fonction.php');
+include('sessionlogin.php');
 
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
 	include('parametres.php');
 	
-if(isset($_REQUEST['idcommande'])){
+if((isset($_REQUEST['idcommande']))&&(isset($_SESSION['login']))){
 	$numcommande = $_REQUEST['idcommande'];
 }
-	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
+else{
+	echo'
+		<script type="text/javascript">
+			location.href = \'connexion.php\';
+		</script>';
+}
+	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
 	
 ?>
 <?php include('header.php'); ?>
@@ -52,8 +53,8 @@ if(isset($_REQUEST['idcommande'])){
 										<td class="premierdetail">'.AjoutZero($row['numproduit']).'</td>
 										<td class="deuxiemedetail">'.$row['libelproduit'].'</td>
 										<td class="troisiemedetail">'.$row['quantite'].'</td>
-										<td class="quatriemedetail">'.($row['prixttc'])/$row['quantite'].' €</td>
-										<td class="quatriemedetail">'.$row['prixttc'].' €</td>
+										<td class="quatriemedetail">'.$row['prixproduit'].' €</td>
+										<td class="quatriemedetail">'.$row['prixproduit'] * $row['quantite'].' €</td>
 									</tr>';
 								}
 							?>

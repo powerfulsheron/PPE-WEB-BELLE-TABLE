@@ -1,45 +1,41 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
+include('sessionlogin.php');
 
 include('parametres.php');
 
 if(isset($_REQUEST['email'])){
+	$erreur = 0;
     $email=$_REQUEST['email'];
-	if($_REQUEST['password'] != ""){
-		$password=md5($_REQUEST['password']);
+	if($email == ""){
+		$erreur = 1;
 	}
-	if(($email=="")||($password=="")){
-		if(($email=="")&&($password!="")){
-			$erreur = 1;
-		}
-		elseif(($password=="")&&($email!="")){
-			$erreur = 2;
+	if(isset($_REQUEST['password'])){
+		if($_REQUEST['password'] != ""){
+			$password=md5($_REQUEST['password']);
 		}
 		else{
-			$erreur = 3;
+			$erreur = 2;
 		}
 	}
-    else{
-        $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
-		
+	else{
+		$erreur = 2;
+	}
+	if($erreur == 0){
+		$result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
 		if($result != ""){
 			while($row = $result->fetch()){
 				$_SESSION['login'] = $row['numclient'];
 			}
-			echo'
-			<script type="text/javascript">
-				location.href = \'commandeencours.php\';
-			</script>';
+			if(isset($_SESSION['login'])){
+				echo'
+				<script type="text/javascript">
+					location.href = \'commandeencours.php\';
+				</script>';
+			}
+			else{
+				$erreur = 4;
+			}
 		}
-		else{
-			$erreur = 4;
-		}
-		
 	}
 }
 	
@@ -59,12 +55,6 @@ if(isset($_REQUEST['email'])){
 					echo'
 					<script type="text/javascript">
 						sweetAlert("Echec", "Veuillez renseigner votre mot de passe", "error");
-					</script>';
-				break;
-				case 3:
-					echo'
-					<script type="text/javascript">
-						sweetAlert("Echec", "Veuillez renseigner votre adresse mail et votre mot de passe", "error");
 					</script>';
 				break;
 				case 4:

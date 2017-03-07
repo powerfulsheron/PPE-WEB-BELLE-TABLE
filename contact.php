@@ -1,9 +1,7 @@
 <?php
-session_start();
-include('fonction.php');
-if(isset($_SESSION['login'])){
-	$menuchange = true;
-}
+
+include('sessionlogin.php');
+
 if(isset($_POST['email'])){
 	$nom=$_POST['nom'];
     $email=$_POST['email'];

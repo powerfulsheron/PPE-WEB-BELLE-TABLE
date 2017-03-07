@@ -1,11 +1,7 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
-	include('parametres.php');
+include('sessionlogin.php');
+
+include('parametres.php');
 	
 if(isset($_REQUEST['search'])){
 	if($_REQUEST['search'] != ""){

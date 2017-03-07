@@ -1,10 +1,6 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
+include('sessionlogin.php');
+
 include('parametres.php');
 
 $idclient = $_SESSION['login'];

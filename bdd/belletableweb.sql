@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 02 Mars 2017 à 15:43
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Généré le :  Mar 07 Mars 2017 à 15:04
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `ppe_web`
+-- Base de données :  `belletableweb`
 --
 
 -- --------------------------------------------------------
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `t_client` (
   `civiliteclient` int(1) NOT NULL,
   `newsletter` varchar(1) NOT NULL,
   PRIMARY KEY (`numclient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `t_client`
@@ -84,7 +84,7 @@ INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, 
 
 CREATE TABLE IF NOT EXISTS `t_commande` (
   `numcommande` int(11) NOT NULL AUTO_INCREMENT,
-  `datecommande` date NOT NULL,
+  `datecommande` datetime NOT NULL,
   `dateenvoi` date DEFAULT NULL,
   `prixcommande` int(11) NOT NULL,
   `numclient` int(11) NOT NULL,
@@ -95,22 +95,20 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
   `lessive` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`numcommande`),
   KEY `numclient` (`numclient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Contenu de la table `t_commande`
 --
 
 INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcommande`, `numclient`, `livraison`, `miseplace`, `service`, `vaisselle`, `lessive`) VALUES
-(50, '2017-02-23', NULL, 253, 19, 'O', 'N', 'N', 'N', 'N'),
-(51, '2017-02-23', NULL, 121, 19, 'N', 'O', 'N', 'N', 'N'),
-(52, '2017-02-23', NULL, 27, 19, 'O', 'N', 'N', 'N', 'N'),
-(53, '2017-02-23', NULL, 2, 19, 'N', 'N', 'N', 'N', 'N'),
-(54, '2017-02-23', NULL, 37, 19, 'O', 'N', 'N', 'N', 'N'),
-(55, '2017-02-23', NULL, 6, 19, 'N', 'N', 'N', 'N', 'N'),
-(56, '2017-02-23', NULL, 48, 19, 'N', 'N', 'N', 'N', 'N'),
-(57, '2017-02-23', NULL, 30, 19, 'N', 'N', 'N', 'N', 'N'),
-(58, '2017-02-24', NULL, 160, 19, 'O', 'O', 'O', 'N', 'N');
+(64, '2017-03-07 14:11:32', NULL, 40, 19, 'N', 'N', 'N', 'N', 'N'),
+(65, '2017-03-07 14:11:48', NULL, 50, 19, 'N', 'N', 'N', 'N', 'O'),
+(66, '2017-03-07 14:36:21', NULL, 12, 19, 'N', 'N', 'N', 'N', 'N'),
+(67, '2017-03-07 14:54:42', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
+(68, '2017-03-07 14:55:15', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
+(69, '2017-03-07 14:55:33', NULL, 6, 19, 'N', 'N', 'N', 'N', 'N'),
+(70, '2017-03-07 14:58:40', NULL, 14, 19, 'N', 'N', 'N', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -122,7 +120,6 @@ CREATE TABLE IF NOT EXISTS `t_commander` (
   `numcommande` int(11) NOT NULL,
   `numproduit` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
-  `prixttc` int(11) NOT NULL,
   PRIMARY KEY (`numcommande`,`numproduit`),
   KEY `FRK_cmr_prod` (`numproduit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -131,15 +128,16 @@ CREATE TABLE IF NOT EXISTS `t_commander` (
 -- Contenu de la table `t_commander`
 --
 
-INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`, `prixttc`) VALUES
-(50, 14460, 5, 2),
-(50, 21346, 20, 4),
-(50, 21626, 5, 8),
-(50, 22692, 10, 15),
-(50, 22698, 5, 8),
-(50, 24185, 1, 2),
-(50, 25477, 1, 5),
-(58, 25477, 10, 5);
+INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`) VALUES
+(64, 22691, 1),
+(64, 22692, 1),
+(64, 22698, 1),
+(65, 4140, 1),
+(65, 4143, 1),
+(66, 22691, 1),
+(67, 25477, 10),
+(69, 25477, 1),
+(70, 19211, 1);
 
 -- --------------------------------------------------------
 
@@ -189,29 +187,6 @@ INSERT INTO `t_gamme` (`numgamme`, `nomgamme`, `numcateg`, `refimage`, `gammepri
 (23, 'Louis XVI', 6, 'accessoires/louis.png', 4, NULL, 25556),
 (24, 'Collazi', 6, 'accessoires/collazi.png', 4, NULL, 25543),
 (25, 'Rocaille', 6, 'accessoires/rocaille.png', 4, NULL, 25512);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `t_panier`
---
-
-CREATE TABLE IF NOT EXISTS `t_panier` (
-  `idpaniertotal` int(11) NOT NULL AUTO_INCREMENT,
-  `idclient` int(11) NOT NULL,
-  `heurecreation` datetime NOT NULL,
-  `numproduit` int(11) NOT NULL,
-  `quantiteprod` int(11) NOT NULL,
-  PRIMARY KEY (`idpaniertotal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
-
---
--- Contenu de la table `t_panier`
---
-
-INSERT INTO `t_panier` (`idpaniertotal`, `idclient`, `heurecreation`, `numproduit`, `quantiteprod`) VALUES
-(36, 19, '2017-02-24 09:47:48', 25477, 10),
-(37, 19, '2017-02-24 13:27:47', 25477, 5);
 
 -- --------------------------------------------------------
 
@@ -383,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `t_typeclient` (
   `libeltypeclient` varchar(20) NOT NULL,
   PRIMARY KEY (`numtypeclient`),
   KEY `numtypeclient` (`numtypeclient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Contraintes pour les tables exportées

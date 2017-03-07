@@ -1,10 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
+include('sessionlogin.php');
 if(isset($_REQUEST['typeproduit'])){$typeproduit = $_REQUEST['typeproduit'];};
 
 include('parametres.php');
