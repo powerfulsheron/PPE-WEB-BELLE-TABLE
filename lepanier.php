@@ -9,33 +9,68 @@ include('parametres.php');
 
 include_once('fonctionpanier.php');
 
-
-$erreur = false;
-
-if(isset($_POST['action'])){
-	$action = $_POST['action'];
+if(isset($_REQUEST['lepanier'])){
+	if($_REQUEST['lepanier'] == 'full'){
+		echo'
+		<script type="text/javascript">
+			location.href = \'commander.php\';
+		</script>';
+	}
+	else{
+		$erreur = 1;
+	}
 }
-elseif(isset($_REQUEST['action'])){
+
+if(isset($_REQUEST['action'])){
 	$action = $_REQUEST['action'];
 }
 else{
 	$action = null;
 }
-echo $action;
 if($action != null){
 	if($action == "ajout"){
-	   for($n=0;$n<3;$n++){
-			if($_REQUEST['nbvoulu'.$n] > 0){
-				$l = $_REQUEST['produit'.$n];
-				$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
-					 while($row = $result->fetch()){
+		if(isset($_REQUEST['groupe'])){
+			for($n=0;$n<3;$n++){
+				if($_REQUEST['nbvoulu'.$n] > 0){
+					switch($n){
+						case 0:
+							$q = $_REQUEST['nbvoulu'.$n];
+						break;
+						case 1:
+							$q = $_REQUEST['nbvoulu'.$n] * 10;
+						break;
+						case 2:
+							$q = $_REQUEST['nbvoulu'.$n] * 100;
+						break;
+					}
+					$l = $_REQUEST['produit'.$n];
+					$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
+					while($row = $result->fetch()){
 						$libel = $row['libelproduit'];
 						$p = $row['prixproduit'];
 					}
-				$q = $_REQUEST['nbvoulu'.$n];
-				ajouterArticle($l,$q,$libel,$p);
+					ajouterArticle($l,$q,$libel,$p);
+				}
 			}
 		}
+		else{
+			for($n=0;$n<3;$n++){
+				if($_REQUEST['nbvoulu'.$n] > 0){
+					$q = $_REQUEST['nbvoulu'.$n];
+					$l = $_REQUEST['produit'.$n];
+					$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
+					while($row = $result->fetch()){
+						$libel = $row['libelproduit'];
+						$p = $row['prixproduit'];
+					}
+					ajouterArticle($l,$q,$libel,$p);
+				}
+			}
+		}
+	   
+	}
+	elseif($action == "delete"){
+		$_SESSION['panier'] = "";
 	}
 }
 	
@@ -45,6 +80,15 @@ if($action != null){
 <?php include('header.php'); ?>
 
 <body>
+	<?php 
+		if(isset($erreur)){
+			echo'
+			<script type="text/javascript">
+				sweetAlert("Echec", "Votre panier est vide !", "error");
+			</script>';		
+		}
+	?>
+
 	<div class="contenupage">
 		<div class="container">
 				<div class="sousmenu">
@@ -60,7 +104,7 @@ if($action != null){
 				<div class="encadredetailcom detailcom">
 					<h2>&nbsp;Mon Panier :</h2>
 					<hr>
-					<form method="post" action="lepanier.php">
+					<form method="get" action="lepanier.php" id="myform" name="myform">
 					<table align="center" id="lescommandes">
 						<thead>
 							<tr>
@@ -68,6 +112,7 @@ if($action != null){
 								<th class="deuxiemedetail">Libele produit</th>
 								<th class="troisiemedetail">Quantite</th>
 								<th class="troisiemedetail">Prix Unitaire (€)</th>
+								<th class="troisiemedetail">Prix Total (€)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,10 +120,15 @@ if($action != null){
 							if (creationPanier())
 							{
 								$nbArticles=count($_SESSION['panier']['idproduit']);
-								if ($nbArticles <= 0)
-								echo "<tr><td colspan=\"5\">Votre panier est vide </ td></tr>";
+								if ($nbArticles <= 0){
+									echo "<tr><td colspan=\"5\">Votre panier est vide </ td></tr>";
+									echo'
+									<input type="hidden" name="lepanier" id="lepanier" value="empty">';
+								}							
 								else
 								{
+									echo'
+									<input type="hidden" name="lepanier" id="lepanier" value="full">';
 									for ($i=0 ;$i < $nbArticles ; $i++)
 									{
 										echo "<tr>";
@@ -86,6 +136,7 @@ if($action != null){
 										echo "<td class=\"deuxiemedetail\">".htmlspecialchars($_SESSION['panier']['libelleproduit'][$i])."</td>";
 										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."</td>";
 										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars(($_SESSION['panier']['prixProduit'][$i])*($_SESSION['panier']['qteProduit'][$i]))."</td>";
 										echo "</tr>";
 									}
 									echo'
@@ -93,7 +144,7 @@ if($action != null){
 									echo'
 									<tfooter>
 										<tr>
-											<th colspan="2">&nbsp;</th>
+											<th colspan="3">&nbsp;</th>
 											<th>Total HT (€)</th>
 											<th>';
 											echo MontantGlobal();
@@ -101,7 +152,7 @@ if($action != null){
 											</th>
 										</tr>
 										<tr>
-											<th colspan="2">&nbsp;</th>
+											<th colspan="3">&nbsp;</th>
 											<th >Total TTC (€)</th>
 											<th>';
 											echo MontantGlobalTTC();
@@ -117,7 +168,11 @@ if($action != null){
 					</table>
 					</form>
                     <br/>
-                    <p align="right"><input type="button" id="btncommander" value="Commander" onclick="javascript:location.href='commander.php'"></p>
+					<?php
+					echo'
+                    <p align="right"><input type="submit" id="btncommander" value="Commander" onclick="document.forms[\'myform\'].submit();"></p>';
+					?>
+					<p align="right"><input type="button" id="btncommander" value="Vider le panier" onclick="javascript:location.href='lepanier.php?action=delete'"></p>
 					<br/>
 				</div>
 		</div>

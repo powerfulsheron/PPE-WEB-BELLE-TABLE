@@ -1,6 +1,6 @@
 <?php
 function creationPanier(){
-   if (!isset($_SESSION['panier'])){
+   if ((!isset($_SESSION['panier']))||($_SESSION['panier'] == "")){
       $_SESSION['panier']=array();
       $_SESSION['panier']['idproduit'] = array();
 	  $_SESSION['panier']['libelleproduit'] = array();

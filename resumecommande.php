@@ -6,8 +6,10 @@ date_default_timezone_set('Europe/Paris');
 
 $ladate = date('Y-m-d');
 
-if(isset($_REQUEST)){
-    $totalcommande = $_REQUEST['total'];
+
+	if(isset($_REQUEST['total'])){
+        $totalttc = $_REQUEST['total'];
+    }
     //livraison
     if(isset($_REQUEST['livraison'])){
         $livraison = $_REQUEST['livraison'];
@@ -29,8 +31,8 @@ if(isset($_REQUEST)){
         $lessive = $_REQUEST['lessive'];
     }
     
-    $ladate = date('Y-m-d');
-    $nb_insert = $bdd->exec('INSERT INTO t_commande (datecommande,dateenvoi,prixcommande,numclient,livraison,miseplace,service,vaisselle,lessive) VALUES  ("'.$ladate.'",null,'.$totalcommande.','.$_SESSION['login'].',"'.$livraison.'","'.$miseplace.'","'.$service.'","'.$vaisselle.'","'.$lessive.'")');
+    $ladate = date('Y-m-d H:i:s');
+    $nb_insert = $bdd->exec('INSERT INTO t_commande (datecommande,dateenvoi,prixcommande,numclient,livraison,miseplace,service,vaisselle,lessive) VALUES  ("'.$ladate.'",null,'.$totalttc.','.$_SESSION['login'].',"'.$livraison.'","'.$miseplace.'","'.$service.'","'.$vaisselle.'","'.$lessive.'")');
     
     if (!$nb_insert) {
        echo "\nPDO::errorInfo():\n";
@@ -43,38 +45,33 @@ if(isset($_REQUEST)){
             $numcommande = $row['numcommande'];
         }
     }
-    
-    
-}
-
-$result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_panier`,`t_produit` WHERE `t_produit`.refprod=`t_panier`.numproduit AND `idclient` LIKE "'.$_SESSION['login'].'" AND `heurecreation` LIKE "'.$ladate.' %:%:%" ORDER BY `numproduit` ASC');
-
-$n=0;
-while($row = $result->fetch()){
-    if($n <= 0){
-        $lignecommande=array($row['numproduit'],$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-        $n++;
-    }
-    else{
-        if($row['numproduit'] == $lignecommande[0]){
-            $lignecommande[2] = $lignecommande[2] + $row['quantiteprod'];
-            $n++;
-        }
-        else{
-            $bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].')');
-            $lignecommande = array($row['numproduit'],$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-            $n=1;
-        }
-    }
-}
-
-$bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].')');
-
-$bdd->exec('DELETE FROM t_panier WHERE idclient LIKE '.$_SESSION['login'].'');
-
- echo'
-<script type="text/javascript">
-    location.href = \'paypal.php?totalttc='.$totalcommande.'\';
-</script>';
+	
+	$error = 0;
+	
+	$nbArticles=count($_SESSION['panier']['idproduit']);
+	
+	for ($i=0 ;$i < $nbArticles ; $i++)
+	{
+		$idproduit = $_SESSION['panier']['idproduit'][$i];
+		$qutprod = $_SESSION['panier']['qteProduit'][$i];
+		
+		$insert = $bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite) VALUES  ('.$numcommande.','.$idproduit.','.$qutprod.')');
+		
+		if (!$insert) {
+		   echo "\nPDO::errorInfo():\n";
+		   print_r($bdd->errorInfo());
+			$error = $error + 1;
+		}
+	}
+	
+	if($error == 0){
+		$_SESSION['panier'] = "";
+	
+		echo'
+		<script type="text/javascript">
+			location.href = \'commandeencours.php\';
+		</script>';
+	}
+	
 
 ?>

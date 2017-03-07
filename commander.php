@@ -5,7 +5,6 @@ include('fonction.php');
 date_default_timezone_set('Europe/Paris');
 
 $ladate = date('Y-m-d');
-$result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_panier`,`t_produit` WHERE `t_produit`.refprod=`t_panier`.numproduit AND `idclient` LIKE "'.$_SESSION['login'].'" AND `heurecreation` LIKE "'.$ladate.' %:%:%" ORDER BY `numproduit` ASC');
 
 ?>
 <?php include('header.php'); ?>
@@ -22,35 +21,7 @@ $result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.
 								</tr>
 							</thead>
 							
-							<tbody>
-                            <?php
-                                $n = 0;
-                                $totalttc = 0;
-								while($row = $result->fetch()){
-                                    if($n <= 0){
-                                        $lignecommande=array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                        $n++;
-                                    }
-                                    else{
-                                        if(AjoutZero($row['numproduit']) == $lignecommande[0]){
-                                            $lignecommande[2] = $lignecommande[2] + $row['quantiteprod'];
-                                            $n++;
-                                        }
-                                        else{
-
-                                            $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
-                                            $lignecommande = array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                            $n=1;
-                                        }
-                                    }
-								}
-                                if(isset($lignecommande)){                                    
-                                    $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
-                                    echo'
-                                    <input type="hidden" name="totalcommande" id="totalcommande" value="'.($totalttc+$totalttc*0.20).'" />';
-                                    
-                                }
-                                ?>
+							<tbody>                      
                                 <tr>
                                     <td class="totalcommande">Livraison (+25€)</td>
                                     <td class="totalcommande"><input type="checkbox" id="livraison" name="livraison" value="livraison" ></td>

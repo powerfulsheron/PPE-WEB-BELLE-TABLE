@@ -135,25 +135,30 @@ include('fonction.php');
 						if((($nomproduit > 13)&&($nomproduit < 18))||($nomproduit > 20)){
 							echo'
 							<tr>
+							<input type="hidden" name="action" id="action" value="ajout">
+							<input type="hidden" name="groupe" id="groupe" value="groupe">
 							<td width="5%" class="fondimage"><img src="img/'.$row['refimagedetail'].'" alt="" width="70px"></td>
 							<td width="10%"><b></b></td>
 							<td width="70%">A l\'unite</td>
-							<td width="10%"><input type="button" id="btnsupprimer1" value="Supprimer" onclick="javascript:nbvoulu1.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu1" id="nbvoulu1" value=""></td>
+							<td width="10%"><input type="button" id="btnsupprimer0" value="Supprimer" onclick="javascript:nbvoulu0.value=\'\'"></td>
+							<td width="5%"><input type="text" name="nbvoulu0" id="nbvoulu0" value=""></td>
+							<input type="hidden" name="produit0" id="produit0" value="'.$row['refprod'].'">
 							</tr>
 							<tr>
 							<td width="5%" class="fondimage"><img src="img/'.$row['refimagedetail'].'" alt="" width="70px"></td>
 							<td width="10%"><b></b></td>
 							<td width="70%">Pack de 10</td>
-							<td width="10%"><input type="button" id="btnsupprimer2" value="Supprimer" onclick="javascript:nbvoulu2.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu2" id="nbvoulu2" value=""></td>
+							<td width="10%"><input type="button" id="btnsupprimer1" value="Supprimer" onclick="javascript:nbvoulu1.value=\'\'"></td>
+							<td width="5%"><input type="text" name="nbvoulu1" id="nbvoulu1" value=""></td>
+							<input type="hidden" name="produit1" id="produit1" value="'.$row['refprod'].'">
 							</tr>
 							<tr>
 							<td width="5%" class="fondimage"><img src="img/'.$row['refimagedetail'].'" alt="" width="70px"></td>
 							<td width="10%"><b></b></td>
 							<td width="70%">Pack de 100</td>
-							<td width="10%"><input type="button" id="btnsupprimer3" value="Supprimer" onclick="javascript:nbvoulu3.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu3" id="nbvoulu3" value=""></td>
+							<td width="10%"><input type="button" id="btnsupprimer2" value="Supprimer" onclick="javascript:nbvoulu2.value=\'\'"></td>
+							<td width="5%"><input type="text" name="nbvoulu2" id="nbvoulu2" value=""></td>
+							<input type="hidden" name="produit2" id="produit2" value="'.$row['refprod'].'">
 							</tr>';
 						}
 						else{

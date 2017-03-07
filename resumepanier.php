@@ -83,6 +83,7 @@ if(isset($_GET)){
 								<th class="deuxiemedetail">Libele produit</th>
 								<th class="troisiemedetail">Quantite</th>
 								<th class="troisiemedetail">Prix Unitaire (€)</th>
+								<th class="troisiemedetail">Prix Total (€)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,6 +102,7 @@ if(isset($_GET)){
 										echo "<td class=\"deuxiemedetail\">".htmlspecialchars($_SESSION['panier']['libelleproduit'][$i])."</td>";
 										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."</td>";
 										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars(($_SESSION['panier']['prixProduit'][$i])*($_SESSION['panier']['qteProduit'][$i]))."</td>";
 										echo "</tr>";
 									}
 									echo'
@@ -110,41 +112,41 @@ if(isset($_GET)){
 										if($livraison == 'O'){
 											echo'
 											<tr>
-												<th colspan="3">Livraison</th>
+												<th colspan="4">Livraison</th>
 												<td>25</td>
 											</tr>';
 										}
 										if($miseplace == 'O'){
 											echo'
 											<tr>
-												<th colspan="3">Mise en place</th>
+												<th colspan="4">Mise en place</th>
 												<td>25</td>
 											</tr>';
 										}
 										if($service == 'O'){
 											echo'
 											<tr>
-												<th colspan="3">Service à table</th>
+												<th colspan="4">Service à table</th>
 												<td>50</td>
 											</tr>';
 										}
 										if($vaisselle == 'O'){
 											echo'
 											<tr>
-												<th colspan="3">Vaisselle</th>
+												<th colspan="4">Vaisselle</th>
 												<td>20</td>
 											</tr>';
 										}
 										if($lessive == 'O'){
 											echo'
 											<tr>
-												<th colspan="3">Lessive</th>
+												<th colspan="4">Lessive</th>
 												<td>30</td>
 											</tr>';
 										}
 										echo'
 										<tr>
-											<th colspan="2">&nbsp;</th>
+											<th colspan="3">&nbsp;</th>
 											<th >Total HT (€)</th>
 											<th>';
 											echo $totalcommandeht;
@@ -153,7 +155,7 @@ if(isset($_GET)){
 										</tr>';
 										echo'
 										<tr>
-											<th colspan="2">&nbsp;</th>
+											<th colspan="3">&nbsp;</th>
 											<th >Total TTC (€)</th>
 											<th>';
 											echo $totalcommande;
@@ -168,7 +170,8 @@ if(isset($_GET)){
 							?>                      
 					</table>
                     <br/>
-                    <?php include('paypal.php'); ?>
+					<?php echo '<p align="right"><input type="button" id="btncommander" value="Passer commande" onclick="javascript:location.href=\'resumecommande.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'\'"></p>'; ?>
+                    <?php //include('paypal.php'); ?>
 					<br/>
 				</div>
 		</div>
