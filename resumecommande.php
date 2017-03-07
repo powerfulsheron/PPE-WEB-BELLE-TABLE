@@ -61,14 +61,14 @@ while($row = $result->fetch()){
             $n++;
         }
         else{
-            $bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite,prixttc) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].','.$lignecommande[3].')');
+            $bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].')');
             $lignecommande = array($row['numproduit'],$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
             $n=1;
         }
     }
 }
 
-$bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite,prixttc) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].','.$lignecommande[3].')');
+$bdd->exec('INSERT INTO t_commander (numcommande,numproduit,quantite) VALUES  ('.$numcommande.','.$lignecommande[0].','.$lignecommande[2].')');
 
 $bdd->exec('DELETE FROM t_panier WHERE idclient LIKE '.$_SESSION['login'].'');
 
