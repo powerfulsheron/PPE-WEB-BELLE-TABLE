@@ -11,10 +11,19 @@ include_once('fonctionpanier.php');
 
 if(isset($_REQUEST['lepanier'])){
 	if($_REQUEST['lepanier'] == 'full'){
-		echo'
-		<script type="text/javascript">
-			location.href = \'commander.php\';
-		</script>';
+		if(isset($_SESSION['login'])){
+			echo'
+			<script type="text/javascript">
+				location.href = \'commander.php\';
+			</script>';
+		}
+		else{
+			echo'
+			<script type="text/javascript">
+				location.href = \'connexion.php\';
+			</script>';
+		}
+		
 	}
 	else{
 		$erreur = 1;
