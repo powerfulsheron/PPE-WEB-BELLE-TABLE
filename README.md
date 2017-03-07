@@ -15,7 +15,7 @@ A FAIRE :
 - Envoi automatique de mail après commande (Axelle)
 - Sécurité (Raphaël & Sylvain)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
-- modifier le panier sous forme de sessions (en cours Axelle)
+
 
 FAIT :
 
@@ -24,6 +24,7 @@ FAIT :
 - Footer (Mentions légales et CGV) (fait Axelle)
 - Barre de recherche (fait Axelle)
 - Réseaux sociaux  (fait Jesse)
+- modifier le panier sous forme de sessions (fait Axelle)
 
 
 Tutoriel PHP:
