@@ -1,21 +1,23 @@
 <?php
 include('sessionlogin.php');
+
 include('fonction.php');
 date_default_timezone_set('Europe/Paris');
 
-	include('parametres.php');
-	
-$ladate = date('Y-m-d');
-$result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_panier`,`t_produit` WHERE `t_produit`.refprod=`t_panier`.numproduit AND `idclient` LIKE "'.$_SESSION['login'].'" AND `heurecreation` LIKE "'.$ladate.' %:%:%" ORDER BY `numproduit` ASC');
-	
-$n = 0;
+include('parametres.php');
+
+include_once('fonctionpanier.php');
+
+
+$erreur = false;
+
 
 if(isset($_GET)){
-    $totalcommande = $_REQUEST['totalcommande'];
+	$totalcommandeht = MontantGlobal();
     //livraison
     if(isset($_REQUEST['livraison'])){
         $livraison = 'O';
-        $totalcommande = $totalcommande + 25;
+		$totalcommandeht = $totalcommandeht + 25;
     }
     else{
         $livraison = 'N';
@@ -23,7 +25,7 @@ if(isset($_GET)){
     //mise en place
     if(isset($_REQUEST['miseplace'])){
         $miseplace = 'O';
-        $totalcommande = $totalcommande + 25;
+		$totalcommandeht = $totalcommandeht + 25;
     }
     else{
         $miseplace = 'N';
@@ -31,7 +33,7 @@ if(isset($_GET)){
     //service
     if(isset($_REQUEST['service'])){
         $service = 'O';
-        $totalcommande = $totalcommande + 50;
+		$totalcommandeht = $totalcommandeht + 50;
     }
     else{
         $service = 'N';
@@ -40,6 +42,7 @@ if(isset($_GET)){
     if(isset($_REQUEST['vaisselle'])){
         $vaisselle = 'O';
         $totalcommande = $totalcommande + 20;
+		$totalcommandeht = $totalcommandeht + 20;
     }
     else{
         $vaisselle = 'N';
@@ -47,12 +50,12 @@ if(isset($_GET)){
     //lessive
     if(isset($_REQUEST['lessive'])){
         $lessive = 'O';
-        $totalcommande = $totalcommande + 30;
+		$totalcommandeht = $totalcommandeht + 30;
     }
     else{
         $lessive = 'N';
     }
-    
+	$totalcommande = $totalcommandeht + $totalcommandeht * 0.2;
     
 }
 
@@ -73,135 +76,99 @@ if(isset($_GET)){
 				<div class="encadredetailcom detailcom">
 					<h2>&nbsp;Mon Panier :</h2>
 					<hr>
-					<table align="center">
+					<table align="center" id="lescommandes">
 						<thead>
 							<tr>
 								<th class="premierdetail">Ref produit</th>
 								<th class="deuxiemedetail">Libele produit</th>
 								<th class="troisiemedetail">Quantite</th>
-								<th class="quatriemedetail">Prix Unitaire (€)</th>
-								<th class="quatriemedetail">Prix Total (€)</th>
+								<th class="troisiemedetail">Prix Unitaire (€)</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-                                
-                                $totalttc = 0;
-								while($row = $result->fetch()){
-                                    if($n <= 0){
-                                        $lignecommande=array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                        $n++;
-                                    }
-                                    else{
-                                        if(AjoutZero($row['numproduit']) == $lignecommande[0]){
-                                            $lignecommande[2] = $lignecommande[2] + $row['quantiteprod'];
-                                            $n++;
-                                        }
-                                        else{
-                                            echo'
-                                            <tr>
-                                                <td class="premierdetail">'.$lignecommande[0].'</td>
-                                                <td class="deuxiemedetail">'.$lignecommande[1].'</td>
-                                                <td class="troisiemedetail">'.$lignecommande[2].'</td>
-                                                <td class="quatriemedetail">'.$lignecommande[3].'</td>
-                                                <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>            
-                                            </tr>';
-                                            $lignecommande = array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                            $n=1;
-                                        }
-                                    }
+							if (creationPanier())
+							{
+								$nbArticles=count($_SESSION['panier']['idproduit']);
+								if ($nbArticles <= 0)
+								echo "<tr><td colspan=\"5\">Votre panier est vide </ td></tr>";
+								else
+								{
+									for ($i=0 ;$i < $nbArticles ; $i++)
+									{
+										echo "<tr>";
+										echo "<td class=\"premierdetail\">".htmlspecialchars($_SESSION['panier']['idproduit'][$i])."</td>";
+										echo "<td class=\"deuxiemedetail\">".htmlspecialchars($_SESSION['panier']['libelleproduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
+										echo "</tr>";
+									}
+									echo'
+									</tbody>';
+									echo'
+									<tfooter>';
+										if($livraison == 'O'){
+											echo'
+											<tr>
+												<th colspan="3">Livraison</th>
+												<td>25</td>
+											</tr>';
+										}
+										if($miseplace == 'O'){
+											echo'
+											<tr>
+												<th colspan="3">Mise en place</th>
+												<td>25</td>
+											</tr>';
+										}
+										if($service == 'O'){
+											echo'
+											<tr>
+												<th colspan="3">Service à table</th>
+												<td>50</td>
+											</tr>';
+										}
+										if($vaisselle == 'O'){
+											echo'
+											<tr>
+												<th colspan="3">Vaisselle</th>
+												<td>20</td>
+											</tr>';
+										}
+										if($lessive == 'O'){
+											echo'
+											<tr>
+												<th colspan="3">Lessive</th>
+												<td>30</td>
+											</tr>';
+										}
+										echo'
+										<tr>
+											<th colspan="2">&nbsp;</th>
+											<th >Total HT (€)</th>
+											<th>';
+											echo $totalcommandeht;
+											echo'
+											</th>
+										</tr>';
+										echo'
+										<tr>
+											<th colspan="2">&nbsp;</th>
+											<th >Total TTC (€)</th>
+											<th>';
+											echo $totalcommande;
+											echo'
+											</th>
+										</tr>';
+									echo'
+									</tfooter>';
+									
 								}
-                                if(isset($lignecommande)){
-                                    echo'
-                                    <tr>
-                                        <td class="premierdetail">'.$lignecommande[0].'</td>
-                                        <td class="deuxiemedetail">'.$lignecommande[1].'</td>
-                                        <td class="troisiemedetail">'.$lignecommande[2].'</td>
-                                        <td class="quatriemedetail">'.$lignecommande[3].'</td>
-                                        <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>          
-                                    </tr>';
-                                }
-                                if($livraison == 'O'){
-                                    echo'
-                                    <tr>
-                                        <th colspan="4">Livraison</th>
-                                        <td>25</td>          
-                                    </tr>';
-                                }
-                                if($miseplace == 'O'){
-                                    echo'
-                                    <tr>
-                                        <th colspan="4">Mise en place</th>
-                                        <td>25</td>          
-                                    </tr>';
-                                }
-                                if($service == 'O'){
-                                    echo'
-                                    <tr>
-                                        <th colspan="4">Service à table</th>
-                                        <td>50</td>          
-                                    </tr>';
-                                }
-                                if($vaisselle == 'O'){
-                                    echo'
-                                    <tr>
-                                        <th colspan="4">Vaisselle</th>
-                                        <td>20</td>          
-                                    </tr>';
-                                }
-                                if($lessive == 'O'){
-                                    echo'
-                                    <tr>
-                                        <th colspan="4">Lessive</th>
-                                        <td>30</td>          
-                                    </tr>';
-                                }
-							?>
-						</tbody>
-                        <tfooter>
-                            <tr>
-                                <th colspan="3">&nbsp;</th>
-                                <th >Total TTC (€)</th>
-                                <td><?php echo $totalcommande;?></td>
-                            </tr>
-                        </tfooter>
+							}					
+							?>                      
 					</table>
                     <br/>
-                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                        <?php
-                        echo'
-                        <input type="hidden" value="'.$totalcommande.'" name="amount" />';
-                        ?>
-                        <input name="currency_code" type="hidden" value="EUR" />
-
-                        <input name="shipping" type="hidden" value="0.00" />
-
-                        <input name="tax" type="hidden" value="0.00" />
-                        <?php
-                        echo'
-                        <input name="return" type="hidden" value="resumecommande.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'"/>
-
-                        <input name="cancel_return" type="hidden" value="resumecommande.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'"/>
-
-                        <input name="notify_url" type="hidden" value="resumecommande.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'"/>';
-                        ?>
-                        <input name="cmd" type="hidden" value="_xclick" />
-
-                        <input name="business" type="hidden" value="testvendeur@belletable.com" />
-
-                        <input name="item_name" type="hidden" value="Commande BelleTable" />
-
-                        <input name="no_note" type="hidden" value="1" />
-
-                        <input name="lc" type="hidden" value="FR" />
-
-                        <input name="bn" type="hidden" value="PP-BuyNowBF" />
-
-                        <input name="custom" type="hidden" value="ID_ACHETEUR" />
-                        
-                        <p align="right"><input alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" /></p>
-                        
-                    </form>
+                    <?php include('paypal.php'); ?>
 					<br/>
 				</div>
 		</div>

@@ -159,7 +159,7 @@ include('fonction.php');
 						else{
 							echo'
 							<tr>
-							<input type="hidden" name="ajout" id="ajout" value="">
+							<input type="hidden" name="action" id="action" value="ajout">
 							<td width="5%" class="fondimage"><img src="img/'.$row['refimagedetail'].'" alt="" width="70px"></td>
 							<td width="10%"><b>'.AjoutZero($row['refprod']).'</b></td>
 							<td width="70%">'.$row['libelproduit'].'</td>

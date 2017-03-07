@@ -1,24 +1,45 @@
 <?php
 
-include('fonction.php');
-date_default_timezone_set('Europe/Paris');
 include('sessionlogin.php');
 
-	include('parametres.php');
-	
-if(isset($_REQUEST['ajout'])){
-    $ladatetime = '\''.date('Y-m-d H:i:s').'\'';
-    
-    for($i=0;$i<3;$i++){
-        if($_REQUEST['nbvoulu'.$i] > 0){
-            $bdd->exec('INSERT INTO t_panier (idclient,heurecreation,numproduit,quantiteprod) VALUES ('.$_SESSION['login'].','.$ladatetime.','.$_REQUEST['produit'.$i].','.$_REQUEST['nbvoulu'.$i].')');
-        }
-    }
+include('fonction.php');
+date_default_timezone_set('Europe/Paris');
+
+include('parametres.php');
+
+include_once('fonctionpanier.php');
+
+
+$erreur = false;
+
+if(isset($_POST['action'])){
+	$action = $_POST['action'];
 }
-$ladate = date('Y-m-d');
-$result = $bdd->query('SELECT `t_panier`.*,`t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_panier`,`t_produit` WHERE `t_produit`.refprod=`t_panier`.numproduit AND `idclient` LIKE "'.$_SESSION['login'].'" AND `heurecreation` LIKE "'.$ladate.' %:%:%" ORDER BY `numproduit` ASC');
+elseif(isset($_REQUEST['action'])){
+	$action = $_REQUEST['action'];
+}
+else{
+	$action = null;
+}
+echo $action;
+if($action != null){
+	if($action == "ajout"){
+	   for($n=0;$n<3;$n++){
+			if($_REQUEST['nbvoulu'.$n] > 0){
+				$l = $_REQUEST['produit'.$n];
+				$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
+					 while($row = $result->fetch()){
+						$libel = $row['libelproduit'];
+						$p = $row['prixproduit'];
+					}
+				$q = $_REQUEST['nbvoulu'.$n];
+				ajouterArticle($l,$q,$libel,$p);
+			}
+		}
+	}
+}
 	
-$n = 0;
+  
 ?>
 
 <?php include('header.php'); ?>
@@ -39,71 +60,62 @@ $n = 0;
 				<div class="encadredetailcom detailcom">
 					<h2>&nbsp;Mon Panier :</h2>
 					<hr>
+					<form method="post" action="lepanier.php">
 					<table align="center" id="lescommandes">
 						<thead>
 							<tr>
 								<th class="premierdetail">Ref produit</th>
 								<th class="deuxiemedetail">Libele produit</th>
 								<th class="troisiemedetail">Quantite</th>
-								<th class="quatriemedetail">Prix Unitaire (€)</th>
-								<th class="quatriemedetail">Prix Total (€)</th>
+								<th class="troisiemedetail">Prix Unitaire (€)</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-                                
-                                $totalttc = 0;
-								while($row = $result->fetch()){
-                                    if($n <= 0){
-                                        $lignecommande=array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                        $n++;
-                                    }
-                                    else{
-                                        if(AjoutZero($row['numproduit']) == $lignecommande[0]){
-                                            $lignecommande[2] = $lignecommande[2] + $row['quantiteprod'];
-                                            $n++;
-                                        }
-                                        else{
-                                            echo'
-                                            <tr>
-                                                <td class="premierdetail">'.$lignecommande[0].'</td>
-                                                <td class="deuxiemedetail">'.$lignecommande[1].'</td>
-                                                <td class="troisiemedetail">'.$lignecommande[2].'</td>
-                                                <td class="quatriemedetail">'.$lignecommande[3].'</td>
-                                                <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>            
-                                            </tr>';
-                                            $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
-                                            $lignecommande = array(AjoutZero($row['numproduit']),$row['libelproduit'],$row['quantiteprod'],$row['prixproduit']);
-                                            $n=1;
-                                        }
-                                    }
+							if (creationPanier())
+							{
+								$nbArticles=count($_SESSION['panier']['idproduit']);
+								if ($nbArticles <= 0)
+								echo "<tr><td colspan=\"5\">Votre panier est vide </ td></tr>";
+								else
+								{
+									for ($i=0 ;$i < $nbArticles ; $i++)
+									{
+										echo "<tr>";
+										echo "<td class=\"premierdetail\">".htmlspecialchars($_SESSION['panier']['idproduit'][$i])."</td>";
+										echo "<td class=\"deuxiemedetail\">".htmlspecialchars($_SESSION['panier']['libelleproduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."</td>";
+										echo "<td class=\"troisiemedetail\">".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
+										echo "</tr>";
+									}
+									echo'
+									</tbody>';
+									echo'
+									<tfooter>
+										<tr>
+											<th colspan="2">&nbsp;</th>
+											<th>Total HT (€)</th>
+											<th>';
+											echo MontantGlobal();
+											echo'
+											</th>
+										</tr>
+										<tr>
+											<th colspan="2">&nbsp;</th>
+											<th >Total TTC (€)</th>
+											<th>';
+											echo MontantGlobalTTC();
+											echo'
+											</th>
+										</tr>';
+									echo'
+									</tfooter>';
+									
 								}
-                                if(isset($lignecommande)){
-                                    echo'
-                                    <tr>
-                                        <td class="premierdetail">'.$lignecommande[0].'</td>
-                                        <td class="deuxiemedetail">'.$lignecommande[1].'</td>
-                                        <td class="troisiemedetail">'.$lignecommande[2].'</td>
-                                        <td class="quatriemedetail">'.$lignecommande[3].'</td>
-                                        <td class="quatriemedetail">'.$lignecommande[3] * $lignecommande[2].'</td>          
-                                        </tr>';
-                                    $totalttc =  $totalttc + ($lignecommande[3] * $lignecommande[2]);
-                                }
-							?>
-						</tbody>
-                        <tfooter>
-                            <tr>
-                                <th colspan="3">&nbsp;</th>
-                                <th >Total HT (€)</th>
-                                <td><?php echo $totalttc;?></td>
-                            </tr>
-                            <tr>
-                                <th colspan="3">&nbsp;</th>
-                                <th >Total TTC (€)</th>
-                                <td><?php echo $totalttc+$totalttc*0.20;?></td>
-                            </tr>
-                        </tfooter>
+							}					
+							?>                      
 					</table>
+					</form>
                     <br/>
                     <p align="right"><input type="button" id="btncommander" value="Commander" onclick="javascript:location.href='commander.php'"></p>
 					<br/>
