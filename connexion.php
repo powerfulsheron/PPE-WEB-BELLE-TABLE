@@ -83,7 +83,7 @@ if(isset($_REQUEST['email'])){
 						<tr>
 							<td>
 								<div class="inscription">
-									<h1>Créer Votre Compte</h1>
+									<h1>Créer son Compte</h1>
 									<p>Créez votre compte<br/>afin d'effectuer<br/>et de suivre vos commandes.</p><br/>
 									<input type="button" id="creercompte" value="Je crée mon compte" onclick="location.href='inscription.php';"/>
 									<br><br>

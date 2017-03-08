@@ -8,8 +8,9 @@
 		</div>
 			<ul class="footer">
 			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
+			<li class="lifooter"><a href="planAcces.php">Plan d'accès</a></li>
 			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
 			</ul>
+			<p>Copyright &copy; BelleTable 2017</p>
         </footer>
     </div>
