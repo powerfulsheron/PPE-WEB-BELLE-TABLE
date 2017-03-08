@@ -5,9 +5,11 @@ A FAIRE :
 - Validations
 - Bootstrap
 - Triggers / procédures stockées
+- Génération de newsletter de réduction
 
-- Ajouter BootStrap au projet
-- NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle ; manque une génération auto de newsletter) 
+EN COURS :
+
+- NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
