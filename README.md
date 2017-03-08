@@ -2,17 +2,16 @@
 
 A FAIRE :
 
-- Validations
 - Bootstrap
 - Génération de newsletter de réduction
 
 EN COURS :
 
+- Validations (Lorenzo)
 - Triggers / procédures stockées (Sébastien)
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
-- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
 - Cookies avec avertissement avec un bandeau (Alexandre)
 - Sécurité (Raphaël & Sylvain)
 - a propos, contact, connexion en anglais (Jesse & Raphaël)
@@ -20,6 +19,7 @@ EN COURS :
 
 FAIT :
 
+- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
 - Page "A propos" en PHP ( lorenzo )
 - Page "Mot de passe oublié" en PHP (fait Axelle)
 - Footer (Mentions légales et CGV) (fait Axelle)
