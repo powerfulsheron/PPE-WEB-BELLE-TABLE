@@ -4,11 +4,11 @@ A FAIRE :
 
 - Validations
 - Bootstrap
-- Triggers / procédures stockées
 - Génération de newsletter de réduction
 
 EN COURS :
 
+- Triggers / procédures stockées (Sébastien)
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
