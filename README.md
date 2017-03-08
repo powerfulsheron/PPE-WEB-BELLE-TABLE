@@ -15,11 +15,12 @@ EN COURS :
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
 - Cookies avec avertissement avec un bandeau (Alexandre)
 - Sécurité (Raphaël & Sylvain)
-- a propos, contact, connexion en anglais (Jesse & Raphaël)
+- Traduction du site (jesse)
 
 
 FAIT :
 
+- Scripts d'include footer et header (Alex)
 - Page "A propos" en PHP ( lorenzo )
 - Page "Mot de passe oublié" en PHP (fait Axelle)
 - Footer (Mentions légales et CGV) (fait Axelle)
