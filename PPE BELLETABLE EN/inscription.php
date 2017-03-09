@@ -104,7 +104,7 @@ if(isset($_REQUEST['email'])){
 							</thead>
 							<tfoot>
 								<tr>
-									<td id="exception"><br/><br/>*MAndatory fields</td>
+									<td id="exception"><br/><br/>*Mandatory fields</td>
 									<td id="exception"><br/><br/>**Fill at least one of this two fields </td>
 								</tr>
 							</tfoot>
@@ -245,7 +245,7 @@ if(isset($_REQUEST['email'])){
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
+										<input type="submit" id="sinscrire" value="Ok" onclick="document.forms[\'myform\'].submit();"/>
 									</td>
 								</tr>								
 							</tbody>
