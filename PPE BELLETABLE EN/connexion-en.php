@@ -93,7 +93,7 @@ if(isset($_REQUEST['email'])){
 								<div class="inscription">
 									<h1>Create your account</h1>
 									<p>Create your account<br/>in order to do <br/>and follow your orders</p><br/>
-									<input type="button" id="creercompte" value="Je crée mon compte" onclick="location.href='inscription-en.php';"/>
+									<input type="button" id="creercompte" value="Sign in" onclick="location.href='inscription-en.php';"/>
 									<br><br>
 								</div>
 							</td>
@@ -106,7 +106,7 @@ if(isset($_REQUEST['email'])){
 										<input name="email" type="text" value="" size="30"/><br><br>
 										<p>Password*</p>
 										<input name="password" type="password" value="" size="30"/><br><br>
-										<input type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
+										<input type="submit" id="seconnecter" value="Log Off" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
 										<a href="mdpoublie-en.php">Forgot password</a>
 									</form>
 								</div>
