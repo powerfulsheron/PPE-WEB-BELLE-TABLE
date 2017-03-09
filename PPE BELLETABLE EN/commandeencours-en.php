@@ -22,10 +22,10 @@ if(isset($_SESSION['login'])){
 				<div class="sousmenu">
 				<br/><br/><br/>
 					<div class="list-group">
-						<a href="commandeencours.php" class="list-group-item">Current Orders </a>
-						<a href="commandetermines.php" class="list-group-item">Completed Orders</a>
-						<a href="coordonnees.php" class="list-group-item">Contact Informations</a>
-						<a href="deconnexion.php" class="list-group-item">Log Off</a>
+						<a href="commandeencours-en.php" class="list-group-item">Current Orders </a>
+						<a href="commandetermines-en.php" class="list-group-item">Completed Orders</a>
+						<a href="coordonnees-en.php" class="list-group-item">Contact Informations</a>
+						<a href="deconnexion-en.php" class="list-group-item">Log Off</a>
 					</div>
 				</div>
 				<br/><br/>
