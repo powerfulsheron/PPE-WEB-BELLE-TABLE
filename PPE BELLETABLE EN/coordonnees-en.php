@@ -148,7 +148,7 @@ if(isset($_REQUEST['email'])){
 }
 	
 ?>
-<?php include('header.php');
+<?php include('header-en.php');
 		if(isset($erreur)){
 			switch($erreur){
 				case 1:
@@ -176,7 +176,7 @@ if(isset($_REQUEST['email'])){
 			if($erreur != 0){
 				echo'
 				<script type="text/javascript">
-					sweetAlert("Echec", "'.$message.'", "error");
+					sweetAlert("Failed", "'.$message.'", "error");
 				</script>';	
 			}
 			
@@ -189,10 +189,10 @@ if(isset($_REQUEST['email'])){
 			<div class="sousmenu">
 			<br/><br/><br/>
 					<div class="list-group">
-						<a href="commandeencours.php" class="list-group-item">Current Orders </a>
-						<a href="commandetermines.php" class="list-group-item">Completed Orders</a>
-						<a href="coordonnees.php" class="list-group-item">Contact Informations</a>
-						<a href="deconnexion.php" class="list-group-item">Log Off</a>
+						<a href="commandeencours-en.php" class="list-group-item">Current Orders </a>
+						<a href="commandetermines-en.php" class="list-group-item">Completed Orders</a>
+						<a href="coordonnees-en.php" class="list-group-item">Contact Informations</a>
+						<a href="deconnexion-en.php" class="list-group-item">Log Off</a>
 					</div>
 			</div>
 			<br/><br/>
