@@ -17,13 +17,13 @@ if(isset($_SESSION['login'])){
 			<div class="row">
                 <br>
 				<div class="apropos">
-					<p>True partner of event planners since 2010, BelleTable is renting you mutliple and various furnitures for events in Paris and Ile de France</p>
+					<p>True partner of event planners since 2010, BelleTable is renting you mutliple and various pieces of furniture for events in Paris and Ile de France</p>
 					<br>
-					<p>Dishes rental, chairs, tables, events furnitures,Tableclothing, Barnum, and caterer equipment </p>
+					<p>Dishes rental, chairs, tables, events furniture,Tableclothing, Barnum, and catering equipment </p>
 					<br>
 					<p>We offer you a complete and trendy range of equipment for all your events: Buffets, conferences, cocktails, weddings, lounges, meetings, ephemeral spaces, galas, fashion shows ...</p>
 					<br>
-					<p>Inspirations, always trending, have been created to fit into coherent, current and functional ranges. They enable the creation and rapid installation of luxury and peacefull dining areas.</p>
+					<p>Inspirations, always trending, have been created to fit into coherent, current and functional ranges. They enable the creation and rapid installation of luxury and peaceful dining areas.</p>
 					<br>
 					<p>Belletable accompanies its clients: savvy creative advice, field commercial and logisticians on site, are associated with your success.</p>
 					<br>
