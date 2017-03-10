@@ -245,7 +245,9 @@ if(isset($_REQUEST['email'])){
 								</tr>
 								<tr>
 									<td colspan="2">
+
 										<input type="submit" id="sinscrire" value="Ok" onclick="document.forms[\'myform\'].submit();"/>
+
 									</td>
 								</tr>								
 							</tbody>
@@ -263,4 +265,6 @@ if(isset($_REQUEST['email'])){
 	<?php include('footer.php'); ?>
 
 </body>
+
 </html>
+

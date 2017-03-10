@@ -1,72 +1,47 @@
 <?php
-session_start();
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
+include('sessionlogin.php');
 
 include('parametres.php');
 
 if(isset($_REQUEST['email'])){
+	$erreur = 0;
     $email=$_REQUEST['email'];
-	if($_REQUEST['password'] != ""){
-		$password=md5($_REQUEST['password']);
+	if($email == ""){
+		$erreur = 1;
 	}
-	if(($email=="")||($password=="")){
-		if(($email=="")&&($password!="")){
-			$erreur = 1;
-		}
-		elseif(($password=="")&&($email!="")){
-			$erreur = 2;
+	if(isset($_REQUEST['password'])){
+		if($_REQUEST['password'] != ""){
+			$password=md5($_REQUEST['password']);
 		}
 		else{
-			$erreur = 3;
+			$erreur = 2;
 		}
 	}
-    else{
-        $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
-		
+	else{
+		$erreur = 2;
+	}
+	if($erreur == 0){
+		$result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
 		if($result != ""){
 			while($row = $result->fetch()){
 				$_SESSION['login'] = $row['numclient'];
 			}
-			echo'
-			<script type="text/javascript">
-				location.href = \'commandeencours.php\';
-			</script>';
+			if(isset($_SESSION['login'])){
+				echo'
+				<script type="text/javascript">
+					location.href = \'commandeencours.php\';
+				</script>';
+			}
+			else{
+				$erreur = 4;
+			}
 		}
-		else{
-			$erreur = 4;
-		}
-		
 	}
 }
 	
 ?>
-<!DOCTYPE html>
-<html lang="fr">
+<?php include('header.php'); ?>
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>BelleTable - Elegance a la Francaise</title>
-
-    <link href="css/cssbelletable.css" rel="stylesheet">
-
-    <link href="css/shop-homepage.css" rel="stylesheet">
-	
-	<script src="dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-
-</head>
-
-<body>
 	<?php 
 		if(isset($erreur)){
 			switch($erreur){
@@ -80,12 +55,6 @@ if(isset($_REQUEST['email'])){
 					echo'
 					<script type="text/javascript">
 						sweetAlert("Echec", "Veuillez renseigner votre mot de passe", "error");
-					</script>';
-				break;
-				case 3:
-					echo'
-					<script type="text/javascript">
-						sweetAlert("Echec", "Veuillez renseigner votre adresse mail et votre mot de passe", "error");
 					</script>';
 				break;
 				case 4:
@@ -104,40 +73,6 @@ if(isset($_REQUEST['email'])){
 		}
 	?>
 	
-	
-	 <br/>
-	<div id="menuprincipal" align="center">
-		<ul class="barremenu">
-			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
-			<li>
-				<a href="pageproduits.php">Nos Produits</a>
-			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
-			<li>
-				<a href="apropos.php">A Propos</a>
-			<li>
-				<a href="contact.php">Contact</a>
-			<li>
-				<?php
-				if(isset($menuchange)){
-					echo'
-					<a href="commandeencours.php">Mon Compte</a>';
-				}
-				else{
-					echo'
-					<a href="connexion.php">Connexion</a>';
-				}
-                if(isset($menuchange2)){
-					echo'
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
-				}
-				?>
-		</ul>
-	</div>
-	<br/>
-	
 	<div class="contenupage">
 		<div class="container">
 			<div class="row formulaireconnect">
@@ -148,7 +83,7 @@ if(isset($_REQUEST['email'])){
 						<tr>
 							<td>
 								<div class="inscription">
-									<h1>Créer Votre Compte</h1>
+									<h1>Créer son Compte</h1>
 									<p>Créez votre compte<br/>afin d'effectuer<br/>et de suivre vos commandes.</p><br/>
 									<input type="button" id="creercompte" value="Je crée mon compte" onclick="location.href='inscription.php';"/>
 									<br><br>
@@ -177,21 +112,7 @@ if(isset($_REQUEST['email'])){
 	</div>
 	
 	
-	<div class="divfooter">
-        <hr>
-        <footer>
-        	<div class="socialnet">
-        	<a href="http://twitter.com/share" target="_blank" class="twitter-share-button" data-count="vertical" data-via="Belle_TableSIO"><img src="twitter.png" height="5%" width="5%"></a>
-		<a name="fb_share" type="box_count" href="https://www.facebook.com/Belle-Table-1113642382077898/" target="_blank"><img src ="fb.jpg" height="6%" width="6%"></a>
-		<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-		</div>
-			<ul class="footer">
-			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
-			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
-			</ul>
-        </footer>
-    </div>
+	<?php include('footer.php'); ?>
 
 </body>
 </html>

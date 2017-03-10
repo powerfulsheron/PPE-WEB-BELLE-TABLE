@@ -1,18 +1,15 @@
 <?php
-session_start();
-include('fonction.php');
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
-if(isset($_REQUEST['email'])){
-	$nom=$_REQUEST['nom'];
-    $email=$_REQUEST['email'];
-    $message=$_REQUEST['message'];
+
+include('sessionlogin.php');
+
+if(isset($_POST['email'])){
+	$nom=$_POST['nom'];
+    $email=$_POST['email'];
+	$numero=$_POST['numero'];
+    $message=$_POST['message'];
     if (($nom=="")||($email=="")||($message=="")){
-        Contact($email,$message,$nom);
 	}
+	$verif = Contact($email,$numero,$message,$nom);
 }
 	
 ?>
@@ -73,11 +70,13 @@ if(isset($_REQUEST['email'])){
 				<div class="formulairenevoi">
 					<h1>Contactez-Nous</h1>
 					<p>Pour nous contacter veuillez remplir ce formulaire.</p><br/>
-					<form  action="contact.php" id="myform" method="GET" enctype="multipart/form-data">
+					<form  action="contact.php" id="myform" method="POST" enctype="multipart/form-data">
 						<p>Votre Nom et Prénom :</p>
 						<input name="nom" type="text" value="" size="30"/><br><br>
 						<p>Votre Email :</p>
 						<input name="email" type="text" value="" size="30"/><br><br>
+						<p>Votre Numéro de téléphone :</p>
+						<input name="numero" type="text" value="" size="30"/><br><br>
 						<p>Votre Message :</p>
 						<textarea name="message" rows="7" cols="35"></textarea><br><br>
 						<input type="submit" id="envoimail" value="Envoyer" onclick="document.forms[\'form\'].submit();"/>

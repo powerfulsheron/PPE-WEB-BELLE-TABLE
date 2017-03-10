@@ -150,6 +150,7 @@ caption {
   padding-bottom: 8px;
   color: #777;
   text-align: left;
+
 }
 th {
   text-align: left;
@@ -198,10 +199,12 @@ a.list-group-item,
 button.list-group-item {
   color: #555;
     text-decoration: none;
+
 }
 a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
   color: #333;
+
 }
 
 .container:before,
@@ -217,6 +220,16 @@ button.list-group-item .list-group-item-heading {
   clear: both;
 }
 
+.fondrecherche{
+    background-image: url(fond.png);
+}
+
+.btnrecherche{
+    background-image: url(loupe.png);
+    height: 30px;
+    width: 30px;
+}
+
 .contenupage{
 	background-image: url(fond.png);
 }
@@ -227,6 +240,7 @@ button.list-group-item .list-group-item-heading {
 
 .row h1{
 	color:#192175;
+
 	font-family:Brush Script Std, Brush Script MT, cursive;
 	font-size:50px;
 }
@@ -306,12 +320,16 @@ button.list-group-item .list-group-item-heading {
 
 .formulairenevoi{
 	text-align:center;
+	   font-family: "Times New Roman";
+   font-style:italic;
 }
 
 .formulairenevoi p{
-	font-family:Courier, monospace;
+	   font-family: "Times New Roman";
+   font-style:italic;
 	font-size:17px;
-	font-weight:bold;
+		font-weight:bold;
+
 }
 
 .grostitres h1{
@@ -321,6 +339,7 @@ button.list-group-item .list-group-item-heading {
 	font-weight:bold;
 	text-transform:uppercase;
 }
+
 .fondimage {
 	background-color:white;
 }
@@ -538,6 +557,8 @@ button.list-group-item .list-group-item-heading {
 .encadreproduit{
 	width:32%;
     margin: 5px;
+       font-family: "Times New Roman";
+   font-style:italic;
 }
 
 .encadrefooter{
@@ -577,6 +598,7 @@ caption {
    padding:0px;
    float:center;
    width:100%;
+
 }
 
 .barremenu li{
@@ -595,6 +617,7 @@ caption {
 	height:200px;
 	text-decoration:none;
 	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
 	text-transform:uppercase;
 }
 
@@ -614,12 +637,10 @@ caption {
 
 .footer li{
 	display : inline;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
-footer
-{	
-margin-left: 40px;
-}
 
 .apropos
 {
@@ -634,25 +655,68 @@ margin-left: 40px;
   	padding-top: 10px;
   	padding-bottom: 10px;
   	width: 900px;	
+  	font-family: "Times New Roman";
+  	font-style: italic;
+  	font-size: 110%
 }	
 
-.lifooter
-{
-margin-left: 5px;
-margin-right: 5px;
-}
-
-.divfooter
-{
-	margin-left: auto;
-  	margin-right: auto;
-	width: 700px;	
-}
-
-.socialnet
+footer
 {
 	margin-left: auto;
   	margin-right: auto;
 	width: 700px;	
 	text-align:center;
+	   font-family: "Times New Roman";
+   font-style:italic;
+}
+
+.divfooter
+{
+
+padding-right: 40px;
+
+}
+
+.connexion, .connexion p
+{
+
+   font-family: "Times New Roman";
+   font-style:italic;
+
+}
+
+.inscription, .inscription p
+{
+
+   font-family: "Times New Roman";
+   font-style:italic;
+
+}
+
+.plan
+{
+
+	background-color: white;
+	width: 1100px;	
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top :10px;
+  	margin-bottom: 10px;
+  	padding-left: 10px;
+  	padding-right: 10;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  	display: inline-flex;
+
+}
+
+.infoPlan
+{
+width: 900px;
+text-align: center;
+   font-family: "Times New Roman";
+   font-style: italic;
+   font-size: 130%;
+   font-weight: bold;
+
 }

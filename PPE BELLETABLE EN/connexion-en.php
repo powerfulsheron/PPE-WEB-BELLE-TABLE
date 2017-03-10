@@ -106,7 +106,7 @@ if(isset($_REQUEST['email'])){
 										<input name="email" type="text" value="" size="30"/><br><br>
 										<p>Password*</p>
 										<input name="password" type="password" value="" size="30"/><br><br>
-										<input type="submit" id="seconnecter" value="Log Off" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
+										<input type="submit" id="seconnecter" value="Log In" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
 										<a href="mdpoublie-en.php">Forgot password</a>
 									</form>
 								</div>
@@ -123,4 +123,6 @@ if(isset($_REQUEST['email'])){
 	<?php include('footer.php'); ?>
 
 </body>
+
 </html>
+

@@ -1,70 +1,23 @@
 <?php
-session_start();
 include('fonction.php');
+include('sessionlogin.php');
 
-if(isset($_SESSION['login'])){
-	if($_SESSION['login'] != ""){
-		$menuchange = true;
-	}	
-}
 	include('parametres.php');
 	
-if(isset($_REQUEST['idcommande'])){
+if((isset($_REQUEST['idcommande']))&&(isset($_SESSION['login']))){
 	$numcommande = $_REQUEST['idcommande'];
 }
-	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
+else{
+	echo'
+		<script type="text/javascript">
+			location.href = \'connexion.php\';
+		</script>';
+}
+	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
 	
 ?>
-<!DOCTYPE html>
-<html lang="fr">
+<?php include('header.php'); ?>
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="SIOSLAM2017">
-
-    <title>BelleTable - Elegance a la Francaise</title>
-
-    <link href="css/cssbelletable.css" rel="stylesheet">
-
-    <link href="css/shop-homepage.css" rel="stylesheet">
-
-</head>
-
-<body>
-	<br/>
-	<div id="menuprincipal" align="center">
-		<ul class="barremenu">
-			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
-			<li>
-				<a href="pageproduits.php">Nos Produits</a>
-			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
-			<li>
-				<a href="apropos.php">A Propos</a>
-			<li>
-				<a href="contact.php">Contact</a>
-			<li>
-				<?php
-				if(isset($menuchange)){
-					echo'
-					<a href="commandeencours.php">Mon Compte</a>
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
-				}
-				else{
-					echo'
-					<a href="connexion.php">Connexion</a>';
-				}
-
-				?>
-		</ul>
-	</div>
-	<br/>
 	<div class="contenupage">
 		<div class="container">
 				<div class="sousmenu">
@@ -100,8 +53,8 @@ if(isset($_REQUEST['idcommande'])){
 										<td class="premierdetail">'.AjoutZero($row['numproduit']).'</td>
 										<td class="deuxiemedetail">'.$row['libelproduit'].'</td>
 										<td class="troisiemedetail">'.$row['quantite'].'</td>
-										<td class="quatriemedetail">'.($row['prixttc'])/$row['quantite'].' €</td>
-										<td class="quatriemedetail">'.$row['prixttc'].' €</td>
+										<td class="quatriemedetail">'.$row['prixproduit'].' €</td>
+										<td class="quatriemedetail">'.$row['prixproduit'] * $row['quantite'].' €</td>
 									</tr>';
 								}
 							?>
@@ -110,22 +63,8 @@ if(isset($_REQUEST['idcommande'])){
 					<br/>
 				</div>
 		</div>
-		
-	<div class="divfooter">
-        <hr>
-        <footer>
-        	<div class="socialnet">
-        	<a href="http://twitter.com/share" target="_blank" class="twitter-share-button" data-count="vertical" data-via="Belle_TableSIO"><img src="twitter.png" height="5%" width="5%"></a>
-		<a name="fb_share" type="box_count" href="https://www.facebook.com/Belle-Table-1113642382077898/" target="_blank"><img src ="fb.jpg" height="6%" width="6%"></a>
-		<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-		</div>
-			<ul class="footer">
-			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
-			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
-			</ul>
-        </footer>
-    </div>
+</div>
+	<?php include('footer.php'); ?>
 
 
 </body>
