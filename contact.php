@@ -1,6 +1,40 @@
 <?php
 
+include('header.php');
+
 include('sessionlogin.php');
+
+
+if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
+{
+	if(isset($erreur)){
+     $erreur = $erreur." \\n L'email n'est pas au bon format";
+	}
+	else{
+		        $erreur = "L'email n'est pas au bon format";
+	}
+
+}
+
+if(!isset($_REQUEST['message'])||trim($_REQUEST['message'])==='')
+{
+	if(isset($erreur)){
+     $erreur = $erreur." \\n Le message est invalide";
+	}
+	else{
+		    $erreur = "Le message est invalide";
+	}
+
+}
+
+
+if(isset($erreur)&&isset($_POST['bouton']))
+{
+						echo'
+					<script type="text/javascript">
+						sweetAlert("Echec","'.$erreur.'","error");
+					</script>';
+		}
 
 if(isset($_POST['email'])){
 	$nom=$_POST['nom'];
@@ -9,8 +43,9 @@ if(isset($_POST['email'])){
     $message=$_POST['message'];
     if (($nom=="")||($email=="")||($message=="")){
 	}
-	$verif = Contact($email,$numero,$message,$nom);
+	// $verif = Contact($email,$numero,$message,$nom);
 }
+
 	
 ?>
 <!DOCTYPE html>
@@ -33,37 +68,6 @@ if(isset($_POST['email'])){
 </head>
 
 <body>
-	 <br/>
-	<div id="menuprincipal" align="center">
-		<ul class="barremenu">
-			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
-			<li>
-				<a href="pageproduits.php">Nos Produits</a>
-			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
-			<li>
-				<a href="apropos.php">A Propos</a>
-			<li>
-				<a href="contact.php">Contact</a>
-			<li>
-				<?php
-				if(isset($menuchange)){
-					echo'
-					<a href="commandeencours.php">Mon Compte</a>
-                    <li>
-					<a href="lepanier.php">Mon Panier</a>';
-				}
-				else{
-					echo'
-					<a href="connexion.php">Connexion</a>';
-				}
-
-				?>
-		</ul>
-	</div>
-	<br/>
-	
 	<div class="contenupage">
 		<div class="container">
 			<div class="row">
@@ -74,12 +78,12 @@ if(isset($_POST['email'])){
 						<p>Votre Nom et Prénom :</p>
 						<input name="nom" type="text" value="" size="30"/><br><br>
 						<p>Votre Email :</p>
-						<input name="email" type="text" value="" size="30"/><br><br>
+						<input id="email" name="email" type="text" value="" size="30"/><br><br>
 						<p>Votre Numéro de téléphone :</p>
 						<input name="numero" type="text" value="" size="30"/><br><br>
 						<p>Votre Message :</p>
-						<textarea name="message" rows="7" cols="35"></textarea><br><br>
-						<input type="submit" id="envoimail" value="Envoyer" onclick="document.forms[\'form\'].submit();"/>
+						<textarea id="message" name="message" rows="7" cols="35"></textarea><br><br>
+						<input name="bouton" type="submit" id="envoimail" value="Envoyer" onclick="document.forms[\'form\'].submit();"/>
 					</form>
 					<br><br>
 				</div>
@@ -88,21 +92,7 @@ if(isset($_POST['email'])){
 	</div>
 	
 	
-	<div class="divfooter">
-        <hr>
-        <footer>
-        	<div class="socialnet">
-        	<a href="http://twitter.com/share" target="_blank" class="twitter-share-button" data-count="vertical" data-via="Belle_TableSIO"><img src="twitter.png" height="5%" width="5%"></a>
-		<a name="fb_share" type="box_count" href="https://www.facebook.com/Belle-Table-1113642382077898/" target="_blank"><img src ="fb.jpg" height="6%" width="6%"></a>
-		<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-		</div>
-			<ul class="footer">
-			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-			<li class="lifooter">Copyright &copy; BelleTable 2017</li>
-			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
-			</ul>
-        </footer>
-    </div>
+		<?php include('footer.php'); ?>
 	
 </body>
 </html>
