@@ -1,13 +1,180 @@
 <?php
 include('sessionlogin.php');
 include('parametres.php');
+include('header.php'); 
 
-if(isset($_REQUEST['email'])){
+if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
+{
+	if(isset($erreur))
+	{
+    	 $erreur = $erreur." \\n L'email n'est pas au bon format";
+	}
+	
+	else
+	{
+		$erreur = "L'email n'est pas au bon format";
+	}
+
+}
+
+if(!isset($_REQUEST['password'])||trim($_REQUEST['password'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le password est manquant";
+	}
+
+	else
+	{
+		$erreur = "Le password est manquant";
+	}
+
+}
+
+if(!isset($_REQUEST['confirm'])||trim($_REQUEST['confirm'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le mot de passe de confirmation est manquant";
+	}
+
+	else
+	{
+		$erreur = "Le mot de passe de confirmation est manquant";
+	}
+
+}
+
+if(isset($_REQUEST['confirm'])&&isset($_REQUEST['password'])&&($_REQUEST['confirm'])!=($_REQUEST['password']))
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le mot de passe et le mot de passe de confirmation ne correspondent pas";
+	}
+
+	else
+	{
+		$erreur = "Le mot de passe et le mot de passe de confirmation ne correspondent pas";
+	}
+
+}
+
+if(!isset($_REQUEST['civilite'])||trim($_REQUEST['civilite'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n La civilite est manquante";
+	}
+
+	else
+	{
+		$erreur = "La civilite est manquante";
+	}
+
+}
+
+if(!isset($_REQUEST['nom'])||trim($_REQUEST['nom'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le nom est manquant";
+	}
+
+	else
+	{
+		$erreur = "Le nom est manquant";
+	}
+
+}
+
+if(!isset($_REQUEST['prenom'])||trim($_REQUEST['prenom'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le prenom est manquant";
+	}
+
+	else
+	{
+		$erreur = "Le prenom est manquant";
+	}
+
+}
+
+if(!isset($_REQUEST['rue'])||trim($_REQUEST['rue'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n L'adresse est manquante";
+	}
+
+	else
+	{
+		$erreur = "L'adresse est manquante";
+	}
+
+}
+
+if(!isset($_REQUEST['cp'])||trim($_REQUEST['cp'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le code postal est manquant";
+	}
+
+	else
+	{
+		$erreur = "Le code postal est manquant";
+	}
+
+}
+
+if(!isset($_REQUEST['ville'])||trim($_REQUEST['ville'])==='')
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n La ville est manquante";
+	}
+
+	else
+	{
+		$erreur = "La ville est manquante";
+	}
+
+}
+
+if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')||(!isset($_REQUEST['telportable'])||trim($_REQUEST['telportable'])===''))
+{
+	if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Veuillez renseigner au moins un numéro de télphone";
+	}
+
+	else
+	{
+		$erreur = "Veuillez renseigner au moins un numéro de télphone";
+	}
+
+}
+
+
+if(isset($erreur)&&isset($_POST['bouton']))
+{
+
+						echo'
+					<script type="text/javascript">
+						sweetAlert("Echec","'.$erreur.'","error");
+					</script>';
+		}
+
+
+if(isset($_POST['bouton'])&&!isset($erreur))
+	{
 	
     $email=$_REQUEST['email'];
     $password=$_REQUEST['password'];
 	$confirm=$_REQUEST['confirm'];
-	if(isset($_REQUEST['civilite'])){$civilite = $_REQUEST['civilite'];}else{$civilite = "";}
+	$civilite = $_REQUEST['civilite'];
 	$nom=$_REQUEST['nom'];
 	$prenom=$_REQUEST['prenom'];
 	$activite=$_REQUEST['activite'];
@@ -18,28 +185,16 @@ if(isset($_REQUEST['email'])){
 	$ville=$_REQUEST['ville'];
 	$fixe=$_REQUEST['telfixe'];
 	$portable=$_REQUEST['telportable'];
-	if(isset($_REQUEST['newsletter'])){
+
+
+	if(isset($_REQUEST['newsletter']))
+	{
 		$newsletter = 'O';
 	}
-	else{
+	else
+	{
 		$newsletter = 'N';
 	}
-
-	$erreur = 0;
-	
-	if(isset($fixe)){if(($fixe == null)&&($portable == null)){$erreur = 3;}}
-	if(isset($email)){if($email == null){$erreur = 1;}}
-	if(isset($password)){if($password == null){$erreur = 1;}}
-	if(isset($confirm)){if($confirm == null){$erreur = 1;}}
-	if(($password != null)&&($confirm != null)){if($password != $confirm){$erreur = 2;}}
-	if(isset($civilite)){if($civilite == null){$erreur = 1;}}
-	if(isset($nom)){if($nom == null){$erreur = 1;}}
-	if(isset($prenom)){if($prenom == null){$erreur = 1;}}
-	if(isset($activite)){if($activite == null){$erreur = 1;}}
-	if(isset($activite)){if(($activite == 2)&&($denomsociale == null)){$erreur = 4;}}
-	if(isset($rue)){if($rue == null){$erreur = 1;}}
-	if(isset($cp)){if($cp == null){$erreur = 1;}}
-	if(isset($ville)){if($ville == null){$erreur = 1;}}	
 	
 	$email='\''.$_REQUEST['email'].'\'';
 	$emailbis = $_REQUEST['email'];
@@ -51,28 +206,35 @@ if(isset($_REQUEST['email'])){
 	$prenom='\''.$_REQUEST['prenom'].'\'';
 	$activite='\''.$_REQUEST['activite'].'\'';
 	$denomsociale='\''.$_REQUEST['denomsociale'].'\'';
-	if($denomsociale == ""){
+	if($denomsociale == "")
+	{
 		$denomsociale = NULL;
 	}
 	$rue='\''.$_REQUEST['rue'].'\'';
 	$complement = '\''.$_REQUEST['complement'].'\'';
-	if($complement == ""){
+	if($complement == "")
+	{
 		$complement = NULL;
 	}
+
 	$cp='\''.$_REQUEST['cp'].'\'';
 	$ville='\''.$_REQUEST['ville'].'\'';
 	$fixe='\''.$_REQUEST['telfixe'].'\'';
 	$newsletter = '\''.$newsletter.'\'';
-	if($fixe == ""){
+	if($fixe == "")
+	{
 		$fixe = NULL;
 	}
+
 	$portable='\''.$_REQUEST['telportable'].'\'';
-	if($portable == ""){
+
+	if($portable == "")
+	{
 		$portable = NULL;
 	}
-
+}
 	
-	if($erreur == 0){
+	if(!isset($erreur)){
 		
         $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient,newsletter) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.','.$newsletter.')');
 
@@ -89,16 +251,15 @@ if(isset($_REQUEST['email'])){
         </script>';
 
 	}	
-}
 	
+
 ?>
-<?php include('header.php'); ?>
 	
 	<div class="contenupage">
 		<div class="container">
 			<div class="row">
 				<div class="formulaireinscription">
-					<form  action="inscription.php" id="myform" method="GET" enctype="multipart/form-data">
+					<form  action="inscription.php" id="myform" method="POST" enctype="multipart/form-data">
 						<table width="100%">
 							<thead>
 								<tr>
@@ -248,7 +409,7 @@ if(isset($_REQUEST['email'])){
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
+										<input name="bouton" type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
 									</td>
 								</tr>								
 							</tbody>

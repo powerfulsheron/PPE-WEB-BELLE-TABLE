@@ -63,7 +63,6 @@ if(isset($_POST['email'])){
 
     <link href="css/cssbelletable.css" rel="stylesheet">
 
-    <link href="css/shop-homepage.css" rel="stylesheet">
 
 </head>
 
