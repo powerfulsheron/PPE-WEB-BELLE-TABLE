@@ -7,7 +7,7 @@ A FAIRE :
 
 EN COURS :
 
-- Validations (Lorenzo)
+
 - Triggers / procédures stockées (Sébastien)
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle
 - Réduction pour les clients fidèles par mail (Sylvain)
@@ -19,7 +19,8 @@ EN COURS :
 
 FAIT :
 
-- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( en cours lorenzo )
+- Validations (Lorenzo)
+- Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( lorenzo )
 - Page "A propos" en PHP ( lorenzo )
 - Page "Mot de passe oublié" en PHP (fait Axelle)
 - Footer (Mentions légales et CGV) (fait Axelle)
