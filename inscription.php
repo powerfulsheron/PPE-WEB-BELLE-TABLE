@@ -143,7 +143,7 @@ if(!isset($_REQUEST['ville'])||trim($_REQUEST['ville'])==='')
 
 }
 
-if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')||(!isset($_REQUEST['telportable'])||trim($_REQUEST['telportable'])===''))
+if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')&&(!isset($_REQUEST['telportable'])||trim($_REQUEST['telportable'])===''))
 {
 	if(isset($erreur))
 	{
@@ -156,6 +156,36 @@ if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')||(!isset($_RE
 	}
 
 }
+
+else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telfixe']))
+ {
+
+ 			if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
+	}
+
+	else
+	{
+		$erreur = "Le numéro de téléphone renseigné n'est pas au bon format";
+	}
+
+ }
+
+ else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telportable']))
+ {
+
+ 			if(isset($erreur))
+	{
+    	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
+	}
+
+	else
+	{
+		$erreur = "Le numéro de téléphone renseigné n'est pas au bon format";
+	}
+
+ }
 
 
 if(isset($erreur)&&isset($_POST['bouton']))
