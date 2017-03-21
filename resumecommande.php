@@ -77,9 +77,16 @@ $ladate = date('Y-m-d');
 		$result = $bdd->query('SELECT * FROM t_client WHERE numclient LIKE '.$_SESSION['login'].'');
 		while($row = $result->fetch()){
 			$email = $row['emailclient'];
+			$nbcom = $row['nbcommandes'];
 		}
 	
 		EnvoiMailCommande($email,$numcommande,$totalcom,$datecom);
+		
+		$nbcom = $nbcom + 1;
+		
+		$bdd->exec('UPDATE t_client SET
+						nbcommandes='.$nbcom.'
+						WHERE numclient = '.$_SESSION['login'].'');
 	
 		echo'
 		<script type="text/javascript">
