@@ -5,7 +5,6 @@ include('parametres.php');
 
 include('header.php'); 
 
-
 if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
 {
 	if(isset($erreur))
@@ -36,7 +35,7 @@ if(!isset($_REQUEST['password'])||trim($_REQUEST['password'])==='')
 
 if(!isset($erreur))
 {
-		$result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
+		$result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$_REQUEST['email'].'" AND `mdpclient` LIKE "'.md5($_REQUEST['password']).'"');
 		if($result != "")
 		{
 			while($row = $result->fetch())
