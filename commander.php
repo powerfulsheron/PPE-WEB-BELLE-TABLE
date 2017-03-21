@@ -13,40 +13,18 @@ $ladate = date('Y-m-d');
 		<div class="container">
 			<div class="row">
 				<div class="passercommande">
-					<form  action="resumepanier.php" id="myform" method="GET" enctype="multipart/form-data">
-						<table width="100%">
-							<thead>
-                                <tr>
-									<th colspan="2"><h1>Services complémentaires</h1></th>
-								</tr>
-							</thead>
-							
-							<tbody>                      
-                                <tr>
-                                    <td class="totalcommande">Livraison (+25€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="livraison" name="livraison" value="livraison" ></td>
-                                </tr>
-                                <tr>
-                                    <td class="totalcommande">Mise en place (+25€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="miseplace" name="miseplace" ></td>
-                                </tr>
-                                <tr>
-                                    <td class="totalcommande">Service à table (+50€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="service" name="service" ></td>
-                                </tr>
-                                <tr>
-                                    <td class="totalcommande">Lavage de la vaiselle (+20€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="vaisselle" name="vaisselle" ></td>
-                                </tr>
-                                <tr>
-                                    <td class="totalcommande">Lessive du linge (+30€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="lessive" name="lessive" ></td>
-                                </tr>
-							</tbody>
-						</table>
-                        <input type="submit" id="seconnecter" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
+					<form  action="resumepanier.php" id="myform" method="POST" enctype="multipart/form-data">
+						<h1 align="center">Services complémentaires</h1>
+						<p align="center">Livraison (+25€) &nbsp; <input type="checkbox" id="livraison" name="livraison" value="livraison" ></p>
+						<p align="center">Mise en place (+25€) &nbsp; <input type="checkbox" id="miseplace" name="miseplace" ></p>
+						<p align="center">Service à table (+50€) &nbsp; <input type="checkbox" id="service" name="service" ></p>
+						<p align="center">Lavage de la vaiselle (+20€) &nbsp; <input type="checkbox" id="vaisselle" name="vaisselle" ></p>
+						<p align="center">Lessive du linge (+30€) &nbsp; <input type="checkbox" id="lessive" name="lessive" ></p>
+						<br/>
+						<p align="center">Code de réduction <input type="text" id="reduction" name="reduction" ></p>
+						<br/>
+                        <p align="right"><input type="submit" id="seconnecter" value="Valider" onclick="document.forms[\'myform\'].submit();"/></p>
 					</form>				
-					<br><br>
 				</div>
 			</div>
 		</div>		
