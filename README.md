@@ -3,13 +3,10 @@
 A FAIRE :
 
 - Bootstrap
-- Génération de newsletter de réduction
 
 EN COURS :
 
-
 - Triggers / procédures stockées (Sébastien)
-- NewsLetter de réduction (ajout checkbox (inscription et coordonnees) par Axelle
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
 - Cookies avec avertissement avec un bandeau (Alexandre)
@@ -19,6 +16,8 @@ EN COURS :
 
 FAIT :
 
+- Génération de newsletter de réduction (Axelle)
+- NewsLetter de réduction (ajout checkbox (inscription et coordonnees) (Axelle)
 - Validations (Lorenzo)
 - Plan d'accès dans "à propos" ou dans "Contact" ou dans le footer ( lorenzo )
 - Page "A propos" en PHP ( lorenzo )
