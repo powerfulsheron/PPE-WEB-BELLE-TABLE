@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 07 Mars 2017 à 15:04
+-- Généré le :  Mar 21 Mars 2017 à 15:59
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -66,6 +66,16 @@ CREATE TABLE IF NOT EXISTS `t_client` (
   `mdpclient` varchar(100) NOT NULL,
   `civiliteclient` int(1) NOT NULL,
   `newsletter` varchar(1) NOT NULL,
+  `nbcommandes` int(11) DEFAULT NULL,
+  `code10` varchar(1) NOT NULL DEFAULT 'N',
+  `code20` varchar(1) NOT NULL DEFAULT 'N',
+  `code30` varchar(1) NOT NULL DEFAULT 'N',
+  `code40` varchar(1) NOT NULL DEFAULT 'N',
+  `code50` varchar(1) NOT NULL DEFAULT 'N',
+  `code60` varchar(1) NOT NULL DEFAULT 'N',
+  `code70` varchar(1) NOT NULL DEFAULT 'N',
+  `code80` varchar(1) NOT NULL DEFAULT 'N',
+  `code90` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`numclient`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
@@ -73,8 +83,8 @@ CREATE TABLE IF NOT EXISTS `t_client` (
 -- Contenu de la table `t_client`
 --
 
-INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, `denomsociale`, `rueclient`, `complementadresse`, `cpclient`, `villeclient`, `emailclient`, `telfixeclient`, `telportableclient`, `mdpclient`, `civiliteclient`, `newsletter`) VALUES
-(19, 1, 'Sailly', 'Axelle', '', '1 bis rue du haras', '', '78530', 'Buc', 'saillyaxelle@hotmail.fr', '', '0665564696', '39cb189c1005e7e7c011a5eb885f4a1c', 1, 'N');
+INSERT INTO `t_client` (`numclient`, `typeclient`, `nomclient`, `prenomclient`, `denomsociale`, `rueclient`, `complementadresse`, `cpclient`, `villeclient`, `emailclient`, `telfixeclient`, `telportableclient`, `mdpclient`, `civiliteclient`, `newsletter`, `nbcommandes`, `code10`, `code20`, `code30`, `code40`, `code50`, `code60`, `code70`, `code80`, `code90`) VALUES
+(19, 1, 'Sailly', 'Axelle', '', '1 bis rue du haras', '', '78530', 'Buc', 'saillyaxelle@hotmail.fr', '', '0665564696', '39cb189c1005e7e7c011a5eb885f4a1c', 1, 'N', 8, 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -95,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
   `lessive` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`numcommande`),
   KEY `numclient` (`numclient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 --
 -- Contenu de la table `t_commande`
@@ -108,7 +118,8 @@ INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcomma
 (67, '2017-03-07 14:54:42', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
 (68, '2017-03-07 14:55:15', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
 (69, '2017-03-07 14:55:33', NULL, 6, 19, 'N', 'N', 'N', 'N', 'N'),
-(70, '2017-03-07 14:58:40', NULL, 14, 19, 'N', 'N', 'N', 'N', 'N');
+(70, '2017-03-07 14:58:40', NULL, 14, 19, 'N', 'N', 'N', 'N', 'N'),
+(71, '2017-03-21 15:54:38', NULL, 117, 19, 'N', 'N', 'N', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -137,7 +148,9 @@ INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`) VALUES
 (66, 22691, 1),
 (67, 25477, 10),
 (69, 25477, 1),
-(70, 19211, 1);
+(70, 19211, 1),
+(71, 25477, 10),
+(71, 25482, 10);
 
 -- --------------------------------------------------------
 
@@ -294,7 +307,6 @@ INSERT INTO `t_reduction` (`id_reduc`, `libelle_reduc`, `reduction`) VALUES
 (7, 'REDUC70', 70),
 (8, 'REDUC80', 80),
 (9, 'REDUC90', 90),
-(10, 'ANNIV10', 10),
 (11, 'FETEDESMERES15', 15),
 (12, 'JOURNEEFM30', 30),
 (13, 'SOLDEPLUS', 20),
