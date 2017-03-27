@@ -11,11 +11,11 @@ EN COURS :
 - F.A.Q (Bénédicte)
 - Cookies avec avertissement avec un bandeau (Alexandre)
 - Sécurité (Raphaël & Sylvain)
-- a propos, contact, connexion en anglais (Jesse & Raphaël)
 
 
 FAIT :
 
+- a propos, contact, connexion en anglais (Jesse & Raphaël & Axelle)
 - Génération de newsletter de réduction (Axelle)
 - NewsLetter de réduction (ajout checkbox (inscription et coordonnees) (Axelle)
 - Validations (Lorenzo)
