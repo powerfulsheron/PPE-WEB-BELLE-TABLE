@@ -7,24 +7,27 @@
 		<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 		</div>
 		<br/>
-				<?php
-				
-				$urlcourante = explode("/",$_SERVER['PHP_SELF']);
+			<?php
+			
+			$urlcourante = explode("/",$_SERVER['PHP_SELF']);
 
-				$pagecourante = $urlcourante[3];
+			$pagecourante = $urlcourante[3];
 
-				$lapage = explode(".",$pagecourante);
-				
-				$lien = $lapage[0].'-en.php?langage=en';
-				
-				echo'
-				<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/en.jpg)" onclick="location.href=\''.$lien.'\'">';
-				
-				?>
+
+			$lapage = explode(".",$pagecourante);
+
+
+			$lapageen = explode("-",$lapage[0]);
+			
+			$lien = $lapageen[0].'.php?langage=en';
+			
+			echo'
+			<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/fr.jpg)" onclick="location.href=\''.$lien.'\'">';
+			?>
 			<ul class="footer">
-			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
-			<li class="lifooter"><a href="planAcces.php">Plan d'accès</a></li>
-			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
+			<li class="lifooter"><a href="mentionlegale.php">Terms and conditions</a></li>
+			<li class="lifooter"><a href="planAcces.php">Access map</a></li>
+			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Sale conditions</a></li>
 			</ul>
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>
