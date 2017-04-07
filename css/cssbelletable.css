@@ -14,6 +14,11 @@ header{
   display: block;
 }
 
+.btnlangue{
+  width: 83px;
+  height: 18px;
+}
+
 button,
 input,
 select,
