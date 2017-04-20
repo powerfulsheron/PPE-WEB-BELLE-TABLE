@@ -3,7 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
+
 -- Généré le :  Lun 10 Avril 2017 à 10:31
+
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -172,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `t_connexion` (
 
 INSERT INTO `t_connexion` (`idconnexion`, `numclient`, `dateheuredebut`, `dateheurefin`) VALUES
 (2, 19, '2017-04-10 09:30:36', '2017-04-10 09:43:09');
+
 
 -- --------------------------------------------------------
 

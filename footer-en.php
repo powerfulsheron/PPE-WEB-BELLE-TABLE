@@ -28,7 +28,9 @@
 			<li class="lifooter"><a href="mentionlegale.php">Terms and conditions</a></li>
 			<li class="lifooter"><a href="planAcces.php">Access map</a></li>
 			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Sale conditions</a></li>
+
 			<li class="lifooter"><a href="connexionadmin.php">Administrator Login</a></li>
+
 			</ul>
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>

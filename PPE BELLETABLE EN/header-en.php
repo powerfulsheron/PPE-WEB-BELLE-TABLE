@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="SIOSLAM2017">
 
-    <title>BelleTable - Elegance a la Francaise</title>
+    <title>BelleTable - French Elegance </title>
 
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
     <link href="css/cssbelletable.css" rel="stylesheet">
@@ -20,34 +20,32 @@
     
     <script src="dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-	
-	
     
 </head>
 
 <div id="menuprincipal" align="center">
 		<ul class="barremenu">
 			<li>
-				<a href="index.php"><img src="img/logo.png" alt="" width="150px"></a>	
+				<a href="index-en.php"><img src="img/logo.png" alt="" width="150px"></a>	
 			<li>
-				<a href="pageproduits.php">Nos Produits</a>
+				<a href="pageproduits-en.php">Our Products</a>
 			<li>
-				<a href="pageinspi.php">Nos Inspirations</a>
+				<a href="pageinspi-en.php">Our Inspirations </a>
 			<li>
-				<a href="apropos.php">A Propos</a>
+				<a href="apropos-en.php">About Us</a>
 			<li>
-				<a href="contact.php">Contact</a>
+				<a href="contact-en.php">Contact</a>
 			<li>
 				<?php
 				if(isset($menuchange)){
 					echo'
-					<a href="commandeencours.php">Mon Compte</a>
+					<a href="commandeencours-en.php">Account</a>
                     <li>
-					<a href="lepanier.php">Mon Panier</a>';
+					<a href="lepanier-en.php">Basket</a>';
 				}
 				else{
 					echo'
-					<a href="connexion.php">Connexion</a>';
+					<a href="connexion-en.php">Log in</a>';
 				}
                 
 				?>

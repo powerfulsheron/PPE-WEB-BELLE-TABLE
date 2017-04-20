@@ -5,6 +5,7 @@ include('parametres.php');
 
 include('header.php'); 
 
+
 date_default_timezone_set('Europe/Paris');
 
 if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
@@ -47,9 +48,11 @@ if(!isset($erreur))
 
 			if(isset($_SESSION['login']))
 			{
+
 				$datedebut = date('Y-m-d H:i:s');
 				$bdd->exec('INSERT INTO t_connexion VALUE(null,'.$_SESSION['login'].',"'.$datedebut.'",null)');
 				$_SESSION['datedebut'] = $datedebut;
+
 				echo'
 				<script type="text/javascript">
 					location.href = \'commandeencours.php\';

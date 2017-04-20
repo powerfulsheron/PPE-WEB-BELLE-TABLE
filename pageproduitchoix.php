@@ -141,7 +141,7 @@ include('fonction.php');
 							<td width="10%"><b></b></td>
 							<td width="70%">A l\'unite</td>
 							<td width="10%"><input type="button" id="btnsupprimer0" value="Supprimer" onclick="javascript:nbvoulu0.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu0" id="nbvoulu0" value=""></td>
+							<td width="5%"><input type="number" name="nbvoulu0" id="nbvoulu0" value=""  min=0></td>
 							<input type="hidden" name="produit0" id="produit0" value="'.$row['refprod'].'">
 							</tr>
 							<tr>
@@ -149,7 +149,7 @@ include('fonction.php');
 							<td width="10%"><b></b></td>
 							<td width="70%">Pack de 10</td>
 							<td width="10%"><input type="button" id="btnsupprimer1" value="Supprimer" onclick="javascript:nbvoulu1.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu1" id="nbvoulu1" value=""></td>
+							<td width="5%"><input type="number" name="nbvoulu1" id="nbvoulu1" value="" min=0></td>
 							<input type="hidden" name="produit1" id="produit1" value="'.$row['refprod'].'">
 							</tr>
 							<tr>
@@ -157,7 +157,7 @@ include('fonction.php');
 							<td width="10%"><b></b></td>
 							<td width="70%">Pack de 100</td>
 							<td width="10%"><input type="button" id="btnsupprimer2" value="Supprimer" onclick="javascript:nbvoulu2.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu2" id="nbvoulu2" value=""></td>
+							<td width="5%"><input type="number" name="nbvoulu2" id="nbvoulu2" value="" min=0></td>
 							<input type="hidden" name="produit2" id="produit2" value="'.$row['refprod'].'">
 							</tr>';
 						}
@@ -169,7 +169,7 @@ include('fonction.php');
 							<td width="10%"><b>'.AjoutZero($row['refprod']).'</b></td>
 							<td width="70%">'.$row['libelproduit'].'</td>
 							<td width="10%"><input type="button" id="btnsupprimer'.$n.'" value="Supprimer" onclick="javascript:nbvoulu'.$n.'.value=\'\'"></td>
-							<td width="5%"><input type="text" name="nbvoulu'.$n.'" id="nbvoulu_'.$n.'" value=""></td>
+							<td width="5%"><input type="number" name="nbvoulu'.$n.'" id="nbvoulu_'.$n.'" value="" min=0></td>
 							<input type="hidden" name="produit'.$n.'" id="produit'.$n.'" value="'.$row['refprod'].'">
 							</tr>';
 						}

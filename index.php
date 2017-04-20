@@ -1,4 +1,5 @@
 <?php
+
 include('sessionlogin.php');
 
 include('parametres.php');
@@ -18,6 +19,8 @@ if(isset($_REQUEST['search'])){
 		}
 	}	
 }
+
+
 ?>
 <?php include('header.php'); ?>
 	<div class="fondrecherche" align="center">

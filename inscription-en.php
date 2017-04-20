@@ -1,210 +1,12 @@
 <?php
 include('sessionlogin.php');
 include('parametres.php');
-include('header.php'); 
-
-if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
-{
-	if(isset($erreur))
-	{
-    	 $erreur = $erreur." \\n L'email n'est pas au bon format";
-	}
-	
-	else
-	{
-		$erreur = "L'email n'est pas au bon format";
-	}
-
-}
-
-if(!isset($_REQUEST['password'])||trim($_REQUEST['password'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le password est manquant";
-	}
-
-	else
-	{
-		$erreur = "Le password est manquant";
-	}
-
-}
-
-if(!isset($_REQUEST['confirm'])||trim($_REQUEST['confirm'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le mot de passe de confirmation est manquant";
-	}
-
-	else
-	{
-		$erreur = "Le mot de passe de confirmation est manquant";
-	}
-
-}
-
-if(isset($_REQUEST['confirm'])&&isset($_REQUEST['password'])&&($_REQUEST['confirm'])!=($_REQUEST['password']))
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le mot de passe et le mot de passe de confirmation ne correspondent pas";
-	}
-
-	else
-	{
-		$erreur = "Le mot de passe et le mot de passe de confirmation ne correspondent pas";
-	}
-
-}
-
-if(!isset($_REQUEST['civilite'])||trim($_REQUEST['civilite'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n La civilite est manquante";
-	}
-
-	else
-	{
-		$erreur = "La civilite est manquante";
-	}
-
-}
-
-if(!isset($_REQUEST['nom'])||trim($_REQUEST['nom'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le nom est manquant";
-	}
-
-	else
-	{
-		$erreur = "Le nom est manquant";
-	}
-
-}
-
-if(!isset($_REQUEST['prenom'])||trim($_REQUEST['prenom'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le prenom est manquant";
-	}
-
-	else
-	{
-		$erreur = "Le prenom est manquant";
-	}
-
-}
-
-if(!isset($_REQUEST['rue'])||trim($_REQUEST['rue'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n L'adresse est manquante";
-	}
-
-	else
-	{
-		$erreur = "L'adresse est manquante";
-	}
-
-}
-
-if(!isset($_REQUEST['cp'])||trim($_REQUEST['cp'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le code postal est manquant";
-	}
-
-	else
-	{
-		$erreur = "Le code postal est manquant";
-	}
-
-}
-
-if(!isset($_REQUEST['ville'])||trim($_REQUEST['ville'])==='')
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n La ville est manquante";
-	}
-
-	else
-	{
-		$erreur = "La ville est manquante";
-	}
-
-}
-
-if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')&&(!isset($_REQUEST['telportable'])||trim($_REQUEST['telportable'])===''))
-{
-	if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Veuillez renseigner au moins un numéro de télphone";
-	}
-
-	else
-	{
-		$erreur = "Veuillez renseigner au moins un numéro de télphone";
-	}
-
-}
-
-else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telfixe']))
- {
-
- 			if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
-	}
-
-	else
-	{
-		$erreur = "Le numéro de téléphone renseigné n'est pas au bon format";
-	}
-
- }
-
- else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telportable']))
- {
-
- 			if(isset($erreur))
-	{
-    	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
-	}
-
-	else
-	{
-		$erreur = "Le numéro de téléphone renseigné n'est pas au bon format";
-	}
-
- }
-
-
-if(isset($erreur)&&isset($_POST['bouton']))
-{
-
-						echo'
-					<script type="text/javascript">
-						sweetAlert("Echec","'.$erreur.'","error");
-					</script>';
-		}
-
-
-if(isset($_POST['bouton'])&&!isset($erreur))
-	{
+if(isset($_REQUEST['email'])){
 	
     $email=$_REQUEST['email'];
     $password=$_REQUEST['password'];
 	$confirm=$_REQUEST['confirm'];
-	$civilite = $_REQUEST['civilite'];
+	if(isset($_REQUEST['civilite'])){$civilite = $_REQUEST['civilite'];}else{$civilite = "";}
 	$nom=$_REQUEST['nom'];
 	$prenom=$_REQUEST['prenom'];
 	$activite=$_REQUEST['activite'];
@@ -215,16 +17,27 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 	$ville=$_REQUEST['ville'];
 	$fixe=$_REQUEST['telfixe'];
 	$portable=$_REQUEST['telportable'];
-
-
-	if(isset($_REQUEST['newsletter']))
-	{
+	if(isset($_REQUEST['newsletter'])){
 		$newsletter = 'O';
 	}
-	else
-	{
+	else{
 		$newsletter = 'N';
 	}
+	$erreur = 0;
+	
+	if(isset($fixe)){if(($fixe == null)&&($portable == null)){$erreur = 3;}}
+	if(isset($email)){if($email == null){$erreur = 1;}}
+	if(isset($password)){if($password == null){$erreur = 1;}}
+	if(isset($confirm)){if($confirm == null){$erreur = 1;}}
+	if(($password != null)&&($confirm != null)){if($password != $confirm){$erreur = 2;}}
+	if(isset($civilite)){if($civilite == null){$erreur = 1;}}
+	if(isset($nom)){if($nom == null){$erreur = 1;}}
+	if(isset($prenom)){if($prenom == null){$erreur = 1;}}
+	if(isset($activite)){if($activite == null){$erreur = 1;}}
+	if(isset($activite)){if(($activite == 2)&&($denomsociale == null)){$erreur = 4;}}
+	if(isset($rue)){if($rue == null){$erreur = 1;}}
+	if(isset($cp)){if($cp == null){$erreur = 1;}}
+	if(isset($ville)){if($ville == null){$erreur = 1;}}	
 	
 	$email='\''.$_REQUEST['email'].'\'';
 	$emailbis = $_REQUEST['email'];
@@ -236,60 +49,48 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 	$prenom='\''.$_REQUEST['prenom'].'\'';
 	$activite='\''.$_REQUEST['activite'].'\'';
 	$denomsociale='\''.$_REQUEST['denomsociale'].'\'';
-	if($denomsociale == "")
-	{
+	if($denomsociale == ""){
 		$denomsociale = NULL;
 	}
 	$rue='\''.$_REQUEST['rue'].'\'';
 	$complement = '\''.$_REQUEST['complement'].'\'';
-	if($complement == "")
-	{
+	if($complement == ""){
 		$complement = NULL;
 	}
-
 	$cp='\''.$_REQUEST['cp'].'\'';
 	$ville='\''.$_REQUEST['ville'].'\'';
 	$fixe='\''.$_REQUEST['telfixe'].'\'';
-	$newsletter = '\''.$newsletter.'\'';
-	if($fixe == "")
-	{
+	if($fixe == ""){
 		$fixe = NULL;
 	}
-
 	$portable='\''.$_REQUEST['telportable'].'\'';
-
-	if($portable == "")
-	{
+	if($portable == ""){
 		$portable = NULL;
 	}
-}
 	
-	if(!isset($erreur)){
+	if($erreur == 0){
 		
         $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient,newsletter) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.','.$newsletter.')');
-
 		//Envoi des requêtes
         $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$emailbis.'" AND `mdpclient` LIKE "'.$mdpbis.'"');
-
         while($row = $result->fetch()){
             $_SESSION['login'] = $row['numclient'];
         }
-
         echo'
         <script type="text/javascript">
-            location.href = \'commandeencours.php\';
+            location.href = \'commandeencours-en.php\';
         </script>';
-
 	}	
+}
 	
-
 ?>
+<?php include('header-en.php'); ?>
 	
 	<div class="contenupage">
 		<div class="container">
 			<div class="row">
 				<div class="formulaireinscription">
-					<form  action="inscription.php" id="myform" method="POST" enctype="multipart/form-data">
+					<form  action="inscription-en.php" id="myform" method="GET" enctype="multipart/form-data">
 						<table width="100%">
 							<thead>
 								<tr>
@@ -298,19 +99,19 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 							</thead>
 							<tfoot>
 								<tr>
-									<td id="exception"><br/><br/>*Champs obligatoire</td>
-									<td id="exception"><br/><br/>**Remplissez au moins un des deux champs</td>
+									<td id="exception"><br/><br/>*Mandatory fields</td>
+									<td id="exception"><br/><br/>**Fill at least one of this two fields </td>
 								</tr>
 							</tfoot>
 							<tbody>
 								<tr>
 									<td colspan="2">
-										<h2>Paramètres de connexion</h2><br/>
+										<h2>Log in parameters</h2><br/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Votre Email*<br/><br/>
+										Your email*<br/><br/>
 									</td>
 									<td>
 										<input name="email" type="text" value="" size="30"/><br/><br/>
@@ -318,7 +119,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Mot de Passe*<br/><br/>
+										Password*<br/><br/>
 									</td>
 									<td>
 										<input name="password" type="password" value="" size="30"/><br/><br/>
@@ -326,7 +127,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Confirmation Mot de Passe*<br/><br/>
+										Confirm Password* <br/><br/>
 									</td>
 									<td>
 										<input name="confirm" type="password" value="" size="30"/><br/><br/>
@@ -334,21 +135,21 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td colspan="2">
-										<h2>Coordonnées personnelles</h2><br/>
+										<h2>Personnal Informations</h2><br/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Civilité*<br/><br/>
+										Civility*<br/><br/>
 									</td>
 									<td>
-										<input type="radio" name="civilite" value="1" checked> Madame
-										<input type="radio" name="civilite" value="2"> Monsieur<br/><br/>
+										<input type="radio" name="civilite" value="1" checked> Miss
+										<input type="radio" name="civilite" value="2"> Mister<br/><br/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Nom*<br/><br/>
+										Name*<br/><br/>
 									</td>
 									<td>
 										<input name="nom" type="text" value="" size="30"/><br/><br/>
@@ -356,7 +157,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Prénom*<br/><br/>
+										First Name*<br/><br/>
 									</td>
 									<td>
 										<input name="prenom" type="text" value="" size="30"/><br/><br/>
@@ -364,18 +165,18 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Activité*<br/><br/>
+										Activity*<br/><br/>
 									</td>
 									<td>
 										<select name="activite" onchange="">
-											<option value="1">Particulier</option>
-											<option value="2">Société</option>
+											<option value="1">Particular</option>
+											<option value="2">Company</option>
 										</select><br/><br/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Dénomination sociale<br/><br/>
+										Company name <br/><br/>
 									</td>
 									<td>
 										<input name="denomsociale" type="text" value="" size="30"/><br/><br/>
@@ -383,7 +184,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Adresse*<br/><br/>
+										Adress*<br/><br/>
 									</td>
 									<td>
 										<input name="rue" type="text" value="" size="30"/><br/><br/>
@@ -391,7 +192,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Complément Adresse<br/><br/>
+										Addictional Adress<br/><br/>
 									</td>
 									<td>
 										<input name="complement" type="text" value="" size="30"/><br/><br/>
@@ -399,7 +200,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Code Postal*<br/><br/>
+										Postal Code*<br/><br/>
 									</td>
 									<td>
 										<input name="cp" type="text" value="" size="30"/><br/><br/>
@@ -407,7 +208,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Ville*<br/><br/>
+										City*<br/><br/>
 									</td>
 									<td>
 										<input name="ville" type="text" value="" size="30"/><br/><br/>
@@ -415,7 +216,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Téléphone Fixe**<br/><br/>
+										Phone Number **<br/><br/>
 									</td>
 									<td>
 										<input name="telfixe" type="text" value="" size="30"/><br/><br/>
@@ -423,7 +224,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td>
-										Téléphone Portable**<br/><br/><br/>
+										Mobile Phone Number **<br/><br/><br/>
 									</td>
 									<td>
 										<input name="telportable" type="text" value="" size="30"/><br/><br/><br/>
@@ -439,7 +240,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input name="bouton" type="submit" id="sinscrire" value="Valider" onclick="document.forms[\'myform\'].submit();"/>
+										<input type="submit" id="sinscrire" value="Validate" onclick="document.forms[\'myform\'].submit();"/>
 									</td>
 								</tr>								
 							</tbody>
