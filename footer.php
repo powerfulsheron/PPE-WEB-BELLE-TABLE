@@ -25,6 +25,16 @@
 			<li class="lifooter"><a href="mentionlegale.php">Mentions Légales</a></li>
 			<li class="lifooter"><a href="planAcces.php">Plan d'accès</a></li>
 			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Conditions générales de vente</a></li>
+			<?php 
+			if(isset($_SESSION['loginadmin'])){
+				echo'
+				<li class="lifooter"><a href="deconnexionadmin.php">Déconnexion Administrateurs</a></li>';
+			}
+			else{
+				echo'
+				<li class="lifooter"><a href="connexionadmin.php">Connexion Administrateurs</a></li>';
+			}
+			?>
 			</ul>
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>

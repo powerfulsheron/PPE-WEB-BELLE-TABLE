@@ -12,10 +12,29 @@ include_once('fonctionpanier.php');
 $erreur = false;
 
 
-if(isset($_GET)){
+if(isset($_POST)){
+	
 	$totalcommandeht = MontantGlobal();
+	
+	//reduction
+	if(isset($_POST['reduction'])){
+        $reduction = $_POST['reduction'];
+		$result = $bdd->query('SELECT * FROM `t_reduction` WHERE `libelle_reduc` LIKE "'.$reduction.'"');
+		while($row = $result->fetch())
+		{
+			$montantreduc = $row['reduction'];
+			$idreduc = $row['id_reduc'];
+		}
+		if($idreduc < 10){
+			$totalcommandeht = $totalcommandeht - $montantreduc;
+		}
+		elseif($idreduc > 10){
+			$totalcommandeht = $totalcommandeht - ($totalcommandeht * ($montantreduc/100));
+		}
+    }
+	
     //livraison
-    if(isset($_REQUEST['livraison'])){
+    if(isset($_POST['livraison'])){
         $livraison = 'O';
 		$totalcommandeht = $totalcommandeht + 25;
     }
@@ -23,7 +42,7 @@ if(isset($_GET)){
         $livraison = 'N';
     }
     //mise en place
-    if(isset($_REQUEST['miseplace'])){
+    if(isset($_POST['miseplace'])){
         $miseplace = 'O';
 		$totalcommandeht = $totalcommandeht + 25;
     }
@@ -31,7 +50,7 @@ if(isset($_GET)){
         $miseplace = 'N';
     }
     //service
-    if(isset($_REQUEST['service'])){
+    if(isset($_POST['service'])){
         $service = 'O';
 		$totalcommandeht = $totalcommandeht + 50;
     }
@@ -39,7 +58,7 @@ if(isset($_GET)){
         $service = 'N';
     }
     //vaisselle
-    if(isset($_REQUEST['vaisselle'])){
+    if(isset($_POST['vaisselle'])){
         $vaisselle = 'O';
         $totalcommande = $totalcommande + 20;
 		$totalcommandeht = $totalcommandeht + 20;
@@ -48,7 +67,7 @@ if(isset($_GET)){
         $vaisselle = 'N';
     }
     //lessive
-    if(isset($_REQUEST['lessive'])){
+    if(isset($_POST['lessive'])){
         $lessive = 'O';
 		$totalcommandeht = $totalcommandeht + 30;
     }

@@ -3,7 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 21 Mars 2017 à 15:59
+
+-- Généré le :  Lun 10 Avril 2017 à 10:31
+
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -151,6 +153,28 @@ INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`) VALUES
 (70, 19211, 1),
 (71, 25477, 10),
 (71, 25482, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_connexion`
+--
+
+CREATE TABLE IF NOT EXISTS `t_connexion` (
+  `idconnexion` int(11) NOT NULL AUTO_INCREMENT,
+  `numclient` int(11) NOT NULL,
+  `dateheuredebut` datetime NOT NULL,
+  `dateheurefin` datetime DEFAULT NULL,
+  PRIMARY KEY (`idconnexion`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `t_connexion`
+--
+
+INSERT INTO `t_connexion` (`idconnexion`, `numclient`, `dateheuredebut`, `dateheurefin`) VALUES
+(2, 19, '2017-04-10 09:30:36', '2017-04-10 09:43:09');
+
 
 -- --------------------------------------------------------
 
@@ -371,6 +395,28 @@ CREATE TABLE IF NOT EXISTS `t_typeclient` (
   PRIMARY KEY (`numtypeclient`),
   KEY `numtypeclient` (`numtypeclient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_user`
+--
+
+CREATE TABLE IF NOT EXISTS `t_user` (
+  `iduser` int(11) NOT NULL AUTO_INCREMENT,
+  `loginuser` varchar(50) NOT NULL,
+  `mdpuser` varchar(100) NOT NULL,
+  `nomuser` varchar(25) NOT NULL,
+  `prenomuser` varchar(25) NOT NULL,
+  PRIMARY KEY (`iduser`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `t_user`
+--
+
+INSERT INTO `t_user` (`iduser`, `loginuser`, `mdpuser`, `nomuser`, `prenomuser`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin');
 
 --
 -- Contraintes pour les tables exportées
