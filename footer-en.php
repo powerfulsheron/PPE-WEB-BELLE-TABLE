@@ -11,9 +11,9 @@
 			
 			$urlcourante = explode("/",$_SERVER['PHP_SELF']);
 
-			$pagecourante = $urlcourante[3];
-
-
+			$position = (count($urlcourante)-1);
+			$pagecourante = $urlcourante[$position];
+				
 			$lapage = explode(".",$pagecourante);
 
 
