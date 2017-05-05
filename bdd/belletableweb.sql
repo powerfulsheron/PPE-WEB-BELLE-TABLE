@@ -154,27 +154,6 @@ INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`) VALUES
 (71, 25477, 10),
 (71, 25482, 10);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `t_connexion`
---
-
-CREATE TABLE IF NOT EXISTS `t_connexion` (
-  `idconnexion` int(11) NOT NULL AUTO_INCREMENT,
-  `numclient` int(11) NOT NULL,
-  `dateheuredebut` datetime NOT NULL,
-  `dateheurefin` datetime DEFAULT NULL,
-  PRIMARY KEY (`idconnexion`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Contenu de la table `t_connexion`
---
-
-INSERT INTO `t_connexion` (`idconnexion`, `numclient`, `dateheuredebut`, `dateheurefin`) VALUES
-(2, 19, '2017-04-10 09:30:36', '2017-04-10 09:43:09');
-
 
 -- --------------------------------------------------------
 
