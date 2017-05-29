@@ -254,5 +254,9 @@ function EnvoiMailReducPeriode($email,$reduc,$occasion,$montant){
 	
 	mail($email,$sujet,$message,$header);
 }
-
+function nbclients($bdd){
+$request = $bdd->query('SELECT COUNT(*) AS nbclients FROM `t_client`');
+$nbclients = $request->fetch();
+return $nbclients;
+}
 ?>

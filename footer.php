@@ -29,3 +29,4 @@
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>
     </div>
+    </html>

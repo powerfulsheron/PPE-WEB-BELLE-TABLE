@@ -5,6 +5,7 @@ $sql_passwd="";						//Mot de passe du serveur MySQL
 $sql_bdd="belletableweb";				//Nom de la base de donnée
 
 // Connection à MySQL
+
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=belletableweb;charset=utf8','root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 /*$sql_bdd_connect = mysql_connect($sql_serveur, $sql_user, $sql_passwd)
     or die ("La connexion au serveur n'a pas réussi!");

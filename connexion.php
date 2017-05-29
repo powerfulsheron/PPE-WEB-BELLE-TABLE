@@ -48,11 +48,21 @@ if(!isset($erreur))
 
 			if(isset($_SESSION['login']))
 			{
-
-				echo'
-				<script type="text/javascript">
-					location.href = \'commandeencours.php\';
-				</script>';
+				if($_SESSION['login'] == 'admin')
+				{
+					echo'
+					<script type="text/javascript">
+						location.href = \'admin.php\';
+					</script>';
+				}
+				
+				else
+				{
+					echo'
+					<script type="text/javascript">
+						location.href = \'commandeencours.php\';
+					</script>';
+				}
 			}
 			
 			else

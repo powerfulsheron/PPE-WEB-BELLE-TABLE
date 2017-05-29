@@ -157,10 +157,10 @@ if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')&&(!isset($_RE
 
 }
 
-else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telfixe']))
+else if (!preg_match("/(\+[0-9]{2}\([0-9]\))?[0-9]{10}/", $_REQUEST['telfixe']) && $_REQUEST['telfixe'] != NULL)
  {
-
- 			if(isset($erreur))
+	echo 'Je rentre ici, le num est: telfix', $_REQUEST['telfixe'];
+ 	if(isset($erreur))
 	{
     	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
 	}
@@ -172,10 +172,10 @@ else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telfixe']))
 
  }
 
- else if (!preg_match("#^0[0-9]{9}$#", $_REQUEST['telportable']))
+ else if (!preg_match("#(\+[0-9]{2}\([0-9]\))?[0-9]{10}#", $_REQUEST['telportable']) && $_REQUEST['telportable'] != NULL)
  {
-
- 			if(isset($erreur))
+	echo 'Je rentre ici, le num est: telport', $_REQUEST['telportable'];
+ 	if(isset($erreur))
 	{
     	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
 	}

@@ -489,16 +489,24 @@ button.list-group-item .list-group-item-heading {
 	border-color:black;
 }
 
-#btnvoircommandes{
+#btnvalidercommande{
 	background-color:#192175;
 	color:gold;
 }
 
-#btnvoircommandes:hover{
+#btnvalidercommande:hover{
 	background-color:gold;
 	color:#192175;
 }
+#btnsupprimercommande{
+	background-color:#192175;
+	color:gold;
+}
 
+#btnsupprimercommande:hover{
+	background-color:gold;
+	color:#192175;
+}
 .totalcommande {
 	width: 50%;
 }
@@ -724,4 +732,22 @@ text-align: center;
    font-size: 130%;
    font-weight: bold;
 
+}
+
+.paneladmin
+{
+
+	background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top :10px;
+  	margin-bottom: 10px;
+  	padding-left: 10px;
+  	padding-right: 10;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  	width: 900px;	
+  	font-family: "Times New Roman";
+  	font-style: italic;
+  	font-size: 20px;
 }
