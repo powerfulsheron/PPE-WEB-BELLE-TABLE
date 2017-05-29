@@ -6,6 +6,13 @@ include('fonction.php');
 
 $result = $bdd->query('SELECT * FROM `t_commande` WHERE `dateenvoi` IS NULL');
 
+if(isset($_POST["id"])){
+
+$today = '\''.date('Y-m-d', strtotime("+10 days")).'\'';
+$sql = 'UPDATE t_commande SET dateenvoi='.$today.' WHERE numcommande='.$_POST["id"];
+echo $sql;
+$bdd->query($sql);
+}
 ?>
 				<div class="encadrecommande commandes">
 					<h2>Commandes en attente :</h2>
@@ -41,3 +48,6 @@ $result = $bdd->query('SELECT * FROM `t_commande` WHERE `dateenvoi` IS NULL');
 					</table>
 					<br/>
 				</div>
+				<?php
+				
+				?>

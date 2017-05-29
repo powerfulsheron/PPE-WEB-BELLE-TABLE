@@ -9,8 +9,7 @@ EN COURS :
 - Triggers / procédures stockées (Sébastien)
 - Réduction pour les clients fidèles par mail (Sylvain)
 - F.A.Q (Bénédicte)
-- Cookies avec avertissement avec un bandeau, pas d'obligation:
-  https://www.cnil.fr/fr/cookies-comment-mettre-mon-site-web-en-conformite
+- Cookies avec avertissement avec un bandeau (Alexandre)
 - Sécurité (Raphaël & Sylvain)
 
 
