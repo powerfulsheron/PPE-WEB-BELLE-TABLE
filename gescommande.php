@@ -8,10 +8,12 @@ $result = $bdd->query('SELECT * FROM `t_commande` WHERE `dateenvoi` IS NULL');
 
 if(isset($_POST["id"])){
 
-$today = '\''.date('Y-m-d', strtotime("+10 days")).'\'';
-$sql = 'UPDATE t_commande SET dateenvoi='.$today.' WHERE numcommande='.$_POST["id"];
-echo $sql;
+$delivry = '\''.date('Y-m-d', strtotime("+10 days")).'\'';
+$datenvoie = '\''.date('Y-m-d', strtotime("+2 days")).'\'';
+$sql = 'UPDATE t_commande SET dateenvoi='.$datenvoie.', livraison ='.$delivry.' WHERE numcommande='.$_POST["id"];
+
 $bdd->query($sql);
+header("Refresh:0");
 }
 ?>
 				<div class="encadrecommande commandes">
@@ -24,7 +26,6 @@ $bdd->query($sql);
 								<th class="deuxiemecommande">Date Commande</th>
 								<th class="troisiemecommande">Prix Commande</th>
 								<th class="quatriemecommande">Valider commande</th>
-								<th class="cinquiemecommande">Annuler commande</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -39,7 +40,6 @@ $bdd->query($sql);
 										<td class="deuxieme">'.$newDate.'</td>
 										<td class="troisieme">'.$row2['prixcommande'].' €</td>
 										<td class="quatrieme"><button type="submit" id="btnvalidercommande" value="Valider">Valider</button></td>
-										<td class="quatrieme"><button type="submit" id="btnsupprimercommande" value="Annuler">Annuler</button></td>
 									</tr>';
 									echo '<input form="'.$row2['numcommande'].'" type="hidden" name="id" value="'.$row2['numcommande']. '"></form>';
 								}

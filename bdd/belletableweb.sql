@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
   `dateenvoi` date DEFAULT NULL,
   `prixcommande` int(11) NOT NULL,
   `numclient` int(11) NOT NULL,
-  `livraison` varchar(1) NOT NULL DEFAULT 'N',
+  `livraison` date DEFAULT NULL,
   `miseplace` varchar(1) NOT NULL DEFAULT 'N',
   `service` varchar(1) NOT NULL DEFAULT 'N',
   `vaisselle` varchar(1) NOT NULL DEFAULT 'N',
