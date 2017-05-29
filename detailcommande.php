@@ -16,11 +16,14 @@ else{
 }
 	//$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
 	
-	$result = $bdd->query('SELECT `t_commande`.*, `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit 
-	FROM `t_commander`, `t_produit`, `t_commande`
-	WHERE `t_commander`.numproduit = `t_produit`.refprod 
+	$result = $bdd->query('SELECT `t_commande`.*, `t_commander`.*, `t_client`.*, `t_produit`.libelproduit , `t_produit`.prixproduit 
+
+FROM `t_commander`, `t_produit`, `t_commande`, `t_client`
+
+WHERE `t_commander`.numproduit = `t_produit`.`refprod`
 	AND `t_commander`.`numcommande`= `t_commande`.`numcommande`
-	AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
+	AND `t_commande`.`numclient` = `t_client`.`numclient`
+	AND `t_commander`.`numcommande` = '.$numcommande.';');
 	
 	if(isset($_POST["commandToPDF"])){
 	
@@ -31,6 +34,12 @@ else{
 	$pdf->Cell(40,10,'Commande: '.$_POST["commandToPDF"]);
 	$pdf->Ln(30);
 	$totalcommande;
+	$addlivraison;
+	$datelivraison;
+	$cpclient;
+	$villeclient;
+	$nomclient;
+	$prenomclient;
 	while($row = $result->fetch()){
 	$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(15,10,utf8_decode('Numéro produit: ..........................................................................'.$row['numproduit']));
@@ -42,14 +51,26 @@ else{
 		$pdf->Cell(15,10,utf8_decode('Quantité: ......................................................................................'.$row['quantite']));
 		$pdf->Ln(10);
 		$pdf->Cell(15,10,utf8_decode('Total: ............................................................................................'.$row['prixproduit'] * $row['quantite'].' euros'));
-		$pdf->Ln(10);
-		$pdf->Cell(15,10,utf8_decode('Livraison prévue: '.$row['livraison']));
 		$pdf->Ln(30);
 		$totalcommande = $row['prixcommande'];
+		$addlivraison = $row['rueclient'];
+		$cpclient = $row['cpclient'];
+		$villeclient = $row['villeclient'];
+		$datelivraison = $row['livraison'];
+		$nomclient = $row['nomclient'];
+		$prenomclient = $row['prenomclient'];
 	}
-	$pdf->SetFont('Arial','B',16);
-	$pdf->Cell(15,10,utf8_decode('Total Commande: '.$totalcommande.' euros'));
-	$pdf->Output();
+
+	$pdf->Cell(15,10,utf8_decode('-------------------------------------------------------------------------------------------------------------------------------------------------------'));
+	$pdf->Ln(10);	
+	$pdf->Cell(15,10,utf8_decode('Total Commande TTC: '.$totalcommande.' euros'));
+	$pdf->Ln(10);
+	$pdf->Cell(15,10,utf8_decode('-------------------------------------------------------------------------------------------------------------------------------------------------------'));
+	$pdf->Ln(10);
+	$pdf->Cell(15,10,utf8_decode('Livraison prévue le: '.$datelivraison));
+	$pdf->Ln(10);
+	$pdf->Cell(15,10,utf8_decode('Addresse de livraison: '.$prenomclient.' '.$nomclient.' '.$addlivraison.' '.$cpclient.' '.$villeclient));
+	$pdf->Output('I','Commande_'.$_POST["commandToPDF"].'.pdf');
 
 	}
 ?>
