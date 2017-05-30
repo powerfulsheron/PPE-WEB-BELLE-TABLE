@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
   `service` varchar(1) NOT NULL DEFAULT 'N',
   `vaisselle` varchar(1) NOT NULL DEFAULT 'N',
   `lessive` varchar(1) NOT NULL DEFAULT 'N',
+  `datelivraison` date DEFAULT NULL,
   PRIMARY KEY (`numcommande`),
   KEY `numclient` (`numclient`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
@@ -112,14 +113,8 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
 --
 
 INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcommande`, `numclient`, `livraison`, `miseplace`, `service`, `vaisselle`, `lessive`) VALUES
-(64, '2017-03-07 14:11:32', NULL, 40, 19, 'N', 'N', 'N', 'N', 'N'),
-(65, '2017-03-07 14:11:48', NULL, 50, 19, 'N', 'N', 'N', 'N', 'O'),
-(66, '2017-03-07 14:36:21', NULL, 12, 19, 'N', 'N', 'N', 'N', 'N'),
-(67, '2017-03-07 14:54:42', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
-(68, '2017-03-07 14:55:15', NULL, 60, 19, 'N', 'N', 'N', 'N', 'N'),
-(69, '2017-03-07 14:55:33', NULL, 6, 19, 'N', 'N', 'N', 'N', 'N'),
-(70, '2017-03-07 14:58:40', NULL, 14, 19, 'N', 'N', 'N', 'N', 'N'),
-(71, '2017-03-21 15:54:38', NULL, 117, 19, 'N', 'N', 'N', 'N', 'N');
+(80, '2017-05-30 15:25:05', '2017-06-01', 52, 19, 'O', 'N', 'N', 'N', 'N', '2017-06-09'),
+(81, '2017-05-30 16:01:25', '2017-06-01', 44, 19, 'O', 'N', 'N', 'N', 'N', '2017-06-09');
 
 -- --------------------------------------------------------
 
@@ -140,17 +135,13 @@ CREATE TABLE IF NOT EXISTS `t_commander` (
 --
 
 INSERT INTO `t_commander` (`numcommande`, `numproduit`, `quantite`) VALUES
-(64, 22691, 1),
-(64, 22692, 1),
-(64, 22698, 1),
-(65, 4140, 1),
-(65, 4143, 1),
-(66, 22691, 1),
-(67, 25477, 10),
-(69, 25477, 1),
-(70, 19211, 1),
-(71, 25477, 10),
-(71, 25482, 10);
+(80, 19211, 1),
+(80, 19214, 1),
+(80, 19219, 1),
+(80, 25477, 1),
+(80, 25482, 1),
+(80, 26168, 1),
+(81, 19211, 1);
 
 -- --------------------------------------------------------
 
