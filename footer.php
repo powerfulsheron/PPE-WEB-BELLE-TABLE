@@ -16,7 +16,7 @@
 
 				$lapage = explode(".",$pagecourante);
 				
-				$lien = $lapage[0].'-en.php?langage=en';
+				$lien = $lapage[0].'-en.php';
 				
 				echo'
 				<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/en.jpg)" onclick="location.href=\''.$lien.'\'">';
