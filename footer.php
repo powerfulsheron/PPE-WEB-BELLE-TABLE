@@ -10,13 +10,21 @@
 				<?php
 				
 				$urlcourante = explode("/",$_SERVER['PHP_SELF']);
-				$compteur = count($urlcourante)-1;
-
-				$pagecourante = $urlcourante[$compteur];
-
+				$compteururl = count($urlcourante)-1;
+				$pagecourante = $urlcourante[$compteururl];
+				
+				$ajouturl = explode("?",$_SERVER['REQUEST_URI']);
+				$compteururl = count($ajouturl)-1;
+				$ajoutcourant = $ajouturl[$compteururl];
+				
 				$lapage = explode(".",$pagecourante);
 				
-				$lien = $lapage[0].'-en.php';
+				if(count($ajouturl) < 2){
+					$lien = $lapage[0].'-en.php';
+				}
+				else{
+					$lien = $lapage[0].'-en.php?'.$ajoutcourant;
+				}			
 				
 				echo'
 				<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/en.jpg)" onclick="location.href=\''.$lien.'\'">';

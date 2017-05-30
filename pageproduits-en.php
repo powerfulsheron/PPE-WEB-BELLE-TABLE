@@ -16,7 +16,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/assiettes/assiettes.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=1">Plates and Cup</a></h4>                         
+							<h4><a href="pagediversproduit-en.php?typeproduit=1">Plates and Cup</a></h4>                         
 						</div>               
 					</div>
 				</div>
@@ -25,7 +25,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/couverts/couverts.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=2">Cutlery</a></h4>
+							<h4><a href="pagediversproduit-en.php?typeproduit=2">Cutlery</a></h4>
 						</div>
 					</div>
 				</div>
@@ -34,7 +34,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/verres/verres.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=3">Glasses</a></h4>
+							<h4><a href="pagediversproduit-en.php?typeproduit=3">Glasses</a></h4>
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/nappes/nappes.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=4">Tablecloths and Napkin</a></h4>
+							<h4><a href="pagediversproduit-en.php?typeproduit=4">Tablecloths and Napkin</a></h4>
 						</div>
 					</div>
 				</div>
@@ -52,7 +52,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/mobilier/mobiliers.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=5">Furniture</a></h4>
+							<h4><a href="pagediversproduit-en.php?typeproduit=5">Furniture</a></h4>
 						</div>
 					</div>
 				</div> 				
@@ -61,7 +61,7 @@ include('sessionlogin.php');
 					<div class="encadre">
 						<img src="img/accessoires/accessoires.png" alt="">
 						<div class="caption">
-							<h4><a href="pagediversproduit.php?typeproduit=6">Accessories</a></h4>
+							<h4><a href="pagediversproduit-en.php?typeproduit=6">Accessories</a></h4>
 						</div>
 					</div>
 				</div> 

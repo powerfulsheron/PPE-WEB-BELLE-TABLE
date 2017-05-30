@@ -137,7 +137,7 @@ if(isset($_REQUEST['email'])){
 		
         echo'
         <script type="text/javascript">
-            location.href = \'coordonnees.php\';
+            location.href = \'coordonnees-en.php\';
         </script>';
 	}
 }
@@ -296,8 +296,8 @@ if(isset($_REQUEST['email'])){
 									if($activite == 1){
 										echo'
 										<select name="activite" onchange="">
-											<option value="1" selected>Particulier</option>
-											<option value="2">Société</option>
+											<option value="1" selected>Individual</option>
+											<option value="2">Company</option>
 										</select><br/><br/>';
 									}
 									else{

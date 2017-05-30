@@ -7,7 +7,7 @@ include('sessionlogin.php');
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php include('header.php'); ?>
+<?php include('header-en.php'); ?>
 	
 	<div class="contenupage">
 		<div class="container">
@@ -22,7 +22,7 @@ include('sessionlogin.php');
 
 				<p>BELLETABLE</p>
 				<br>
-				<p>N°Siret : 732 829 320 00074</p>
+				<p>Siret Number: 732 829 320 00074</p>
 				<br>
 				<p>20, rue de la gare</p>
 				<p>75100 PARIS</p>
@@ -37,7 +37,7 @@ include('sessionlogin.php');
 	</div>
 	
 	
-	<?php include('footer.php'); ?>
+	<?php include('footer-en.php'); ?>
 
 </body>
 </html>

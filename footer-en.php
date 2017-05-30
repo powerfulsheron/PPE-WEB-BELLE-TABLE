@@ -10,24 +10,29 @@
 			<?php
 			
 			$urlcourante = explode("/",$_SERVER['PHP_SELF']);
-			$compteur = count($urlcourante)-1;
+			$compteururl = count($urlcourante)-1;
+			$pagecourante = $urlcourante[$compteururl];
 			
-			$pagecourante = $urlcourante[$compteur];
-
+			$ajouturl = explode("?",$_SERVER['REQUEST_URI']);
+			$compteururl = count($ajouturl)-1;
+			$ajoutcourant = $ajouturl[$compteururl];
 
 			$lapage = explode(".",$pagecourante);
-
-
 			$lapageen = explode("-",$lapage[0]);
 			
-			$lien = $lapageen[0].'.php';
+			if(count($ajouturl) < 2){
+				$lien = $lapageen[0].'.php';
+			}
+			else{
+				$lien = $lapageen[0].'.php?'.$ajoutcourant;
+			}
 			
 			echo'
 			<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/fr.jpg)" onclick="location.href=\''.$lien.'\'">';
 			?>
 			<ul class="footer">
-			<li class="lifooter"><a href="mentionlegale.php">Terms and conditions</a></li>
-			<li class="lifooter"><a href="planAcces.php">Access map</a></li>
+			<li class="lifooter"><a href="mentionlegale-en.php">Terms and conditions</a></li>
+			<li class="lifooter"><a href="planAcces-en.php">Access map</a></li>
 			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Sale conditions</a></li>
 			</ul>
 			<p>Copyright &copy; BelleTable 2017</p>

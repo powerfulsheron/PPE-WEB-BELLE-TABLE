@@ -19,8 +19,8 @@ if(isset($_REQUEST['email'])){
 	}
     else{
         $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$email.'" AND `mdpclient` LIKE "'.$password.'"');
-		
-		if($result != ""){
+		$res = $result->rowCount();
+		if($res > 0){
 			while($row = $result->fetch()){
 				$_SESSION['login'] = $row['numclient'];
 			}

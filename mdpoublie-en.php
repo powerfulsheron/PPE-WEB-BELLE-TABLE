@@ -16,7 +16,7 @@ if(isset($_REQUEST['email'])){
 			while($row = $result->fetch()){
 				$idclient = $row['numclient'];
 			}
-			$mdpgenere = '\''.md5(MdpOublie($email)).'\'';
+			$mdpgenere = '\''.md5(MdpOublieEn($email)).'\'';
 			$bdd->exec('UPDATE t_client SET mdpclient='.$mdpgenere.' WHERE numclient = '.$idclient.'');
 		}
 		else{
@@ -28,7 +28,7 @@ if(isset($_REQUEST['email'])){
 	
 ?>
 
-<?php include('header.php'); ?>
+<?php include('header-en.php'); ?>
 
 <body>
 	<?php 
@@ -37,13 +37,13 @@ if(isset($_REQUEST['email'])){
 				case 1:
 					echo'
 					<script type="text/javascript">
-						sweetAlert("Echec", "Veuillez renseigner votre adresse mail", "error");
+						sweetAlert("Echec", "Please fill in your email address", "error");
 					</script>';		
 				break;
 				case 2:
 					echo'
 					<script type="text/javascript">
-						sweetAlert("Echec", "Utilisateur inconnu !", "error");
+						sweetAlert("Echec", "Unknown user !", "error");
 					</script>';
 				break;
 			}
@@ -53,11 +53,11 @@ if(isset($_REQUEST['email'])){
 		<div class="container">
 			<div class="row formulaireconnect">
 				<div class="connexion">
-					<h1>Mot de Passe Oublié</h1>
+					<h1>Forgot your password</h1>
 					<form  action="mdpoublie.php" id="myform" method="GET" enctype="multipart/form-data">
-						<p>Adresse Mail*</p>
+						<p>Mail Address*</p>
 						<input name="email" type="text" value="" size="30"/><br><br>
-						<input type="submit" id="seconnecter" value="Valider" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
+						<input type="submit" id="seconnecter" value="Validate" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
 					</form>
 				</div>
 				<br>				
@@ -66,7 +66,7 @@ if(isset($_REQUEST['email'])){
 	</div>
 	
 	
-	<?php include('footer.php'); ?>
+	<?php include('footer-en.php'); ?>
 
 </body>
 </html>

@@ -46,7 +46,61 @@ function MdpOublie($mail){
 	//=========
 	 
 	//=====Création du header de l'e-mail.
-	$header = "From: <contact.belletable@gmail.com>".$passage_ligne;
+	$header = "From: <siocerfal2017@gmail.com>".$passage_ligne;
+	$header.= "MIME-Version: 1.0".$passage_ligne;
+	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+	//==========
+	 
+	//=====Création du message.
+	$message = $passage_ligne."--".$boundary.$passage_ligne;
+	//=====Ajout du message au format HTML
+	$message.= "Content-Type: text/html; charset=\"utf-8\"".$passage_ligne;
+	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+	$message.= $passage_ligne.$message_html.$passage_ligne;
+	//==========
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	//==========
+	
+	mail($mail,$sujet,$message,$header);
+	return $mdpcree;
+}
+
+function MdpOublieEn($mail){
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+	{
+		$passage_ligne = "\r\n";
+	}
+	else
+	{
+		$passage_ligne = "\n";
+	}
+	
+	$characts = 'abcdefghijklmnopqrstuvwxyz';
+    $characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';	
+	$characts .= '1234567890'; 
+	$mdpcree = ''; 
+
+	for($i=0;$i < 6;$i++)//6 est le nombre de caractères
+	{ 
+        $mdpcree .= substr($characts,rand()%(strlen($characts)),1); 
+	}
+	
+	//=====Déclaration des messages au format texte et au format HTML.
+	$message_html = "<html><head></head><body>Hello,<br/>This is your new password :<br/>";
+	$message_html = $message_html.$mdpcree;
+	//==========
+	 
+	//=====Création de la boundary
+	$boundary = "-----=".md5(rand());
+	//==========
+	 
+	//=====Définition du sujet.
+	$sujet = "New Password";
+	//=========
+	 
+	//=====Création du header de l'e-mail.
+	$header = "From: <siocerfal2017@gmail.com>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
@@ -142,7 +196,58 @@ function EnvoiMailCommande($email,$numcommande,$totalcom,$datecom){
 	//=========
 	 
 	//=====Création du header de l'e-mail.
-	$header = "From: contact.belletable@gmail.com".$passage_ligne;
+	$header = "From: siocerfal2017@gmail.com".$passage_ligne;
+	$header.= "MIME-Version: 1.0".$passage_ligne;
+	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+	//==========
+	 
+	//=====Création du message.
+	$message = $passage_ligne."--".$boundary.$passage_ligne;
+	//=====Ajout du message au format HTML
+	$message.= "Content-Type: text/html; charset=\"utf-8\"".$passage_ligne;
+	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
+	$message.= $passage_ligne.$message_html.$passage_ligne;
+	//==========
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+	//==========
+	
+	mail($email,$sujet,$message,$header);
+}
+
+function EnvoiMailCommandeEn($email,$numcommande,$totalcom,$datecom){
+	
+	$ladatecommande = date("d/m/Y", strtotime($datecom));
+	
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $email)) // On filtre les serveurs qui rencontrent des bogues.
+	{
+		$passage_ligne = "\r\n";
+	}
+	else
+	{
+		$passage_ligne = "\n";
+	}
+	
+	//=====Déclaration des messages au format texte et au format HTML.
+	$message_html = "<html><head></head><body>Hello,<br/>
+	We confirm your order of the ".$ladatecommande."<br/>
+	Number : ".$numcommande."<br/>
+	Amount including tax : ".$totalcom."€<br/>
+	To see the details click on the following link : <br/>
+	<a href=\"http://127.0.0.1/projects/belletable/detailcommande-en.php?idcommande=".$numcommande."\">Ma commande</a>
+	</body></html>";
+	//==========
+	 
+	//=====Création de la boundary
+	$boundary = "-----=".md5(rand());
+	//==========
+	 
+	//=====Définition du sujet.
+	$sujet = "Votre commande";
+	//=========
+	 
+	//=====Création du header de l'e-mail.
+	$header = "From: siocerfal2017@gmail.com".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
@@ -189,7 +294,7 @@ function EnvoiMailReducCommande($email,$reduc,$montant){
 	//=========
 	 
 	//=====Création du header de l'e-mail.
-	$header = "From: contact.belletable@gmail.com".$passage_ligne;
+	$header = "From: siocerfal2017@gmail.com".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
@@ -236,7 +341,7 @@ function EnvoiMailReducPeriode($email,$reduc,$occasion,$montant){
 	//=========
 	 
 	//=====Création du header de l'e-mail.
-	$header = "From: contact.belletable@gmail.com".$passage_ligne;
+	$header = "From: siocerfal2017@gmail.com".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
@@ -254,9 +359,5 @@ function EnvoiMailReducPeriode($email,$reduc,$occasion,$montant){
 	
 	mail($email,$sujet,$message,$header);
 }
-function nbclients($bdd){
-$request = $bdd->query('SELECT COUNT(*) AS nbclients FROM `t_client`');
-$nbclients = $request->fetch();
-return $nbclients;
-}
+
 ?>

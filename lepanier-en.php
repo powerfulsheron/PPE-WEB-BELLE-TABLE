@@ -53,7 +53,7 @@ if($action != null){
 						break;
 					}
 					$l = $_REQUEST['produit'.$n];
-					$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
+					$result = $bdd->query('SELECT `t_produit`.libelproduit_en,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
 					while($row = $result->fetch()){
 						$libel = $row['libelproduit'];
 						$p = $row['prixproduit'];
@@ -67,7 +67,7 @@ if($action != null){
 				if($_REQUEST['nbvoulu'.$n] > 0){
 					$q = $_REQUEST['nbvoulu'.$n];
 					$l = $_REQUEST['produit'.$n];
-					$result = $bdd->query('SELECT `t_produit`.libelproduit,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
+					$result = $bdd->query('SELECT `t_produit`.libelproduit_en,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
 					while($row = $result->fetch()){
 						$libel = $row['libelproduit'];
 						$p = $row['prixproduit'];
@@ -154,7 +154,7 @@ if($action != null){
 									<tfooter>
 										<tr>
 											<th colspan="3">&nbsp;</th>
-											<th>Total HT (€)</th>
+											<th>Amount excluding tax (€)</th>
 											<th>';
 											echo MontantGlobal();
 											echo'
@@ -162,7 +162,7 @@ if($action != null){
 										</tr>
 										<tr>
 											<th colspan="3">&nbsp;</th>
-											<th >Total TTC (€)</th>
+											<th >Amount including tax (€)</th>
 											<th>';
 											echo MontantGlobalTTC();
 											echo'

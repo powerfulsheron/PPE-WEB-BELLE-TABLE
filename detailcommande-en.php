@@ -13,7 +13,7 @@ else{
 			location.href = \'connexion.php\';
 		</script>';
 }
-	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
+	$result = $bdd->query('SELECT `t_commander`.*, `t_produit`.libelproduit_en , `t_produit`.prixproduit FROM `t_commander`, `t_produit` WHERE `t_commander`.numproduit = `t_produit`.refprod AND `t_commander`.`numcommande` LIKE '.$numcommande.'');
 	
 ?>
 <?php include('header-en.php'); ?>
@@ -49,7 +49,7 @@ else{
 									echo'
 									<tr>
 										<td class="premierdetail">'.AjoutZero($row['numproduit']).'</td>
-										<td class="deuxiemedetail">'.$row['libelproduit'].'</td>
+										<td class="deuxiemedetail">'.$row['libelproduit_en'].'</td>
 										<td class="troisiemedetail">'.$row['quantite'].'</td>
 										<td class="quatriemedetail">'.$row['prixproduit'].' €</td>
 										<td class="quatriemedetail">'.$row['prixproduit'] * $row['quantite'].' €</td>
