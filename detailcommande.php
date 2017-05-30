@@ -56,7 +56,7 @@ WHERE `t_commander`.numproduit = `t_produit`.`refprod`
 		$addlivraison = $row['rueclient'];
 		$cpclient = $row['cpclient'];
 		$villeclient = $row['villeclient'];
-		$datelivraison = $row['livraison'];
+		$datelivraison = $row['datelivraison'];
 		$nomclient = $row['nomclient'];
 		$prenomclient = $row['prenomclient'];
 	}
