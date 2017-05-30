@@ -365,9 +365,11 @@ $mois = date('m');
 			<em class="bg_c7">
 				<img src="img/cartes/cryptogramme.jpg" alt="">
 			</em><img src="img/quest.png" alt="" width="20px" height="20px"></a><br/><br/>
+			<input type="button" id="annuler" value="Annuler" onclick="location.href='lepanier.php'"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" id="payer" value="Payer" onclick="document.forms[\'myform\'].submit();"/>
 		</form>
 		</fieldset>
+		<p><img src="img/secure.png" alt="" width="230px" height="150px"></p>
 	</div>
 </body>
 
