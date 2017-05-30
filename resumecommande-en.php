@@ -4,32 +4,17 @@ include('parametres.php');
 include('fonction.php');
 date_default_timezone_set('Europe/Paris');
 
-$ladate = date('Y-m-d');
-
-
-	if(isset($_REQUEST['total'])){
-        $totalttc = $_REQUEST['total'];
+	if(isset($_SESSION['totalcommande'])){
+        $totalttc = $_SESSION['totalcommande'];
     }
-    //livraison
-    if(isset($_REQUEST['livraison'])){
-        $livraison = $_REQUEST['livraison'];
-    }
-    //mise en place
-    if(isset($_REQUEST['miseplace'])){
-        $miseplace = $_REQUEST['miseplace'];
-    }
-    //service
-    if(isset($_REQUEST['service'])){
-        $service = $_REQUEST['service'];
-    }
-    //vaisselle
-    if(isset($_REQUEST['vaisselle'])){
-        $vaisselle = $_REQUEST['vaisselle'];
-    }
-    //lessive
-    if(isset($_REQUEST['lessive'])){
-        $lessive = $_REQUEST['lessive'];
-    }
+	if(isset($_SESSION['bonus'])){
+		$decoupestring = explode("/",$_SESSION['bonus']);
+		$livraison = $decoupestring[0];
+		$miseplace = $decoupestring[1];
+		$service = $decoupestring[2];
+		$vaisselle = $decoupestring[3];
+		$lessive = $decoupestring[4];
+	}
     
     $ladate = date('Y-m-d H:i:s');
     $nb_insert = $bdd->exec('INSERT INTO t_commande (datecommande,dateenvoi,prixcommande,numclient,livraison,miseplace,service,vaisselle,lessive) VALUES  ("'.$ladate.'",null,'.$totalttc.','.$_SESSION['login'].',"'.$livraison.'","'.$miseplace.'","'.$service.'","'.$vaisselle.'","'.$lessive.'")');

@@ -12,29 +12,10 @@ include_once('fonctionpanier.php');
 $erreur = false;
 
 
-if(isset($_POST)){
-	
+if(isset($_GET)){
 	$totalcommandeht = MontantGlobal();
-	
-	//reduction
-	if(isset($_POST['reduction'])){
-        $reduction = $_POST['reduction'];
-		$result = $bdd->query('SELECT * FROM `t_reduction` WHERE `libelle_reduc` LIKE "'.$reduction.'"');
-		while($row = $result->fetch())
-		{
-			$montantreduc = $row['reduction'];
-			$idreduc = $row['id_reduc'];
-		}
-		if($idreduc < 10){
-			$totalcommandeht = $totalcommandeht - $montantreduc;
-		}
-		elseif($idreduc > 10){
-			$totalcommandeht = $totalcommandeht - ($totalcommandeht * ($montantreduc/100));
-		}
-    }
-	
     //livraison
-    if(isset($_POST['livraison'])){
+    if(isset($_REQUEST['livraison'])){
         $livraison = 'O';
 		$totalcommandeht = $totalcommandeht + 25;
     }
@@ -42,7 +23,7 @@ if(isset($_POST)){
         $livraison = 'N';
     }
     //mise en place
-    if(isset($_POST['miseplace'])){
+    if(isset($_REQUEST['miseplace'])){
         $miseplace = 'O';
 		$totalcommandeht = $totalcommandeht + 25;
     }
@@ -50,7 +31,7 @@ if(isset($_POST)){
         $miseplace = 'N';
     }
     //service
-    if(isset($_POST['service'])){
+    if(isset($_REQUEST['service'])){
         $service = 'O';
 		$totalcommandeht = $totalcommandeht + 50;
     }
@@ -58,7 +39,7 @@ if(isset($_POST)){
         $service = 'N';
     }
     //vaisselle
-    if(isset($_POST['vaisselle'])){
+    if(isset($_REQUEST['vaisselle'])){
         $vaisselle = 'O';
         $totalcommande = $totalcommande + 20;
 		$totalcommandeht = $totalcommandeht + 20;
@@ -67,7 +48,7 @@ if(isset($_POST)){
         $vaisselle = 'N';
     }
     //lessive
-    if(isset($_POST['lessive'])){
+    if(isset($_REQUEST['lessive'])){
         $lessive = 'O';
 		$totalcommandeht = $totalcommandeht + 30;
     }
@@ -75,7 +56,9 @@ if(isset($_POST)){
         $lessive = 'N';
     }
 	$totalcommande = $totalcommandeht + $totalcommandeht * 0.2;
-    
+	
+    $_SESSION['totalcommande'] = $totalcommande;
+	$_SESSION['bonus'] = $livraison.'/'.$miseplace.'/'.$service.'/'.$vaisselle.'/'.$lessive;
 }
 
 ?>
@@ -189,8 +172,7 @@ if(isset($_POST)){
 							?>                      
 					</table>
                     <br/>
-					<?php echo '<p align="right"><input type="button" id="btncommander" value="Passer commande" onclick="javascript:location.href=\'resumecommande.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'\'"></p>'; ?>
-                    <?php //include('paypal.php'); ?>
+					<?php echo '<p align="right"><input type="button" id="btncommander" value="Passer commande" onclick="javascript:location.href=\'paiement.php\'"></p>'; ?>
 					<br/>
 				</div>
 		</div>

@@ -57,6 +57,8 @@ if(isset($_GET)){
     }
 	$totalcommande = $totalcommandeht + $totalcommandeht * 0.2;
     
+	$_SESSION['totalcommande'] = $totalcommande;
+	$_SESSION['bonus'] = $livraison.'/'.$miseplace.'/'.$service.'/'.$vaisselle.'/'.$lessive;
 }
 
 ?>
@@ -170,7 +172,7 @@ if(isset($_GET)){
 							?>                      
 					</table>
                     <br/>
-					<?php echo '<p align="right"><input type="button" id="btncommander" value="Validate order" onclick="javascript:location.href=\'resumecommande-en.php?total='.$totalcommande.'&livraison='.$livraison.'&miseplace='.$miseplace.'&service='.$service.'&vaisselle='.$vaisselle.'&lessive='.$lessive.'\'"></p>'; ?>
+					<?php echo '<p align="right"><input type="button" id="btncommander" value="Validate order" onclick="javascript:location.href=\'paiement-en.php\'"></p>'; ?>
                     <?php //include('paypal.php'); ?>
 					<br/>
 				</div>

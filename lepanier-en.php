@@ -14,13 +14,13 @@ if(isset($_REQUEST['lepanier'])){
 		if(isset($_SESSION['login'])){
 			echo'
 			<script type="text/javascript">
-				location.href = \'commander.php\';
+				location.href = \'commander-en.php\';
 			</script>';
 		}
 		else{
 			echo'
 			<script type="text/javascript">
-				location.href = \'connexion.php\';
+				location.href = \'connexion-en.php\';
 			</script>';
 		}
 		
@@ -55,7 +55,7 @@ if($action != null){
 					$l = $_REQUEST['produit'.$n];
 					$result = $bdd->query('SELECT `t_produit`.libelproduit_en,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
 					while($row = $result->fetch()){
-						$libel = $row['libelproduit'];
+						$libel = $row['libelproduit_en'];
 						$p = $row['prixproduit'];
 					}
 					ajouterArticle($l,$q,$libel,$p);
@@ -69,7 +69,7 @@ if($action != null){
 					$l = $_REQUEST['produit'.$n];
 					$result = $bdd->query('SELECT `t_produit`.libelproduit_en,`t_produit`.prixproduit  FROM `t_produit` WHERE refprod LIKE '.$l.'');
 					while($row = $result->fetch()){
-						$libel = $row['libelproduit'];
+						$libel = $row['libelproduit_en'];
 						$p = $row['prixproduit'];
 					}
 					ajouterArticle($l,$q,$libel,$p);
