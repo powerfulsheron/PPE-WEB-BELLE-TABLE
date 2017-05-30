@@ -20,7 +20,7 @@
 
 			$lapageen = explode("-",$lapage[0]);
 			
-			$lien = $lapageen[0].'.php?langage=en';
+			$lien = $lapageen[0].'.php';
 			
 			echo'
 			<input type="button" class="btnlangue" style="BACKGROUND-IMAGE:url(img/fr.jpg)" onclick="location.href=\''.$lien.'\'">';
