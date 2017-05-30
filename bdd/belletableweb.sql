@@ -376,9 +376,30 @@ CREATE TABLE IF NOT EXISTS `t_typeclient` (
   KEY `numtypeclient` (`numtypeclient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_user`
+--
+
+CREATE TABLE IF NOT EXISTS `t_user` (
+  `iduser` int(11) NOT NULL AUTO_INCREMENT,
+  `loginuser` varchar(50) NOT NULL,
+  `mdpuser` varchar(100) NOT NULL,
+  `nomuser` varchar(25) NOT NULL,
+  `prenomuser` varchar(25) NOT NULL,
+  PRIMARY KEY (`iduser`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `t_user`
+--
+
+INSERT INTO `t_user` (`iduser`, `loginuser`, `mdpuser`, `nomuser`, `prenomuser`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin');
+
 --
 -- Contraintes pour les tables exportées
---
 
 --
 -- Contraintes pour la table `t_commande`
