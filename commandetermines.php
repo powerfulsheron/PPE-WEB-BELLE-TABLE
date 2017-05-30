@@ -4,7 +4,7 @@ include('sessionlogin.php');
 	
 	$idclient = $_SESSION['login'];
 	
-    $result2 = $bdd->query('SELECT * FROM `t_commande` WHERE `numclient` LIKE '.$idclient.' AND `dateenvoi` IS NOT NULL');
+    $result2 = $bdd->query('SELECT * FROM `t_commande` WHERE `numclient` LIKE '.$idclient.' AND `dateenvoi` IS NOT NULL ORDER BY datecommande DESC');
 	
 ?>
 <?php include('header.php'); ?>

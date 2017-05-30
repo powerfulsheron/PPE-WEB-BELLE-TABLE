@@ -5,7 +5,7 @@ include('sessionlogin.php');
 	
 	$idclient = $_SESSION['login'];
 	
-    $result2 = $bdd->query('SELECT * FROM `t_commande` WHERE `numclient` LIKE '.$idclient.' AND `dateenvoi` IS NULL');
+    $result2 = $bdd->query('SELECT * FROM `t_commande` WHERE `numclient` LIKE '.$idclient.' AND `dateenvoi` IS NULL ORDER BY datecommande DESC');
 	/*$query2 = 
 	$result2 = mysql_query($query2);
 	$num_rows2 = mysql_num_rows($result2);*/
