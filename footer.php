@@ -8,10 +8,11 @@
 		</div>
 		<br/>
 				<?php
+				
 				$urlcourante = explode("/",$_SERVER['PHP_SELF']);
+				$compteur = count($urlcourante)-1;
 
-				$position = (count($urlcourante)-1);
-				$pagecourante = $urlcourante[$position];
+				$pagecourante = $urlcourante[$compteur];
 
 				$lapage = explode(".",$pagecourante);
 				
@@ -29,4 +30,3 @@
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>
     </div>
-    </html>

@@ -10,10 +10,11 @@
 			<?php
 			
 			$urlcourante = explode("/",$_SERVER['PHP_SELF']);
+			$compteur = count($urlcourante)-1;
+			
+			$pagecourante = $urlcourante[$compteur];
 
-			$position = (count($urlcourante)-1);
-			$pagecourante = $urlcourante[$position];
-				
+
 			$lapage = explode(".",$pagecourante);
 
 
@@ -28,7 +29,6 @@
 			<li class="lifooter"><a href="mentionlegale.php">Terms and conditions</a></li>
 			<li class="lifooter"><a href="planAcces.php">Access map</a></li>
 			<li class="lifooter"><a href="doc/CGV.pdf" target="_blank">Sale conditions</a></li>
-
 			</ul>
 			<p>Copyright &copy; BelleTable 2017</p>
         </footer>
