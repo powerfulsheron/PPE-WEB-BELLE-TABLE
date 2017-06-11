@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
 -- Contenu de la table `t_commande`
 --
 
-INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcommande`, `numclient`, `livraison`, `miseplace`, `service`, `vaisselle`, `lessive`) VALUES
+INSERT INTO `t_commande` (`numcommande`, `datecommande`, `dateenvoi`, `prixcommande`, `numclient`, `livraison`, `miseplace`, `service`, `vaisselle`, `lessive`,`datelivraison`) VALUES
 (80, '2017-05-30 15:25:05', '2017-06-01', 52, 19, 'O', 'N', 'N', 'N', 'N', '2017-06-09'),
 (81, '2017-05-30 16:01:25', '2017-06-01', 44, 19, 'O', 'N', 'N', 'N', 'N', '2017-06-09');
 
