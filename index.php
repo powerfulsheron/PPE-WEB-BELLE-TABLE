@@ -1,16 +1,22 @@
 <?php
-
+// include pour session start si utilisateur loggé et le changement de menu si utilisateur loggé et/ou admin.
 include('sessionlogin.php');
-
+// Include pour la connexion à la bdd en PDO
 include('parametres.php');
-	
+
+// si on à fait une recherche	
 if(isset($_REQUEST['search'])){
+// si la recherche n'est pas empty
 	if($_REQUEST['search'] != ""){
+		// On met en miniscule et on cherche dans la table t_search pour les mots clés.
 		$recherche = strtolower($_REQUEST['search']);
 		$result = $bdd->query('SELECT * FROM `t_search` WHERE `keyword` LIKE "%'.$recherche.'%"');
+		// si le résultat n'est pas null et qu'on trouve un mot clé correspondant dans la table
 		if($result != ""){
 			while($row = $result->fetch()){
+				// on récupère l'url correspondante de l'entrée dans la table
 				$destination = $row['urlsearch'];
+				// on crée l'url et on redirige automatiquement grâce à JS.
 				echo'
 				<script type="text/javascript">
 					location.href = \''.$destination.'\';
@@ -19,17 +25,18 @@ if(isset($_REQUEST['search'])){
 		}
 	}	
 }
-
-
+// Include du header
+include('header.php'); 
 ?>
-<?php include('header.php'); ?>
 	<div class="fondrecherche" align="center">
 		<br/>
 		<div class="recherche" align="center">
+		<!-- formulaire pour la recherche -->
 			<form id="myform" method="get" action="index.php" align="center">
 				<table width="100%">
 				<thead>
 					<tr>
+							<!-- onclick="javascript:this.value='' : quand l'utilisateur clique dans le champ rechercher, la textbox se vide pour le laisser rentrer le mot clé. -->
 						<td width="55%" align="right"><input type="text" name="search" id="search" value="Rechercher un article" onclick="javascript:this.value='';"></td>
 						<td width="45%" align="left"><input class="btnrecherche" type="submit" name="rechercher" value=""></td>
 					</tr>
