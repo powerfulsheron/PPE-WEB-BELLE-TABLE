@@ -1,8 +1,12 @@
 <?php
+// include pour session start si utilisateur loggé et le changement de menu si utilisateur loggé et/ou admin.
 include('sessionlogin.php');
+// Include pour la connexion à la bdd en PDO
 include('parametres.php');
+// Inclue du header
 include('header.php'); 
 
+// Si le mail est empty ou qu'il n'est pas au bon format, on remplit la variable erreur.
 if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)))
 {
 	if(isset($erreur))
@@ -16,7 +20,7 @@ if((!isset($_REQUEST['email']))||(!filter_var($_REQUEST['email'], FILTER_VALIDAT
 	}
 
 }
-
+// Si le password est vide, on remplit la variable erreur
 if(!isset($_REQUEST['password'])||trim($_REQUEST['password'])==='')
 {
 	if(isset($erreur))
@@ -31,6 +35,7 @@ if(!isset($_REQUEST['password'])||trim($_REQUEST['password'])==='')
 
 }
 
+// Si le password de confirmation est vide, on remplit la variable erreur
 if(!isset($_REQUEST['confirm'])||trim($_REQUEST['confirm'])==='')
 {
 	if(isset($erreur))
@@ -45,6 +50,7 @@ if(!isset($_REQUEST['confirm'])||trim($_REQUEST['confirm'])==='')
 
 }
 
+// si les deux passwords ne correspondent pas, on remplit la variable erreur
 if(isset($_REQUEST['confirm'])&&isset($_REQUEST['password'])&&($_REQUEST['confirm'])!=($_REQUEST['password']))
 {
 	if(isset($erreur))
@@ -156,10 +162,9 @@ if((!isset($_REQUEST['telfixe'])||trim($_REQUEST['telfixe'])==='')&&(!isset($_RE
 	}
 
 }
-
+// le numéro de téléphone n'est pas au format
 else if (!preg_match("/(\+[0-9]{2}\([0-9]\))?[0-9]{10}/", $_REQUEST['telfixe']) && $_REQUEST['telfixe'] != NULL)
  {
-	echo 'Je rentre ici, le num est: telfix', $_REQUEST['telfixe'];
  	if(isset($erreur))
 	{
     	$erreur = $erreur." \\n Le numéro de téléphone renseigné n'est pas au bon format";
@@ -187,36 +192,20 @@ else if (!preg_match("/(\+[0-9]{2}\([0-9]\))?[0-9]{10}/", $_REQUEST['telfixe']) 
 
  }
 
-
+// si la variable erreur n'est pas vide et que le bouton à été cliqué, on affiche les erreurs en js
 if(isset($erreur)&&isset($_POST['bouton']))
 {
-
 						echo'
 					<script type="text/javascript">
 						sweetAlert("Echec","'.$erreur.'","error");
 					</script>';
 		}
 
-
+// si le bouton à été cliqué et qu'il n'y a pas d'erreurs, on fait l'assignation des variables
 if(isset($_POST['bouton'])&&!isset($erreur))
 	{
 	
-    $email=$_REQUEST['email'];
-    $password=$_REQUEST['password'];
-	$confirm=$_REQUEST['confirm'];
-	$civilite = $_REQUEST['civilite'];
-	$nom=$_REQUEST['nom'];
-	$prenom=$_REQUEST['prenom'];
-	$activite=$_REQUEST['activite'];
-	$denomsociale=$_REQUEST['denomsociale'];
-	$rue=$_REQUEST['rue'];
-	$complement = $_REQUEST['complement'];
-	$cp=$_REQUEST['cp'];
-	$ville=$_REQUEST['ville'];
-	$fixe=$_REQUEST['telfixe'];
-	$portable=$_REQUEST['telportable'];
-
-
+// inscription à la newsletter O = oui N = non
 	if(isset($_REQUEST['newsletter']))
 	{
 		$newsletter = 'O';
@@ -262,19 +251,17 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 	{
 		$portable = NULL;
 	}
-}
 	
-	if(!isset($erreur)){
-		
+	// Toutes les données sont initialisées, on éxecute l'insert des données pour la création du compte.
         $bdd->exec('INSERT INTO t_client (typeclient,nomclient,prenomclient,denomsociale,rueclient,complementadresse,cpclient,villeclient,emailclient,telfixeclient,telportableclient,mdpclient,civiliteclient,newsletter) VALUES ('.$activite.','.$nom.','.$prenom.','.$denomsociale.','.$rue.','.$complement.','.$cp.','.$ville.','.$email.','.$fixe.','.$portable.','.$password.','.$civilite.','.$newsletter.')');
 
-		//Envoi des requêtes
+		//On teste si le client à bien été inséré
         $result = $bdd->query('SELECT * FROM `t_client` WHERE `emailclient` LIKE "'.$emailbis.'" AND `mdpclient` LIKE "'.$mdpbis.'"');
-
+        // Si ok on crée une variable session
         while($row = $result->fetch()){
             $_SESSION['login'] = $row['numclient'];
         }
-
+        // On redirige sur le panier/les commandes de l'utilisateur.
         echo'
         <script type="text/javascript">
             location.href = \'commandeencours.php\';
@@ -284,7 +271,7 @@ if(isset($_POST['bouton'])&&!isset($erreur))
 	
 
 ?>
-	
+	<!-- Le formulaire de création de compte -->
 	<div class="contenupage">
 		<div class="container">
 			<div class="row">
