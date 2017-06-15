@@ -146,9 +146,11 @@ ul {
 }
 
 table {
+	border-collapse:collapse;
     background-color: transparent;
     margin :0px;
     padding: 0px;
+	text-align: center;
 }
 caption {
   padding-top: 8px;
