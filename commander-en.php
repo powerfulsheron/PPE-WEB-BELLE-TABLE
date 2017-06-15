@@ -23,10 +23,6 @@ $ladate = date('Y-m-d');
 							
 							<tbody>                      
                                 <tr>
-                                    <td class="totalcommande">Delivery (+25€)</td>
-                                    <td class="totalcommande"><input type="checkbox" id="livraison" name="livraison" value="livraison" ></td>
-                                </tr>
-                                <tr>
                                     <td class="totalcommande">Implementation (+25€)</td>
                                     <td class="totalcommande"><input type="checkbox" id="miseplace" name="miseplace" ></td>
                                 </tr>
