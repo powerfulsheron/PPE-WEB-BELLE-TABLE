@@ -76,19 +76,19 @@ include('fonction.php');
 										switch($row2['gammeprix']){
 											case 1:
 												echo'
-												<p><img src="img/gammes/bas.PNG" alt=""></p>';
+												<p><img src="img/gammes/bas.png" alt=""></p>';
 											break;
 											case 2:
 												echo'
-												<p><img src="img/gammes/moyen.PNG" alt=""></p>';
+												<p><img src="img/gammes/moyen.png" alt=""></p>';
 											break;
 											case 3:
 												echo'
-												<p><img src="img/gammes/haut.PNG" alt=""></p>';
+												<p><img src="img/gammes/haut.png" alt=""></p>';
 											break;
 											case 4:
 												echo'
-												<p><img src="img/gammes/prestige.PNG" alt=""></p>';
+												<p><img src="img/gammes/prestige.png" alt=""></p>';
 											break;
 										}
 									}									

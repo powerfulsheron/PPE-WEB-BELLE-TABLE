@@ -59,7 +59,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Ambiance Taupe</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>L\'ambiance "taupe” vous permet d\'apprécier la finesse et l’élégance des assiettes Hémisphère, signée J.L Coquet.<br/>Vous l’associerez aux couverts Trianon, qui se remarquent par leur ligne simple et la finition du manche argent.<br/></p>';					
 						break;
 						//Thème 2
@@ -67,7 +67,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Azul Opal</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>La rondeur et le romantisme sont les mots qui ont guidé notre scénographe dans la réalisation de cette mise en scène. <br/>La ligne d’assiettes Azul apporte une tonalité méditerranéenne à cette table.<br/></p>';					
 						break;
 						//Thème 3
@@ -75,7 +75,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Baroque</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>Inspirez-vous de cette table "baroque" dorée pour les jours de fêtes et osez une vaisselle Versace pour une touche de chic supplémentaire!<br/></p>';					
 						break;		
 						//Thème 4
@@ -83,14 +83,14 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Dorure d\'Automne</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>';
+							<p><img src="img/gammes/prestige.png" alt=""></p>';
 						break;
 						//Thème 5
 						case 5:
 							echo'
 							<h1>Reflet Doré</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/haut.PNG" alt=""></p>
+							<p><img src="img/gammes/haut.png" alt=""></p>
 							<p>Optez pour la table laquée noire et notre vaisselle dorée pour un dîner chic!<br/></p>';					
 						break;	
 						//Thème 6
@@ -98,7 +98,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Table Nature</h1>
 							<p><b>GAMME DE PRIX</b></p>
-							<p><img src="img/gammes/haut.PNG" alt=""></p>
+							<p><img src="img/gammes/haut.png" alt=""></p>
 							<p>Pour une table sophistiquée et pleine de charme, jouez sur des assemblages tels que la nappe Lin, la ligne d\'assiettes Platinium, avec son petit air "so classic", la ligne de couverts Nacre, dans le même style et la ligne de verres Marqui Or et son liseret doré.<br/></p>';					
 						break;
 					}

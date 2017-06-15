@@ -15,9 +15,13 @@ $erreur = false;
 if(isset($_GET)){
 	$totalcommandeht = MontantGlobal();
     //livraison
+    if(isset($_REQUEST['livraison'])){
         $livraison = 'O';
 		$totalcommandeht = $totalcommandeht + 25;
-		
+    }
+    else{
+        $livraison = 'N';
+    }
     //mise en place
     if(isset($_REQUEST['miseplace'])){
         $miseplace = 'O';
@@ -37,6 +41,7 @@ if(isset($_GET)){
     //vaisselle
     if(isset($_REQUEST['vaisselle'])){
         $vaisselle = 'O';
+        $totalcommande = $totalcommande + 20;
 		$totalcommandeht = $totalcommandeht + 20;
     }
     else{

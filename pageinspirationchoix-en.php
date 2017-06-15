@@ -59,7 +59,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Taupe Atmosphere</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>The "taupe" atmosphere allows you to appreciate the delicacy and elegance of the Hemisphere plates, signed JL Coquet. <br/> You will associate it with the Trianon cutlery, which are noted by their simple line and the finish of the handle money. <br/></p>';					
 						break;
 						//Thème 2
@@ -67,7 +67,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Azul Opale</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>The roundness and romance are the words that guided our scenographer in the realization of this staging. <br/> The Azul plate line brings a Mediterranean touch to this table.<br/></p>';					
 						break;
 						//Thème 3
@@ -75,7 +75,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Baroque</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>
+							<p><img src="img/gammes/prestige.png" alt=""></p>
 							<p>Inspire yourself from this golden "baroque" table for festive days and dare a Versace crockery for an extra touch of chic!<br/></p>';					
 						break;		
 						//Thème 4
@@ -83,14 +83,14 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Golden Autumn</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/prestige.PNG" alt=""></p>';
+							<p><img src="img/gammes/prestige.png" alt=""></p>';
 						break;
 						//Thème 5
 						case 5:
 							echo'
 							<h1>Golden Shine</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/haut.PNG" alt=""></p>
+							<p><img src="img/gammes/haut.png" alt=""></p>
 							<p>Opt for the black lacquered table and our golden dishes for a chic dinner!<br/></p>';					
 						break;	
 						//Thème 6
@@ -98,7 +98,7 @@ if(isset($_REQUEST['inspi'])){$typeinspi = $_REQUEST['inspi'];};
 							echo'
 							<h1>Nature Table</h1>
 							<p><b>PRICE RANGE</b></p>
-							<p><img src="img/gammes/haut.PNG" alt=""></p>
+							<p><img src="img/gammes/haut.png" alt=""></p>
 							<p>For a sophisticated table full of charm, play on assemblies such as the linen tablecloth, Platinium plate line, with its so so classic air, the line of cutlery Nacre, in the same style and the line of glasses Marquis Gold and its gilt edging.<br/></p>';					
 						break;
 					}
