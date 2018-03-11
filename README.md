@@ -1,4 +1,6 @@
-# PPE-WEB-BELLE-TABLE
+# PPE-WEB - BELLE-TABLE
+
+## PHP Web Shop with MySQL database 
 
 A FAIRE :
 
