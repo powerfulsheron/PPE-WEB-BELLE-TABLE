@@ -3,6 +3,7 @@
 include('sessionlogin.php');
 // Include pour la connexion à la bdd en PDO
 include('parametres.php');
+//Test
 
 // si on à fait une recherche	
 if(isset($_REQUEST['search'])){
